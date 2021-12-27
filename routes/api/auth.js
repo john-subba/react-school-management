@@ -14,7 +14,6 @@ const User = require('../../models/User');
 //@access   public
 router.post(
   '/',
-  auth,
   [
     check('email', 'Please include an valid email address').isEmail(),
     check('password', 'Password is required').exists(),

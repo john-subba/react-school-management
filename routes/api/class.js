@@ -94,6 +94,22 @@ router.put(
   }
 );
 
+//@route    Delete /api/class/:class_id
+//@desc     Delete the whole class using class id
+//@access   public
+router.delete('/:class_id', auth, async (req, res) => {
+  try {
+    await Class.findByIdAndDelete(req.params.class_id);
+
+    //@ todo need to add delete all the students also while deleting the class
+
+    res.json({ msg: 'Your class has been removed' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(400).send('Server error');
+  }
+});
+
 //@route    POST /api/class/students/:class_id
 //@desc     add students according to their respective class. Find class by its id.
 //@access   public
@@ -173,6 +189,28 @@ router.get('/students/:class_id/:student_id', auth, async (req, res) => {
     classDetails.students[studentIndex].studentsGrading = `${studentsGrading}`;
     classDetails.students[studentIndex].studentsRemarks = `${studentsRemarks}`;
     classDetails.students[studentIndex].studentsName = `${studentsName}`;
+
+    await classDetails.save();
+    res.json(classDetails);
+  } catch (err) {
+    console.error(err.message);
+    res.status(400).send('Server error');
+  }
+});
+
+//@route    Delete /api/class/students/:student_id
+//@desc     delete particular student by getting index of the student inside studnets array with the help of student array
+//@access   private
+router.delete('/students/:class_id/:student_id', auth, async (req, res) => {
+  try {
+    const classDetails = await Class.findById(req.params.class_id);
+
+    // get index of the student that we are deleting
+    const removeIndex = classDetails.students
+      .map((stu) => stu.id)
+      .indexOf(req.params.student_id);
+
+    classDetails.students.splice(removeIndex, 1);
 
     await classDetails.save();
     res.json(classDetails);

@@ -9,24 +9,26 @@ const ClassSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  section: [
+  students: [
     {
       sectionName: {
         type: String,
         required: true,
       },
-      students: [
-        {
-          studentsName: {
-            type: String,
-            required: true,
-          },
-          studentsRoll: {
-            type: Number,
-            required: true,
-          },
-        },
-      ],
+      studentsName: {
+        type: String,
+        required: true,
+      },
+      studentsRoll: {
+        type: Number,
+        required: true,
+      },
+      studentsGrading: {
+        type: String,
+      },
+      studentsRemarks: {
+        type: String,
+      },
     },
   ],
 });

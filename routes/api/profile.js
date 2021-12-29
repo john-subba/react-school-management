@@ -95,6 +95,23 @@ router.post(
   }
 );
 
+//@route    GET /api/profile/subject
+//@desc     get the subjects of the profile
+//@access   public
+router.get('/subject', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.user.id,
+    });
+
+    const subjectsList = profile.subjects;
+    res.json({ subjectsList });
+  } catch (err) {
+    console.error(err.message);
+    res.status(400).send('Server error');
+  }
+});
+
 //@route    POST /api/profile/subject
 //@desc     add subject to the profile
 //@access   public

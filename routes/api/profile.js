@@ -7,6 +7,7 @@ const auth = require('../../middleware/auth');
 
 // call profile model
 const Profile = require('../../models/Profile');
+const Class = require('../../models/Class');
 
 //@route    GET /api/profile
 //@desc     get all the profiles of the users
@@ -29,7 +30,7 @@ router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       'user',
-      ['name', 'email']
+      ['name']
     );
 
     if (!profile) {
@@ -112,6 +113,27 @@ router.get('/subject', auth, async (req, res) => {
   }
 });
 
+//@route    GET /api/profile/subject
+//@desc     get the one specific subject of the profile
+//@access   public
+router.get('/subject/:subject_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const subjectIndex = profile.subjects
+      .map((sub) => sub.id)
+      .indexOf(req.params.subject_id);
+
+    const subject = profile.subjects[subjectIndex];
+
+    const classes = subject.class;
+    res.json(classes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(400).send('Server error');
+  }
+});
+
 //@route    POST /api/profile/subject
 //@desc     add subject to the profile
 //@access   public
@@ -157,6 +179,8 @@ router.post(
 router.delete('/subject/:sub_id', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id });
+
+    await Class.findOneAndDelete({ user: req.user.id });
 
     const removeIndex = profile.subjects
       .map((sub) => sub.id)

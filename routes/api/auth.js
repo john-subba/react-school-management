@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs');
 
 // clal user model
 const User = require('../../models/User');
+const Profile = require('../../models/Profile');
 
 //@route    GET /api/users
 //@desc     get all the users

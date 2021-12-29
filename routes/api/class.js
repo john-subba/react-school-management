@@ -15,6 +15,12 @@ router.get('/', auth, async (req, res) => {
   try {
     const classes = await Class.find();
 
+    if (classes.length === 0) {
+      return res
+        .status(404)
+        .json({ msg: 'There are no any classes added to this subject' });
+    }
+
     res.json({ classes });
   } catch (err) {
     console.error(err.message);
@@ -101,8 +107,6 @@ router.delete('/:class_id', auth, async (req, res) => {
   try {
     await Class.findByIdAndDelete(req.params.class_id);
 
-    //@ todo need to add delete all the students also while deleting the class
-
     res.json({ msg: 'Your class has been removed' });
   } catch (err) {
     console.error(err.message);
@@ -166,7 +170,7 @@ router.get('/:class_id', auth, async (req, res) => {
 //@route    PUT /api/class/students/:student_id
 //@desc     change students credentials according to the id of students
 //@access   public
-router.get('/students/:class_id/:student_id', auth, async (req, res) => {
+router.put('/students/:class_id/:student_id', auth, async (req, res) => {
   const {
     studentsName,
     studentsRoll,

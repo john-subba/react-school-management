@@ -1,7 +1,12 @@
-import React from 'reacts';
+import React from 'react';
+import HomeScreen from './components/layout/screens/HomeScreen';
 
 function App() {
-  return <div>App</div>;
+  return (
+    <>
+      <HomeScreen />
+    </>
+  );
 }
 
 export default App;

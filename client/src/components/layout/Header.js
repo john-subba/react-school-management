@@ -10,8 +10,9 @@ const Header = () => {
         style={{
           paddingTop: '0',
           paddingBottom: '0',
-          backgroundColor: '#ffffffe5',
+          backgroundColor: 'transparent',
           borderBottom: '2px solid skyblueviolet',
+          alignItems: 'center',
         }}
       >
         <Container>
@@ -31,18 +32,18 @@ const Header = () => {
                 Contact Us
               </Nav.Link>
             </Nav>
-            <Button
-              className='btn-login'
-              style={{
-                borderRadius: '25px',
-                letterSpacing: '4px',
-                paddingTop: '10px',
-                paddingBottom: '10px',
-              }}
-            >
-              Login
-            </Button>
           </Navbar.Collapse>
+          <Button
+            className='btn-login'
+            style={{
+              borderRadius: '25px',
+              letterSpacing: '4px',
+              paddingTop: '10px',
+              paddingBottom: '10px',
+            }}
+          >
+            Login
+          </Button>
         </Container>
       </Navbar>
     </div>

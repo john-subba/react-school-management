@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
 * {
   padding: 0;
   margin: 0;
 }
 
 body {
-  background-image: url('./assets/bg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-color: #08050b;
 }
 
 /*Navbar Part*/
 .logo {
-  height: 85px;
+  height: 95px;
   width: 185px;
 }
 
@@ -40,18 +40,29 @@ body {
 }
 
 .nav-links {
-  color: #343a40 !important;
+  color: #fff !important;
   font-size: 1rem;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  font-weight: normal;
 }
 
 /*Body Part*/
 /*first Part*/
+
 .body-first-part {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   padding: 1rem 4rem;
+  padding-left: 5rem !important;
   gap: 1rem;
+}
+
+.body-first-img {
+  padding-left: 3rem;
 }
 
 .body-first-details {
@@ -62,13 +73,73 @@ body {
 .body-first-details p {
   font-size: 1.25rem;
   margin-bottom: 0rem;
+  font-family: 'Raleway', sans-serif;
 }
 
 .body-first-details h2 {
   font-size: 3.5rem;
   color: #ffffff;
   text-shadow: 4px 4px #00000021;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Fredoka One', cursive;
 }
 
 /*second Part*/
+.body-second-part {
+  margin-top: 6rem;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 1rem;
+  padding: 2rem 4rem;
+}
+
+.body-second-details {
+  padding-top: 3rem;
+  position: relative;
+}
+
+.body-second-details p {
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.about-perks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding-top: 1.5rem;
+}
+
+.blob-svg {
+  position: absolute;
+  z-index: -1;
+  bottom: -200px;
+}
+
+.perk {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  align-items: center;
+  color: #343a40;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.perk h5 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.perk p {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.perk-svg {
+  height: 100px;
+  width: 100px;
+}

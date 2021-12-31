@@ -4,7 +4,7 @@ import HomeBody from '../HomeBody';
 
 const HomeScreen = () => {
   return (
-    <div style={{ backgroundColor: '#000000a4' }}>
+    <div>
       <Header />
       <HomeBody />
     </div>

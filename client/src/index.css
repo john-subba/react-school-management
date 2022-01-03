@@ -84,7 +84,7 @@ body {
 
 /*second Part*/
 .body-second-part {
-  margin-top: 6rem;
+  margin-top: 7rem;
   display: grid;
   grid-template-columns: 0.5fr 1fr;
   gap: 1rem;
@@ -94,12 +94,12 @@ body {
 .about-us-header {
   font-family: 'Fredoka One', cursive;
   color: #343a40;
+  text-shadow: 4px 4px #00000021;
   font-size: 2.5rem;
 }
 
 .body-second-details {
   padding-top: 3rem;
-  position: relative;
 }
 
 .body-second-details p {
@@ -118,7 +118,7 @@ body {
 .blob-svg {
   position: absolute;
   z-index: -1;
-  bottom: -200px;
+  bottom: -750px;
   opacity: 0.6;
 }
 
@@ -138,11 +138,11 @@ body {
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-  transition: 0.3s ease-in-out;
   position: relative;
+  transition: 0.3s ease-in-out;
 }
 
-.gradient-hover {
+.gradient-hover-perk {
   background-image: linear-gradient(
     to right top,
     #3d3d8c,
@@ -167,7 +167,11 @@ body {
   transition: 0.3s ease-in-out;
 }
 
-.perk:hover > .gradient-hover {
+.perk {
+  z-index: 1;
+}
+
+.perk:hover > .gradient-hover-perk {
   opacity: 1;
 }
 
@@ -217,7 +221,44 @@ body {
   z-index: 1;
 }
 
+.blob-container {
+  position: relative;
+}
+
 /*Third Part*/
+.body-third-part {
+  margin: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14rem !important;
+}
+
+.body-third-part h2 {
+  font-family: 'Fredoka One', cursive;
+  color: #343a40;
+  font-size: 2.5rem;
+  text-shadow: 4px 4px #00000021;
+}
+
+.body-third-part h6 {
+  font-family: 'Fredoka One', cursive;
+  color: #343a40;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
+.body-third-part p {
+  font-family: 'Raleway', sans-serif;
+  color: #343a40;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0 7rem;
+  font-weight: bold;
+}
+
+/*Honey comb grid part*/
 .honeycomb {
   display: flex;
   flex-wrap: wrap;
@@ -232,14 +273,14 @@ body {
 
 .honeycomb-cell {
   flex: 0 0 250px;
-  max-width: 250px;
-  height: 137.5px;
-  margin: 65.4px 12.5px 25px;
+  max-width: 180px;
+  height: 100px;
+  margin: 65.4px 12.5px 10px;
   position: relative;
   padding: 0.5rem;
   text-align: center;
   z-index: 1;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -251,7 +292,7 @@ body {
   width: 50px;
 }
 
-.gradient-background {
+.gradient-hover-honeycomb {
   background-image: linear-gradient(
     to right top,
     #3d3d8c,
@@ -267,6 +308,10 @@ body {
     #0035f4,
     #0022ff
   );
+}
+
+.honeycomb-background {
+  background-color: #eeecec;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -280,7 +325,7 @@ body {
   font-family: 'Raleway', sans-serif;
   font-size: 0.9rem;
   margin-bottom: 0;
-  color: #fff;
+  color: #343a40;
 }
 
 .honeycomb-cell::before,
@@ -290,7 +335,7 @@ body {
 
 .honeycomb-cell::before,
 .honeycomb-cell::after,
-.gradient-background {
+.honeycomb-background {
   top: -50%;
   left: 0;
   width: 100%;

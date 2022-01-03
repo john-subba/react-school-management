@@ -4,8 +4,9 @@ import BodyImg2nd from '../../assets/about-us.svg';
 import DigitalSvg from '../../assets/about/digital.svg';
 import SyncSvg from '../../assets/about/sync.svg';
 import SystemSvg from '../../assets/about/system-update.svg';
-import Blob from '../../assets/about/blob.svg';
 import { Button, Container } from 'react-bootstrap';
+import HonyComb from './HonyComb.js';
+import Blob from '../../assets/about/blob.svg';
 
 const HomeBody = () => {
   return (
@@ -56,7 +57,6 @@ const HomeBody = () => {
         />
       </div>
       <div className='body-second-part'>
-        <img src={Blob} alt='blob' className='blob-svg' />
         <img src={BodyImg2nd} alt='body-2nd-img' />
         <div className='body-second-details'>
           <h2 className='about-us-header'>About us</h2>
@@ -67,7 +67,7 @@ const HomeBody = () => {
           </p>
           <div className='about-perks'>
             <div className='digital-perk perk'>
-              <div className='gradient-hover'></div>
+              <div className='gradient-hover-perk'></div>
               <img src={DigitalSvg} alt='digitalize' className='perk-svg' />
               <h5 className='perk-header'>Digitalize</h5>
               <p className='perk-text'>
@@ -75,7 +75,7 @@ const HomeBody = () => {
               </p>
             </div>
             <div className='system-perk perk'>
-              <div className='gradient-hover'></div>
+              <div className='gradient-hover-perk'></div>
               <img src={SystemSvg} alt='systemize' className='perk-svg' />
               <h5 className='perk-header'>Systemize</h5>
               <p className='perk-text'>
@@ -84,7 +84,7 @@ const HomeBody = () => {
               </p>
             </div>
             <div className='sync-perk perk'>
-              <div className='gradient-hover'></div>
+              <div className='gradient-hover-perk'></div>
               <img src={SyncSvg} alt='syncronize' className='perk-svg' />
               <h5 className='perk-header'>Synchronize</h5>
               <p className='perk-text'>
@@ -95,31 +95,28 @@ const HomeBody = () => {
           </div>
         </div>
       </div>
+      <div className='blob-container'>
+        <img src={Blob} alt='blob' className='blob-svg' />
+      </div>
       <div className='body-third-part'>
-        <div className='sms-text'>
-          <h2>School Mangement System (SMS)</h2>
-          <p>Say Goodbye to all the papers.</p>
-          <p>
-            School Management System, a delightful product of Digital Nepal aims
-            to bridge the information gaps that may exist between the School
-            Management, Teachers, Students and the Parents. This software can be
-            a sanctification for the effective management of the overall
-            operations of your educational institution. This enthralling
-            software can be used for updating the information of the students,
-            mining, storing and instant access, centralizing and controlling the
-            activities of the whole school. With the use of this software, you
-            can control and mine the overall information of the students and
-            report them to their parents and also store that information for the
-            future references.
-          </p>
-        </div>
-        <div className='sms-honeycomb'>
-          <ul id='hexGrid'>
-            <li className='hex-shape'></li>
-            <li className='hex-shape'></li>
-            <li className='hex-shape'></li>
-          </ul>
-        </div>
+        <h2>
+          <span style={{ color: '#992b3e' }}>School</span>{' '}
+          <span style={{ color: '#13578b' }}>Management</span> System (SMS)
+        </h2>
+        <h6>Say Goodbye to all the paperworks !</h6>
+        <p>
+          School Management System, a delightful product of Digital Nepal aims
+          to bridge the information gaps that may exist between the School
+          Management, Teachers, Students and the Parents. This software can be a
+          sanctification for the effective management of the overall operations
+          of your educational institution. This enthralling software can be used
+          for updating the information of the students, mining, storing and
+          instant access, centralizing and controlling the activities of the
+          whole school. With the use of this software, you can control and mine
+          the overall information of the students and report them to their
+          parents and also store that information for the future references.
+        </p>
+        <HonyComb />
       </div>
     </div>
   );

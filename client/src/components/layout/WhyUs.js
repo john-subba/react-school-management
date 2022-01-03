@@ -31,16 +31,24 @@ const WhyUs = () => {
           </Col>
           <Col>
             <div className='whyus-icons'>
-              <div className='whyus-digital'>
-                <img src={Digital} alt='' className='whyus-icon' />
-                <h4>Digitalize</h4>
+              <div className='whyus-digital hover'>
+                <img src={Digital} alt='' className='whyus-icon ' />
+                <h4
+                  style={{
+                    fontSize: '0.9rem',
+                    letterSpacing: '1px',
+                  }}
+                >
+                  Digitalize
+                </h4>
               </div>
               <div className='whyus-arrows'>
                 <img src={Arrow1} alt='' className='whyus-icon' />
                 <img src={Arrow2} alt='' className='whyus-icon' />
               </div>
-              <div className='whyus-gears'>
+              <div className='whyus-gears '>
                 <div
+                  className='hover'
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -49,8 +57,15 @@ const WhyUs = () => {
                     gap: '0.5rem',
                   }}
                 >
-                  <img src={Gears} alt='' className='whyus-icon' />
-                  <h4>Systemize</h4>
+                  <img src={Gears} alt='' className='whyus-icon ' />
+                  <h4
+                    style={{
+                      fontSize: '0.9rem',
+                      letterSpacing: '1px',
+                    }}
+                  >
+                    Systemize
+                  </h4>
                 </div>
                 <img
                   src={Arrow3}
@@ -65,10 +80,19 @@ const WhyUs = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     gap: '0.5rem',
+                    paddingLeft: '1rem',
                   }}
+                  className='hover'
                 >
                   <img src={Sync} alt='' className='whyus-icon' />
-                  <h4>Synchronize</h4>
+                  <h4
+                    style={{
+                      fontSize: '0.9rem',
+                      letterSpacing: '1px',
+                    }}
+                  >
+                    Synchronize
+                  </h4>
                 </div>
               </div>
             </div>

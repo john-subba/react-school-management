@@ -9,6 +9,7 @@
 
 body {
   background-color: #fff !important;
+  font-family: 'Raleway', sans-serif;
 }
 
 /*Navbar Part*/
@@ -428,6 +429,14 @@ body {
   align-items: center;
 }
 
+.hover {
+  transition: 0.3s ease-in-out;
+}
+
+.hover:hover {
+  transform: scale(1.25);
+}
+
 .whyus-icons {
   display: flex;
   flex-direction: column;
@@ -444,4 +453,67 @@ body {
 .whyus-gears {
   display: flex;
   gap: 2rem;
+}
+
+/*Body Fifth part*/
+.body-fifth-part {
+  position: relative;
+}
+
+.body-fifth-video {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body-fifth-header {
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.btn-body-fifth_1st {
+  font-family: 'Raleway', sans-serif;
+  border-radius: 25px !important;
+  background-color: #fff !important;
+  color: #0022ff !important;
+  border: 2px solid #fff !important;
+  outline: none;
+  transition: 0.3s ease-in-out;
+  box-shadow: inset 0 0 0 0 #0022ff;
+}
+
+.btn-body-fifth_1st:hover {
+  transition: 0.3s ease-in-out;
+  box-shadow: inset 0 200px 0 0 #0022ff;
+  color: #fff !important;
+}
+
+.btn-body-fifth_1st:focus {
+  color: #0022ff !important;
+}
+
+.btn-body-fifth_2nd {
+  font-family: 'Raleway', sans-serif;
+  border-radius: 25px !important;
+  background-color: #0022ff !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  outline: none;
+  transition: 0.4s ease-in-out;
+  box-shadow: inset 0 0 0 0 #fff;
+}
+
+.btn-body-fifth_2nd:hover {
+  transition: 0.4s ease-in-out;
+  box-shadow: inset 0 200px 0 0 #fff;
+  color: #0022ff !important;
+}
+
+.btn-body-fifth_2nd:focus {
+  color: #fff !important;
 }

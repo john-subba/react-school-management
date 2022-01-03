@@ -8,6 +8,7 @@ import { Button, Container } from 'react-bootstrap';
 import HonyComb from './HonyComb.js';
 import SvgWave from '../../assets/about/wave.svg';
 import WhyUs from './WhyUs';
+import Footer from './Footer';
 
 const HomeBody = () => {
   return (
@@ -180,6 +181,7 @@ const HomeBody = () => {
       <div className='body-fourth-part'>
         <WhyUs />
       </div>
+      <Footer />
     </div>
   );
 };

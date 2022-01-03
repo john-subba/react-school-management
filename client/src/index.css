@@ -84,11 +84,20 @@ body {
 
 /*second Part*/
 .body-second-part {
-  margin-top: 7rem;
+  margin-top: 5rem;
   display: grid;
   grid-template-columns: 0.5fr 1fr;
   gap: 1rem;
   padding: 2rem 4rem;
+}
+
+.about-wave {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  left: 0;
+  height: 100%;
+  top: 100%;
 }
 
 .about-us-header {
@@ -113,13 +122,6 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.5rem;
   padding-top: 1.5rem;
-}
-
-.blob-svg {
-  position: absolute;
-  z-index: -1;
-  bottom: -750px;
-  opacity: 0.6;
 }
 
 .about-perks {
@@ -227,35 +229,55 @@ body {
 
 /*Third Part*/
 .body-third-part {
-  margin: 3rem 4rem;
+  margin: 3rem auto;
+  padding-bottom: 4rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  margin-top: 0 !important;
+  padding-top: 7rem !important;
+}
+
+.sms-wave {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  top: 6.85%;
+  height: 160%;
+}
+
+.body-third-part-details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 14rem !important;
+  padding-top: 6em;
 }
 
-.body-third-part h2 {
+.body-third-part-details h2 {
   font-family: 'Fredoka One', cursive;
-  color: #343a40;
+  color: #fff;
   font-size: 2.5rem;
   text-shadow: 4px 4px #00000021;
+  margin: 0 3rem;
+  margin-bottom: 0.5rem;
 }
 
-.body-third-part h6 {
+.body-third-part-details h6 {
   font-family: 'Fredoka One', cursive;
-  color: #343a40;
+  color: #fff;
   font-size: 1.25rem;
   text-transform: capitalize;
+  margin: 0 3rem;
+  margin-bottom: 0.5rem;
 }
 
-.body-third-part p {
+.body-third-part-details p {
   font-family: 'Raleway', sans-serif;
-  color: #343a40;
+  padding-top: 0.5rem;
+  color: #fff;
   font-size: 0.9rem;
-  text-align: center;
-  margin: 0 7rem;
-  font-weight: bold;
+  margin: 0 3rem;
 }
 
 /*Honey comb grid part*/
@@ -265,7 +287,7 @@ body {
   list-style: none;
   justify-content: center;
   align-items: center;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0;
   transform: translateY(80px);
@@ -273,9 +295,9 @@ body {
 
 .honeycomb-cell {
   flex: 0 0 250px;
-  max-width: 180px;
-  height: 100px;
-  margin: 65.4px 12.5px 10px;
+  max-width: 140px;
+  height: 70px;
+  margin: 30px 7px 10px;
   position: relative;
   padding: 0.5rem;
   text-align: center;
@@ -285,11 +307,16 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: 0.2s ease-in-out;
+}
+
+.honeycomb-cell:hover {
+  transform: scale(1.15);
 }
 
 .honeycomb-cell img {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 }
 
 .gradient-hover-honeycomb {
@@ -320,12 +347,22 @@ body {
   transition: 0.3s ease-in-out;
 }
 
+.honeycomb-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .honeycomb-text {
   text-transform: capitalize;
   font-family: 'Raleway', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.75rem !important;
   margin-bottom: 0;
-  color: #343a40;
+  color: #fff !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
 }
 
 .honeycomb-cell::before,

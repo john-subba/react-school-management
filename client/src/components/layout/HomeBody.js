@@ -7,6 +7,7 @@ import SystemSvg from '../../assets/about/system-update.svg';
 import { Button, Container } from 'react-bootstrap';
 import HonyComb from './HonyComb.js';
 import SvgWave from '../../assets/about/wave.svg';
+import WhyUs from './WhyUs';
 
 const HomeBody = () => {
   return (
@@ -155,8 +156,9 @@ const HomeBody = () => {
         </svg>
         <div className='body-third-part-details'>
           <h2>
-            <span style={{ color: '#992b3e' }}>School</span>{' '}
-            <span style={{ color: '#36CEE7' }}>Management</span> System (SMS)
+            <span style={{ color: '#992b3e' }}>School</span> <br />
+            <span style={{ color: '#36CEE7' }}>Management</span>
+            <br /> System (SMS)
           </h2>
           <h6>Say Goodbye to all the paperworks !</h6>
           <p>
@@ -174,6 +176,9 @@ const HomeBody = () => {
           </p>
         </div>
         <HonyComb />
+      </div>
+      <div className='body-fourth-part'>
+        <WhyUs />
       </div>
     </div>
   );

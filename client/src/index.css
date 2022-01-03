@@ -102,7 +102,7 @@ body {
 
 .about-us-header {
   font-family: 'Fredoka One', cursive;
-  color: #343a40;
+  color: #969797;
   text-shadow: 4px 4px #00000021;
   font-size: 2.5rem;
 }
@@ -245,7 +245,7 @@ body {
   width: 100%;
   z-index: -1;
   top: 6.85%;
-  height: 160%;
+  height: 170%;
 }
 
 .body-third-part-details {
@@ -297,7 +297,7 @@ body {
   flex: 0 0 250px;
   max-width: 140px;
   height: 70px;
-  margin: 30px 7px 10px;
+  margin: 35px 6px 10px;
   position: relative;
   padding: 0.5rem;
   text-align: center;
@@ -317,24 +317,6 @@ body {
 .honeycomb-cell img {
   height: 40px;
   width: 40px;
-}
-
-.gradient-hover-honeycomb {
-  background-image: linear-gradient(
-    to right top,
-    #3d3d8c,
-    #3b4294,
-    #38469c,
-    #344ba4,
-    #2f50ac,
-    #2650b7,
-    #1a50c1,
-    #0050cc,
-    #0049db,
-    #0041e8,
-    #0035f4,
-    #0022ff
-  );
 }
 
 .honeycomb-background {
@@ -381,4 +363,85 @@ body {
   position: absolute;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   z-index: -1;
+}
+
+/*body third part*/
+/*WHY us part*/
+.whyus-container {
+  gap: 1rem;
+  align-items: center;
+}
+
+.whyus-headings {
+  font-family: 'Raleway', sans-serif;
+}
+
+.whyus-headings h2 {
+  font-family: 'Fredoka One', cursive;
+  color: #969797;
+  font-size: 2.5rem;
+}
+
+.whyus-headings h6 {
+  font-family: 'Fredoka One', cursive;
+  color: #343a40;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.whyus-headings p {
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #969797;
+}
+
+.whyus-details {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.whyus-details p {
+  margin-bottom: 0;
+  color: #343a40;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.whyus-right {
+  height: 20px;
+  width: 20px;
+}
+
+.whyus-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.whyus-digital {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.whyus-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.whyus-arrows {
+  display: flex;
+  gap: 8rem;
+}
+
+.whyus-gears {
+  display: flex;
+  gap: 2rem;
 }

@@ -13,6 +13,20 @@ body {
 }
 
 /*Navbar Part*/
+.nav-header {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  background-color: transparent;
+  border-bottom: 2px solid skyblueviolet;
+  align-items: center;
+  border-bottom: 2px solid #e2e2e2;
+  transition: 0.3s all ease-in-out;
+  position: fixed !important;
+  width: 100%;
+  background-color: #fff !important;
+  z-index: 5;
+}
+
 .logo {
   height: 95px;
   width: 185px;
@@ -47,10 +61,11 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 1.15rem;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 /*Body Part*/
+
 /*first Part*/
 
 .body-first-part {
@@ -168,10 +183,6 @@ body {
   border-radius: 20px;
   opacity: 0;
   transition: 0.3s ease-in-out;
-}
-
-.perk {
-  z-index: 1;
 }
 
 .perk:hover > .gradient-hover-perk {

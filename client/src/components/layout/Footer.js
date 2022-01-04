@@ -5,7 +5,7 @@ import Logo from '../../assets/logo.png';
 
 const Footer = () => {
   return (
-    <div>
+    <>
       <div className='body-fifth-part'>
         <video autoPlay loop muted className='body-fifth-video'>
           <source src={BlueBgLoop} type='video/mp4' />
@@ -95,25 +95,25 @@ const Footer = () => {
                   paddingTop: '1rem',
                 }}
               >
-                <i class='fas fa-map-marker-alt'> </i> Bhaisepati, Lalitpur,
+                <i className='fas fa-map-marker-alt'> </i> Bhaisepati, Lalitpur,
                 Nepal
               </p>
               <p>
-                <i class='fas fa-phone-alt'> </i> 977-12345678, 01-12345
+                <i className='fas fa-phone-alt'> </i> 977-12345678, 01-12345
               </p>
               <p>
-                <i class='fas fa-at'></i> info@example.com.np
+                <i className='fas fa-at'></i> info@example.com.np
               </p>
               <p>
-                <i class='far fa-map'></i> Find us on Google map
+                <i className='far fa-map'></i> Find us on Google map
               </p>
               <p>Connect with us</p>
               <p
                 style={{ display: 'flex', gap: '0.5rem', fontSize: '1.25rem' }}
               >
-                <i class='fab fa-facebook'></i>
-                <i class='fab fa-twitter'></i>
-                <i class='fab fa-instagram'></i>
+                <i className='fab fa-facebook'></i>
+                <i className='fab fa-twitter'></i>
+                <i className='fab fa-instagram'></i>
               </p>
             </Col>
           </Row>
@@ -131,8 +131,7 @@ const Footer = () => {
             <Col
               style={{
                 textAlign: 'center',
-                padding: '1rem',
-                backgroundColor: '#0022ff',
+                padding: '2rem',
                 color: '#fff',
                 width: '100%',
               }}
@@ -143,7 +142,7 @@ const Footer = () => {
           </Row>
         </Container>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -12,7 +12,7 @@ import Footer from './Footer';
 
 const HomeBody = () => {
   return (
-    <div className='body-container'>
+    <div className='body-container' style={{ paddingTop: '6.5rem' }}>
       <div className='body-first-part'>
         <div className='body-first-details'>
           <h2>
@@ -100,7 +100,7 @@ const HomeBody = () => {
           id='svg'
           viewBox='0 0 1440 700'
           xmlns='http://www.w3.org/2000/svg'
-          class='transition duration-300 ease-in-out delay-150'
+          className='transition duration-300 ease-in-out delay-150'
           className='about-wave'
           preserveAspectRatio='none'
         >
@@ -112,16 +112,16 @@ const HomeBody = () => {
               x2='100%'
               y2='50%'
             >
-              <stop offset='5%' stop-color='#0693e3ff'></stop>
-              <stop offset='95%' stop-color='#002bdcff'></stop>
+              <stop offset='5%' stopColor='#0693e3ff'></stop>
+              <stop offset='95%' stopColor='#002bdcff'></stop>
             </linearGradient>
           </defs>
           <path
             d='M 0,700 C 0,700 0,350 0,350 C 143.78571428571428,421.92857142857144 287.57142857142856,493.85714285714283 410,472 C 532.4285714285714,450.14285714285717 633.5,334.5 743,307 C 852.5,279.5 970.4285714285713,340.14285714285717 1088,362 C 1205.5714285714287,383.85714285714283 1322.7857142857142,366.92857142857144 1440,350 C 1440,350 1440,700 1440,700 Z'
             stroke='none'
-            stroke-width='0'
+            strokeWidth='0'
             fill='url(#gradient-first)'
-            class='transition-all duration-300 ease-in-out delay-150 path-0'
+            className='transition-all duration-300 ease-in-out delay-150 path-0'
           ></path>
         </svg>
       </div>
@@ -130,7 +130,7 @@ const HomeBody = () => {
           id='svg'
           viewBox='0 0 1440 700'
           xmlns='http://www.w3.org/2000/svg'
-          class='transition duration-300 ease-in-out delay-150'
+          className='transition duration-300 ease-in-out delay-150'
           className='sms-wave'
           preserveAspectRatio='none'
         >
@@ -142,16 +142,16 @@ const HomeBody = () => {
               x2='100%'
               y2='50%'
             >
-              <stop offset='0%' stop-color='#002bdcff'></stop>
-              <stop offset='100%' stop-color='#0693e3ff'></stop>
+              <stop offset='0%' stopColor='#002bdcff'></stop>
+              <stop offset='100%' stopColor='#0693e3ff'></stop>
             </linearGradient>
           </defs>
           <path
             d='M 0,700 C 0,700 0,350 0,350 C 74.1076923076923,423.76666666666665 148.2153846153846,497.53333333333336 229,472 C 309.7846153846154,446.46666666666664 397.2461538461539,321.6333333333333 471,288 C 544.7538461538461,254.36666666666667 604.8,311.93333333333334 684,347 C 763.2,382.06666666666666 861.5538461538463,394.6333333333334 950,378 C 1038.4461538461537,361.3666666666666 1116.9846153846152,315.5333333333333 1197,306 C 1277.0153846153848,296.4666666666667 1358.5076923076924,323.23333333333335 1440,350 C 1440,350 1440,700 1440,700 Z'
             stroke='none'
-            stroke-width='0'
+            strokeWidth='0'
             fill='url(#gradient-second)'
-            class='transition-all duration-300 ease-in-out delay-150 path-0'
+            className='transition-all duration-300 ease-in-out delay-150 path-0'
             transform='rotate(-180 720 350)'
           ></path>
         </svg>

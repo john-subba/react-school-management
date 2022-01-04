@@ -1,20 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import logo from '../../assets/logo.png';
 
 const Header = () => {
+  // const [offset, setOffset] = useState(0);
+
+  // useEffect(() => {
+  //   window.onscroll = () => {
+  //     setOffset(window.scrollY);
+  //   };
+  // }, []);
+
   return (
     <div>
-      <Navbar
-        expand='lg'
-        style={{
-          paddingTop: '0',
-          paddingBottom: '0',
-          backgroundColor: 'transparent',
-          borderBottom: '2px solid skyblueviolet',
-          alignItems: 'center',
-        }}
-      >
+      <Navbar expand='lg' className='nav-header'>
         <Container>
           <Navbar.Brand href='#home'>
             <img src={logo} alt='prime education' className='logo' />

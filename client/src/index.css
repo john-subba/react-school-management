@@ -286,7 +286,6 @@ body {
 
 .body-third-part-details p {
   font-family: 'Raleway', sans-serif;
-  padding-top: 0.5rem;
   color: #fff;
   font-size: 0.9rem;
   margin: 0 3rem;
@@ -319,11 +318,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: 0.2s ease-in-out;
+  transition: 0.2s all ease-in-out;
 }
 
 .honeycomb-cell:hover {
-  transform: scale(1.15);
+  transform: scale(1.15) !important;
+  transition: 0.2s all ease-in-out !important;
 }
 
 .honeycomb-cell img {
@@ -431,13 +431,6 @@ body {
 .whyus-icon {
   width: 80px;
   height: 80px;
-}
-
-.whyus-digital {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
 }
 
 .hover {

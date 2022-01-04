@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Calendar from '../../assets/honeycomb/calendar.svg';
 import Class from '../../assets/honeycomb/class.svg';
 import Company from '../../assets/honeycomb/company.svg';
@@ -15,13 +15,24 @@ import Attendance from '../../assets/honeycomb/attendance.svg';
 import Bus from '../../assets/honeycomb/bus.svg';
 import Sms from '../../assets/honeycomb/sms.svg';
 
+// animate on scroll imports
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const HonyComb = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
+
   return (
     <div
       style={{
         paddingBottom: '8rem',
         height: '50%',
       }}
+      // data-aos='zoom-in'
     >
       <ul className='honeycomb'>
         <li className='honeycomb-cell'>
@@ -36,7 +47,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Academic Calendar</p>
           </div>
         </li>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -94,7 +105,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Grade/CAS management</p>
           </div>
         </li>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -108,7 +119,7 @@ const HonyComb = () => {
         </li>
       </ul>
       <ul className='honeycomb'>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -120,7 +131,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Employee Information System</p>
           </div>
         </li>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -144,7 +155,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Banking Transaction Facilities</p>
           </div>
         </li>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -158,7 +169,7 @@ const HonyComb = () => {
         </li>
       </ul>
       <ul className='honeycomb'>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -182,7 +193,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Addmission Portal</p>
           </div>
         </li>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{

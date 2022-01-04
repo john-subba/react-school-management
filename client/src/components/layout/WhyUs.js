@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Digital from '../../assets/whyus/digital.svg';
 import Gears from '../../assets/whyus/gears.svg';
 import Sync from '../../assets/whyus/sync.svg';
@@ -9,20 +9,39 @@ import Right from '../../assets/whyus/right.svg';
 import { Container, Row, Col } from 'react-bootstrap';
 import data from '../../data/whyus';
 
+// animate on scroll imports
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const WhyUs = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
+
   return (
     <>
       <Container style={{ marginTop: '7rem', marginBottom: '3rem' }}>
         <Row className='whyus-container'>
           <Col className='whyus-headings'>
-            <h2>Why choose us?</h2>
-            <h6>We provide best school management software</h6>
-            <p>We help you and your education digitalize</p>
+            <h2 data-aos='fade-up'>Why choose us?</h2>
+            <h6 data-aos='fade-up' data-aos-delay='10'>
+              We provide best school management software
+            </h6>
+            <p data-aos='fade-up' data-aos-delay='10'>
+              We help you and your education digitalize
+            </p>
 
             {data.map((item) => {
               const { id, text } = item;
               return (
-                <div key={id} className='whyus-details'>
+                <div
+                  key={id}
+                  className='whyus-details'
+                  data-aos='fade-up'
+                  data-aos-delay='50'
+                >
                   <img src={Right} alt='' className='whyus-right' />
                   <p>{text}</p>
                 </div>
@@ -30,13 +49,18 @@ const WhyUs = () => {
             })}
           </Col>
           <Col>
-            <div className='whyus-icons'>
+            <div
+              className='whyus-icons'
+              data-aos='fade-up'
+              data-aos-offset='100'
+            >
               <div className='whyus-digital hover'>
                 <img src={Digital} alt='' className='whyus-icon ' />
                 <h4
                   style={{
                     fontSize: '0.9rem',
                     letterSpacing: '1px',
+                    paddingTop: '0.5rem',
                   }}
                 >
                   Digitalize

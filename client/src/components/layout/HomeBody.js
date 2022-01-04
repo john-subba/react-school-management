@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BodyImg1st from '../../assets/Tasks.gif';
 import BodyImg2nd from '../../assets/about-us.svg';
 import DigitalSvg from '../../assets/about/digital.svg';
@@ -8,9 +8,18 @@ import { Button, Container } from 'react-bootstrap';
 import HonyComb from './HonyComb.js';
 import SvgWave from '../../assets/about/wave.svg';
 import WhyUs from './WhyUs';
-import Footer from './Footer';
+
+// animate on scroll imports
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HomeBody = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
+
   return (
     <div className='body-container' style={{ paddingTop: '6.5rem' }}>
       <div className='body-first-part'>
@@ -59,16 +68,23 @@ const HomeBody = () => {
         />
       </div>
       <div className='body-second-part'>
-        <img src={BodyImg2nd} alt='body-2nd-img' />
+        <img src={BodyImg2nd} alt='body-2nd-img' data-aos='fade-right' />
         <div className='body-second-details'>
-          <h2 className='about-us-header'>About us</h2>
-          <p>
+          <h2 className='about-us-header' data-aos='fade-up'>
+            About us
+          </h2>
+          <p data-aos='fade-up'>
             About us? We simply are group of enthuastic and innovative group of
             people delivering the needs of digitalization in world of
             technology.
           </p>
           <div className='about-perks'>
-            <div className='digital-perk perk'>
+            <div
+              className='digital-perk perk'
+              data-aos='fade-up'
+              data-aos-delay='50'
+              data-aos-offset='230'
+            >
               <div className='gradient-hover-perk'></div>
               <img src={DigitalSvg} alt='digitalize' className='perk-svg' />
               <h5 className='perk-header'>Digitalize</h5>
@@ -76,7 +92,12 @@ const HomeBody = () => {
                 We digitalize your educational data using modern technologies.
               </p>
             </div>
-            <div className='system-perk perk'>
+            <div
+              className='system-perk perk'
+              data-aos='fade-up'
+              data-aos-delay='20'
+              data-aos-offset='230'
+            >
               <div className='gradient-hover-perk'></div>
               <img src={SystemSvg} alt='systemize' className='perk-svg' />
               <h5 className='perk-header'>Systemize</h5>
@@ -85,7 +106,12 @@ const HomeBody = () => {
                 process.
               </p>
             </div>
-            <div className='sync-perk perk'>
+            <div
+              className='sync-perk perk'
+              data-aos='fade-up'
+              data-aos-delay='10'
+              data-aos-offset='230'
+            >
               <div className='gradient-hover-perk'></div>
               <img src={SyncSvg} alt='syncronize' className='perk-svg' />
               <h5 className='perk-header'>Synchronize</h5>
@@ -156,13 +182,15 @@ const HomeBody = () => {
           ></path>
         </svg>
         <div className='body-third-part-details'>
-          <h2>
+          <h2 data-aos='fade-up'>
             <span style={{ color: '#992b3e' }}>School</span> <br />
             <span style={{ color: '#36CEE7' }}>Management</span>
             <br /> System (SMS)
           </h2>
-          <h6>Say Goodbye to all the paperworks !</h6>
-          <p>
+          <h6 data-aos='fade-up' data-aos-delay='10'>
+            Say Goodbye to all the paperworks !
+          </h6>
+          <p data-aos='fade-up' data-aos-delay='20'>
             School Management System, a delightful product of Digital Nepal aims
             to bridge the information gaps that may exist between the School
             Management, Teachers, Students and the Parents. This software can be
@@ -181,7 +209,6 @@ const HomeBody = () => {
       <div className='body-fourth-part'>
         <WhyUs />
       </div>
-      <Footer />
     </div>
   );
 };

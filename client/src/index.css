@@ -13,6 +13,10 @@ body {
 }
 
 /*Navbar Part*/
+.navbar-nav {
+  gap: 0.5rem !important;
+}
+
 .nav-header {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
@@ -28,11 +32,11 @@ body {
 }
 
 .logo {
-  height: 95px;
-  width: 185px;
+  height: 80px;
+  width: 125px;
 }
 
-.btn-login {
+.btn-login-header {
   background-image: linear-gradient(
     to right top,
     #4a5ac2,
@@ -50,7 +54,7 @@ body {
   );
 }
 
-.btn-login:hover {
+.btn-login-header:hover {
   box-shadow: 0 5px 5px #00000040;
 }
 
@@ -520,4 +524,74 @@ body {
 
 .btn-body-fifth_2nd:focus {
   color: #fff !important;
+}
+
+/*Login Screen*/
+.login-screen-container {
+  background-image: url('./assets/');
+}
+
+.email-label {
+  display: flex;
+  align-items: center;
+}
+
+.password-label {
+  display: flex;
+  align-items: center;
+}
+
+.login-icon {
+  color: #0022ff;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 10px;
+}
+
+.form-floating > label {
+  padding-left: 0 !important;
+  padding-top: 1rem !important;
+  padding-bottom: 0rem !important;
+  color: #929496 !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.btn-login {
+  font-family: 'Raleway', sans-serif;
+  border-radius: 5px !important;
+  padding: 0.75rem 2.5rem !important;
+}
+
+.gradient-carousel-bg {
+  background-image: linear-gradient(
+    to right top,
+    #3d3d8c,
+    #3b4294,
+    #38469c,
+    #344ba4,
+    #2f50ac,
+    #2650b7,
+    #1a50c1,
+    #0050cc,
+    #0049db,
+    #0041e8,
+    #0035f4,
+    #0022ff
+  );
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 0 3rem !important;
+}
+
+.carousel-indicators button {
+  border-radius: 50% !important;
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: none !important;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Row,
@@ -10,8 +10,26 @@ import {
 } from 'react-bootstrap';
 import Sync from '../../../assets/login/Sync.svg';
 import Management from '../../../assets/login/Management.svg';
+import { Link } from 'react-router-dom';
 
 const LoginScreen = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { email, password } = formData;
+
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    console.log('logged in');
+  };
+
   return (
     <div className='login-screen-container'>
       <Container
@@ -46,7 +64,7 @@ const LoginScreen = () => {
             >
               Login
             </h4>
-            <>
+            <Form onSubmit={(e) => onSubmit(e)}>
               <>
                 <FloatingLabel
                   controlId='floatingInput'
@@ -66,6 +84,10 @@ const LoginScreen = () => {
                       boxShadow: 'none',
                       paddingLeft: '0',
                     }}
+                    name='email'
+                    value={email}
+                    onChange={(e) => onChange(e)}
+                    required
                   />
                   <i className='fas fa-user-shield login-icon'></i>
                 </FloatingLabel>
@@ -85,6 +107,10 @@ const LoginScreen = () => {
                       width: '100%',
                       paddingLeft: '0',
                     }}
+                    name='password'
+                    value={password}
+                    onChange={(e) => onChange(e)}
+                    required
                   />
                   <i
                     className='fas fa-lock login-icon'
@@ -92,15 +118,28 @@ const LoginScreen = () => {
                   ></i>
                 </FloatingLabel>
               </>
-            </>
-            <Button className='btn-login mb-3'>Log in</Button>
+              <Button
+                className='btn-login mb-3'
+                style={{ fontFamily: 'Zen Maru Gothic' }}
+                type='submit'
+              >
+                Log in
+              </Button>
+            </Form>
             <p
               className='mb-0'
               style={{
                 fontSize: '0.9rem',
               }}
             >
-              New to our system? Click Here!
+              New to our system?{' '}
+              <Link
+                to='/register'
+                className='router-link'
+                style={{ textDecoration: 'underline', color: '#0022df' }}
+              >
+                Click Here!
+              </Link>
             </p>
           </Col>
           <Col className='gradient-carousel-bg'>

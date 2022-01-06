@@ -6,8 +6,8 @@ import SyncSvg from '../../assets/about/sync.svg';
 import SystemSvg from '../../assets/about/system-update.svg';
 import { Button, Container } from 'react-bootstrap';
 import HonyComb from './HonyComb.js';
-import SvgWave from '../../assets/about/wave.svg';
 import WhyUs from './WhyUs';
+import { Link } from 'react-router-dom';
 
 // animate on scroll imports
 import AOS from 'aos';
@@ -48,17 +48,19 @@ const HomeBody = () => {
             }}
             fluid
           >
-            <Button
-              className='btn-login'
-              style={{
-                borderRadius: '25px',
-                letterSpacing: '4px',
-                paddingTop: '10px',
-                paddingBottom: '10px',
-              }}
-            >
-              Register
-            </Button>
+            <Link to='/register'>
+              <Button
+                className='btn-login-header'
+                style={{
+                  borderRadius: '25px',
+                  letterSpacing: '4px',
+                  paddingTop: '10px',
+                  paddingBottom: '10px',
+                }}
+              >
+                Register
+              </Button>
+            </Link>
           </Container>
         </div>
         <img

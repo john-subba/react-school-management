@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import BlueBgLoop from '../../assets/video/blue-bg-loop.mp4';
-import Logo from '../../assets/logo.png';
 
 const Footer = () => {
   return (
@@ -26,8 +26,12 @@ const Footer = () => {
             <Col
               style={{ display: 'flex', justifyContent: 'right', gap: '1rem' }}
             >
-              <Button className='btn-body-fifth_1st'>Request a demo</Button>{' '}
-              <Button className='btn-body-fifth_2nd'>Login now</Button>
+              <Link to='/register'>
+                <Button className='btn-body-fifth_1st'>Request a demo</Button>{' '}
+              </Link>
+              <Link to='/login'>
+                <Button className='btn-body-fifth_2nd'>Login now</Button>
+              </Link>
             </Col>
           </Row>
         </Container>
@@ -38,12 +42,22 @@ const Footer = () => {
                 paddingTop: '2rem',
               }}
             >
-              <img src={Logo} alt='' className='logo' />
+              <h4 style={{ color: '#fff' }}>Digital</h4>
+              <h5 style={{ color: '#fff' }} className='mb-3'>
+                Education
+              </h5>
               <p style={{ color: '#fff', fontWeight: 'bold' }}>
                 Digitalize | Systemize | Synchronize
               </p>
             </Col>
-            <Col style={{ paddingLeft: '6rem' }}>
+            <Col
+              style={{
+                paddingLeft: '6rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+              }}
+            >
               <h6
                 style={{
                   color: '#fff',
@@ -54,30 +68,36 @@ const Footer = () => {
               >
                 Links
               </h6>
-              <Nav.Link
+              <Link
+                to='/'
+                className='router-link'
                 style={{
                   paddingLeft: '0',
                   color: '#fff',
                 }}
               >
                 Home
-              </Nav.Link>
-              <Nav.Link
+              </Link>
+              <Link
+                to='/about'
+                className='router-link'
                 style={{
                   paddingLeft: '0',
                   color: '#fff',
                 }}
               >
                 About
-              </Nav.Link>
-              <Nav.Link
+              </Link>
+              <Link
+                to='/contact'
+                className='router-link'
                 style={{
                   paddingLeft: '0',
                   color: '#fff',
                 }}
               >
                 Contact
-              </Nav.Link>
+              </Link>
             </Col>
             <Col>
               <h6

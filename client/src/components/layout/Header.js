@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   // const [offset, setOffset] = useState(0);
@@ -18,31 +19,45 @@ const Header = () => {
           <Navbar.Brand href='#home'>
             <img src={logo} alt='prime education' className='logo' />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='me-auto'>
-              <Nav.Link href='#home' className='nav-links'>
-                Home
-              </Nav.Link>
-              <Nav.Link href='#link' className='nav-links'>
-                About
-              </Nav.Link>
-              <Nav.Link href='#link' className='nav-links'>
-                Contact Us
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-          <Button
-            className='btn-login'
+          <div
             style={{
-              borderRadius: '25px',
-              letterSpacing: '4px',
-              paddingTop: '10px',
-              paddingBottom: '10px',
+              display: 'flex',
+              gap: '2rem',
             }}
           >
-            Login
-          </Button>
+            <Navbar.Collapse
+              id='basic-navbar-nav'
+              style={{
+                justifyContent: 'center',
+                flexGrow: '0',
+              }}
+            >
+              <Nav className='me-auto'>
+                <Link to='/' className='nav-links'>
+                  Home
+                </Link>
+                <Link to='/about' className='nav-links'>
+                  About
+                </Link>
+                <Link to='/contact' className='nav-links'>
+                  Contact Us
+                </Link>
+              </Nav>
+            </Navbar.Collapse>
+            <Link to='/login' className='router-link'>
+              <Button
+                className='btn-login-header'
+                style={{
+                  borderRadius: '25px',
+                  letterSpacing: '4px',
+                  paddingTop: '10px',
+                  paddingBottom: '10px',
+                }}
+              >
+                Login
+              </Button>
+            </Link>
+          </div>
         </Container>
       </Navbar>
     </div>

@@ -12,6 +12,10 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+.router-link {
+  text-decoration: none;
+}
+
 /*Navbar Part*/
 .navbar-nav {
   gap: 0.5rem !important;
@@ -66,6 +70,13 @@ body {
   text-transform: uppercase;
   font-size: 1.15rem;
   font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+.nav-links:hover {
+  color: #0022ff !important;
+  transition: 0.3s ease-in-out;
 }
 
 /*Body Part*/
@@ -528,7 +539,10 @@ body {
 
 /*Login Screen*/
 .login-screen-container {
-  background-image: url('./assets/');
+  background-image: url('./assets/login/grey-bg.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .email-label {
@@ -561,7 +575,22 @@ body {
 .btn-login {
   font-family: 'Raleway', sans-serif;
   border-radius: 5px !important;
-  padding: 0.75rem 2.5rem !important;
+  padding: 0.65rem 2rem !important;
+  background-image: linear-gradient(
+    to right top,
+    #3d3d8c,
+    #3b4294,
+    #38469c,
+    #344ba4,
+    #2f50ac,
+    #2650b7,
+    #1a50c1,
+    #0050cc,
+    #0049db,
+    #0041e8,
+    #0035f4,
+    #0022ff
+  );
 }
 
 .gradient-carousel-bg {

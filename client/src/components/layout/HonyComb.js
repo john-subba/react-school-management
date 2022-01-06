@@ -32,6 +32,7 @@ const HonyComb = () => {
         paddingBottom: '8rem',
         height: '50%',
       }}
+      className='honeycomb-container'
       // data-aos='zoom-in'
     >
       <ul className='honeycomb'>
@@ -59,6 +60,9 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Grade/Class Management</p>
           </div>
         </li>
+      </ul>
+
+      <ul className='honeycomb'>
         <li className='honeycomb-cell'>
           <div
             className='honeycomb-background'
@@ -69,7 +73,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Rolewise Permission Login</p>
           </div>
         </li>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -93,7 +97,10 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Subject Management</p>
           </div>
         </li>
-        <li className='honeycomb-cell'>
+      </ul>
+
+      <ul className='honeycomb'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -117,9 +124,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Notice Managment</p>
           </div>
         </li>
-      </ul>
-      <ul className='honeycomb'>
-        <li className='honeycomb-cell' data-aos='zoom-in'>
+        <li className='honeycomb-cell'>
           <div
             className='honeycomb-background'
             style={{
@@ -131,7 +136,22 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Employee Information System</p>
           </div>
         </li>
-        <li className='honeycomb-cell' data-aos='zoom-in'>
+        <li className='honeycomb-cell'>
+          <div
+            className='honeycomb-background'
+            style={{
+              backgroundColor: '#1F87EB',
+            }}
+          ></div>
+          <div>
+            <img src={Bus} alt='' />
+            <p className='honeycomb-text'>Transportation System</p>
+          </div>
+        </li>
+      </ul>
+
+      <ul className='honeycomb'>
+        <li className='honeycomb-cell'>
           <div
             className='honeycomb-background'
             style={{
@@ -143,7 +163,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Leave Approval System</p>
           </div>
         </li>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -155,7 +175,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>Banking Transaction Facilities</p>
           </div>
         </li>
-        <li className='honeycomb-cell' data-aos='zoom-in'>
+        <li className='honeycomb-cell'>
           <div
             className='honeycomb-background'
             style={{
@@ -168,8 +188,9 @@ const HonyComb = () => {
           </div>
         </li>
       </ul>
+
       <ul className='honeycomb'>
-        <li className='honeycomb-cell' data-aos='zoom-in'>
+        <li className='honeycomb-cell'>
           <div
             className='honeycomb-background'
             style={{
@@ -181,7 +202,7 @@ const HonyComb = () => {
             <p className='honeycomb-text'>E-Attendance System</p>
           </div>
         </li>
-        <li className='honeycomb-cell'>
+        <li className='honeycomb-cell' data-aos='zoom-in'>
           <div
             className='honeycomb-background'
             style={{
@@ -191,18 +212,6 @@ const HonyComb = () => {
           <div>
             <img src={Website} alt='' />
             <p className='honeycomb-text'>Addmission Portal</p>
-          </div>
-        </li>
-        <li className='honeycomb-cell' data-aos='zoom-in'>
-          <div
-            className='honeycomb-background'
-            style={{
-              backgroundColor: '#1F87EB',
-            }}
-          ></div>
-          <div>
-            <img src={Bus} alt='' />
-            <p className='honeycomb-text'>Transportation System</p>
           </div>
         </li>
       </ul>

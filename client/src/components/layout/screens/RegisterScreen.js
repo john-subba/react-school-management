@@ -4,7 +4,11 @@ import Footer from '../Footer';
 import Header from '../Header';
 import axios from 'axios';
 
-const RegisterScreen = () => {
+// redux
+import { connect } from 'react-redux';
+import { setAlert } from '../../../actions/alert';
+
+const RegisterScreen = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     name: '',
     schoolName: '',
@@ -36,7 +40,7 @@ const RegisterScreen = () => {
     e.preventDefault();
 
     if (password !== password2) {
-      console.log('Passwords do not match');
+      setAlert('Passwords do not match', 'danger');
     } else {
       console.log('success');
     }
@@ -251,4 +255,4 @@ const RegisterScreen = () => {
   );
 };
 
-export default RegisterScreen;
+export default connect(null, { setAlert })(RegisterScreen);

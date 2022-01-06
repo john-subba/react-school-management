@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.jpg';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -13,54 +13,94 @@ const Header = () => {
   // }, []);
 
   return (
-    <div>
-      <Navbar expand='lg' className='nav-header'>
-        <Container>
-          <Navbar.Brand href='#home'>
-            <img src={logo} alt='prime education' className='logo' />
-          </Navbar.Brand>
-          <div
+    <Navbar
+      bg='light'
+      expand='lg'
+      className='pt-1 pb-1'
+      style={{
+        borderLeft: 'none',
+        borderTop: 'none',
+        borderRight: 'none',
+        borderBottom: '1px solid #e8e8e8',
+      }}
+    >
+      <Container>
+        <Navbar.Brand
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+          }}
+        >
+          <img
+            src={logo}
+            alt=''
             style={{
-              display: 'flex',
-              gap: '2rem',
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
             }}
-          >
-            <Navbar.Collapse
-              id='basic-navbar-nav'
+          />
+          <div>
+            <h4
               style={{
-                justifyContent: 'center',
-                flexGrow: '0',
+                color: '#992b3e',
+                letterSpacing: '1px',
+                fontFamily: 'Zen Maru Gothic',
+              }}
+              className='mb-0 pt-2'
+            >
+              Digital
+            </h4>
+            <h5
+              style={{
+                color: '#13578b',
+                letterSpacing: '1px',
+                fontFamily: 'Zen Maru Gothic',
               }}
             >
-              <Nav className='me-auto'>
-                <Link to='/' className='nav-links'>
-                  Home
-                </Link>
-                <Link to='/about' className='nav-links'>
-                  About
-                </Link>
-                <Link to='/contact' className='nav-links'>
-                  Contact Us
-                </Link>
-              </Nav>
-            </Navbar.Collapse>
-            <Link to='/login' className='router-link'>
-              <Button
-                className='btn-login-header'
-                style={{
-                  borderRadius: '25px',
-                  letterSpacing: '4px',
-                  paddingTop: '10px',
-                  paddingBottom: '10px',
-                }}
-              >
-                Login
-              </Button>
-            </Link>
+              Education
+            </h5>
           </div>
-        </Container>
-      </Navbar>
-    </div>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Collapse
+          id='basic-navbar-nav'
+          style={{ flexDirection: 'row-reverse' }}
+        >
+          <Nav
+            style={{
+              fontSize: '1rem',
+              color: '#000',
+              fontFamily: 'Raleway',
+              textTransform: 'capitalize',
+              letterSpacing: '0.74px',
+              fontWeight: '500',
+            }}
+          >
+            <Link to='/home' className='router-link nav-link'>
+              Home
+            </Link>
+            <Link to='/about' className='router-link nav-link'>
+              About
+            </Link>
+            <Link to='/contact' className='router-link nav-link'>
+              Contact
+            </Link>
+            <Button
+              className='btn-gradient-bg login-btn'
+              style={{
+                borderRadius: '25px',
+                letterSpacing: '3px',
+                fontSize: '0.9rem',
+              }}
+            >
+              Login
+            </Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

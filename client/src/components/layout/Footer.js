@@ -12,6 +12,7 @@ const Footer = () => {
         </video>
         <Container>
           <Row
+            className='school-digitization'
             style={{
               padding: '4rem 2rem',
               alignItems: 'center',
@@ -24,6 +25,7 @@ const Footer = () => {
               </h2>
             </Col>
             <Col
+              className='school-digitization-btns'
               style={{ display: 'flex', justifyContent: 'right', gap: '1rem' }}
             >
               <Link to='/register'>
@@ -36,7 +38,7 @@ const Footer = () => {
           </Row>
         </Container>
         <Container>
-          <Row style={{ color: '#fff' }}>
+          <Row style={{ color: '#fff' }} className='footer-links-container'>
             <Col
               style={{
                 paddingTop: '2rem',
@@ -51,6 +53,7 @@ const Footer = () => {
               </p>
             </Col>
             <Col
+              className='footer-links'
               style={{
                 paddingLeft: '6rem',
                 display: 'flex',

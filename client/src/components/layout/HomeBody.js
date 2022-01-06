@@ -4,7 +4,7 @@ import BodyImg2nd from '../../assets/about-us.svg';
 import DigitalSvg from '../../assets/about/digital.svg';
 import SyncSvg from '../../assets/about/sync.svg';
 import SystemSvg from '../../assets/about/system-update.svg';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import HonyComb from './HonyComb.js';
 import WhyUs from './WhyUs';
 import { Link } from 'react-router-dom';
@@ -21,109 +21,64 @@ const HomeBody = () => {
   }, []);
 
   return (
-    <div className='body-container' style={{ paddingTop: '6.5rem' }}>
-      <div className='body-first-part'>
-        <div className='body-first-details'>
-          <h2>
-            Make Your <span style={{ color: '#992b3e' }}>School</span>{' '}
-            <span style={{ color: '#13578b' }}>Management</span> System Easy?
-          </h2>
-          <p
-            style={{
-              fontSize: '1rem',
-              marginBottom: '1rem',
-              letterSpacing: '0px',
-              marginTop: '1rem',
-            }}
-          >
-            You are at right place. We are here to offer you the best school
-            management web app to meet your requirements.
-          </p>
-          <Container
-            style={{
-              display: 'flex',
-              gap: '1rem',
-              paddingTop: '0.5rem',
-              paddingLeft: '0',
-            }}
-            fluid
-          >
-            <Link to='/register'>
-              <Button
-                className='btn-login-header'
-                style={{
-                  borderRadius: '25px',
-                  letterSpacing: '4px',
-                  paddingTop: '10px',
-                  paddingBottom: '10px',
-                }}
-              >
-                Register
-              </Button>
-            </Link>
-          </Container>
-        </div>
-        <img
-          src={BodyImg1st}
-          alt='product-teardown'
-          className='body-first-img'
-        />
-      </div>
+    <div className='body-container'>
+      <Container className='body-first-part'>
+        <Row className='body-first-details-row'>
+          <Col className='body-first-details-col'>
+            <h2>
+              Make Your <span style={{ color: '#992b3e' }}>School</span>{' '}
+              <span className='management-span' style={{ color: '#13578b' }}>
+                <span>Manage</span>
+                <span>ment</span>
+              </span>{' '}
+              System Easy?
+            </h2>
+            <p
+              style={{
+                fontSize: '1rem',
+                marginBottom: '1rem',
+                letterSpacing: '0px',
+                marginTop: '1rem',
+              }}
+            >
+              You are at right place. We are here to offer you the best school
+              management web app to meet your requirements.
+            </p>
+            <Container
+              style={{
+                display: 'flex',
+                gap: '1rem',
+                paddingTop: '0.5rem',
+                paddingLeft: '0',
+              }}
+              fluid
+              className='register-btn-col'
+            >
+              <Link to='/register'>
+                <Button
+                  className='btn-login-header'
+                  style={{
+                    borderRadius: '25px',
+                    letterSpacing: '4px',
+                    paddingTop: '10px',
+                    paddingBottom: '10px',
+                  }}
+                >
+                  Register
+                </Button>
+              </Link>
+            </Container>
+          </Col>
+          <Col className='body-first-img-container'>
+            <img
+              src={BodyImg1st}
+              alt='product-teardown'
+              className='body-first-img'
+            />
+          </Col>
+        </Row>
+      </Container>
       <div className='body-second-part'>
-        <img src={BodyImg2nd} alt='body-2nd-img' data-aos='fade-right' />
-        <div className='body-second-details'>
-          <h2 className='about-us-header' data-aos='fade-up'>
-            About us
-          </h2>
-          <p data-aos='fade-up'>
-            About us? We simply are group of enthuastic and innovative group of
-            people delivering the needs of digitalization in world of
-            technology.
-          </p>
-          <div className='about-perks'>
-            <div
-              className='digital-perk perk'
-              data-aos='fade-up'
-              data-aos-delay='50'
-              data-aos-offset='230'
-            >
-              <div className='gradient-hover-perk'></div>
-              <img src={DigitalSvg} alt='digitalize' className='perk-svg' />
-              <h5 className='perk-header'>Digitalize</h5>
-              <p className='perk-text'>
-                We digitalize your educational data using modern technologies.
-              </p>
-            </div>
-            <div
-              className='system-perk perk'
-              data-aos='fade-up'
-              data-aos-delay='20'
-              data-aos-offset='230'
-            >
-              <div className='gradient-hover-perk'></div>
-              <img src={SystemSvg} alt='systemize' className='perk-svg' />
-              <h5 className='perk-header'>Systemize</h5>
-              <p className='perk-text'>
-                We mange your educational data systematically eradicating old
-                process.
-              </p>
-            </div>
-            <div
-              className='sync-perk perk'
-              data-aos='fade-up'
-              data-aos-delay='10'
-              data-aos-offset='230'
-            >
-              <div className='gradient-hover-perk'></div>
-              <img src={SyncSvg} alt='syncronize' className='perk-svg' />
-              <h5 className='perk-header'>Synchronize</h5>
-              <p className='perk-text'>
-                We have offline and online features synchornizing in real-time
-                with our data servers.
-              </p>
-            </div>
-          </div>
-        </div>
         <svg
           id='svg'
           viewBox='0 0 1440 700'
@@ -152,6 +107,67 @@ const HomeBody = () => {
             className='transition-all duration-300 ease-in-out delay-150 path-0'
           ></path>
         </svg>
+        <img
+          src={BodyImg2nd}
+          alt='body-2nd-img'
+          data-aos='fade-right'
+          className='about-us-img'
+        />
+
+        <div className='body-second-details'>
+          <h2 className='about-us-header' data-aos='fade-up'>
+            <span style={{ color: '#992b3e' }}>About</span>{' '}
+            <span style={{ color: '#13578b' }}>us</span>
+          </h2>
+          <p data-aos='fade-up'>
+            About us? We simply are group of enthuastic and innovative group of
+            people delivering the needs of digitalization in world of
+            technology.
+          </p>
+          <div className='about-perks'>
+            <div
+              className='digital-perk perk'
+              data-aos='fade-up'
+              data-aos-delay='10'
+              data-aos-offset='150'
+            >
+              <div className='gradient-hover-perk'></div>
+              <img src={DigitalSvg} alt='digitalize' className='perk-svg' />
+              <h5 className='perk-header'>Digitalize</h5>
+              <p className='perk-text'>
+                We digitalize your educational data using modern technologies.
+              </p>
+            </div>
+            <div
+              className='system-perk perk'
+              data-aos='fade-up'
+              data-aos-delay='40'
+              data-aos-offset='190'
+            >
+              <div className='gradient-hover-perk'></div>
+              <img src={SystemSvg} alt='systemize' className='perk-svg' />
+              <h5 className='perk-header'>Systemize</h5>
+              <p className='perk-text'>
+                We mange your educational data systematically eradicating old
+                process.
+              </p>
+            </div>
+            <div
+              className='sync-perk perk'
+              data-aos='fade-up'
+              data-aos-delay='60'
+              data-aos-offset='220'
+            >
+              <div className='gradient-hover-perk'></div>
+              <img src={SyncSvg} alt='syncronize' className='perk-svg' />
+              <h5 className='perk-header'>Synchronize</h5>
+              <p className='perk-text'>
+                We have offline and online features synchornizing in real-time
+                with our data servers.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className='body-third-part'>
         <svg
@@ -186,8 +202,11 @@ const HomeBody = () => {
         <div className='body-third-part-details'>
           <h2 data-aos='fade-up'>
             <span style={{ color: '#992b3e' }}>School</span> <br />
-            <span style={{ color: '#36CEE7' }}>Management</span>
-            <br /> System (SMS)
+            <span className='management-span' style={{ color: '#36cee7' }}>
+              <span>Manage</span>
+              <span>ment</span>
+            </span>{' '}
+            System (SMS)
           </h2>
           <h6 data-aos='fade-up' data-aos-delay='10'>
             Say Goodbye to all the paperworks !

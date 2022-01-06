@@ -8,7 +8,7 @@ const HomeScreen = () => {
     <div>
       <Header />
       <HomeBody />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

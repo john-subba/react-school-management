@@ -504,79 +504,126 @@ body {
 
 /*Login Screen*/
 .login-screen-container {
-  background-image: url('./assets/login/grey-bg.jpg');
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.email-label {
+  background-color: #f0f2f5;
+  height: 100vh;
+  width: 100vw;
   display: flex;
+  justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-.password-label {
-  display: flex;
-  align-items: center;
+.login-screen-header {
+  font-family: 'Fredoka One', sans-serif;
+  position: fixed;
+  left: 2%;
+  top: 0;
+  z-index: 1;
+  font-size: 10rem;
+  color: #ffffff;
+  opacity: 0.85;
 }
 
-.login-icon {
-  color: #0022ff;
-  font-size: 1.5rem;
-  position: absolute;
-  right: 10px;
-}
-
-.form-floating > label {
-  padding-left: 0 !important;
-  padding-top: 1rem !important;
-  padding-bottom: 0rem !important;
-  color: #929496 !important;
-  font-family: 'Raleway', sans-serif !important;
-  font-size: 1rem;
+.login-header {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  color: #305bcf;
   letter-spacing: 1px;
 }
 
-.btn-login {
-  font-family: 'Raleway', sans-serif;
-  border-radius: 5px !important;
-  padding: 0.65rem 2rem !important;
-  background-image: linear-gradient(
-    to right top,
-    #3d3d8c,
-    #3b4294,
-    #38469c,
-    #344ba4,
-    #2f50ac,
-    #2650b7,
-    #1a50c1,
-    #0050cc,
-    #0049db,
-    #0041e8,
-    #0035f4,
-    #0022ff
-  );
+.login-screen {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  max-width: 750px;
+  width: 80vw;
+  background-color: #fff;
+  border-radius: 15px;
+  z-index: 2;
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
 }
 
-.gradient-carousel-bg {
+.login-blob {
+  left: 4%;
+  z-index: 0;
+  position: absolute;
+  top: 7%;
+  opacity: 0.5;
+}
+
+.login-screen-form {
+  padding: 2rem !important;
+}
+
+.form-floating {
+  border-bottom: 2px solid #f2f2f2 !important;
+}
+
+.form-floating > label {
+  padding-left: 0.5rem !important;
+  padding-bottom: 0rem !important;
+  font-size: 1rem;
+  color: #0001ff !important;
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+.form-floating > .form-control {
+  padding-bottom: 0rem !important;
+  padding-left: 0.5rem !important;
+  background-color: #fff;
+  border: none;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+  background-color: #fff !important;
+  border-bottom: 2px solid #0001ff !important;
+}
+
+.login-log-btn {
   background-image: linear-gradient(
     to right top,
-    #3d3d8c,
-    #3b4294,
-    #38469c,
-    #344ba4,
-    #2f50ac,
-    #2650b7,
-    #1a50c1,
-    #0050cc,
-    #0049db,
-    #0041e8,
-    #0035f4,
-    #0022ff
+    #1344f0,
+    #3845f1,
+    #4c45f2,
+    #5d46f2,
+    #6b47f3,
+    #6c43f4,
+    #6c3ff6,
+    #6d3bf7,
+    #5f30f9,
+    #4e24fb,
+    #3716fd,
+    #0001ff
   );
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  padding: 0 3rem !important;
+  color: #fff !important;
+  border: none !important;
+  font-family: 'Raleway', sans-serif;
+  max-width: 150px;
+}
+
+.login-mobile-logo {
+  display: none;
+}
+
+.container-carousel {
+  padding: 2rem !important;
+  background-image: linear-gradient(
+    to right top,
+    #1344f0,
+    #3845f1,
+    #4c45f2,
+    #5d46f2,
+    #6b47f3,
+    #6c43f4,
+    #6c3ff6,
+    #6d3bf7,
+    #5f30f9,
+    #4e24fb,
+    #3716fd,
+    #0001ff
+  );
+  width: 100%;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .carousel-indicators button {
@@ -588,6 +635,15 @@ body {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   display: none !important;
+}
+
+.carousel-caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vw;
+  max-height: 300px;
 }
 
 /*Register Screen*/

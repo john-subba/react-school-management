@@ -11,223 +11,139 @@ import {
 import Sync from '../../../assets/login/Sync.svg';
 import Management from '../../../assets/login/Management.svg';
 import { Link } from 'react-router-dom';
+import Blob from '../../../assets/login/blob.png';
+import Logo from '../../../assets/logo.jpg';
 
 const LoginScreen = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-
-  const { email, password } = formData;
-
-  const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    console.log('logged in');
-  };
-
   return (
-    <div className='login-screen-container'>
-      <Container
-        fluid
-        style={{
-          width: '100%',
-          height: '100%',
-          padding: '8.78rem 16rem',
-        }}
-      >
-        <Row
-          style={{
-            textAlign: 'center',
-            backgroundColor: '#fff',
-            margin: '0 4rem',
-            borderRadius: '20px',
-          }}
-        >
-          <Col
+    <Container className='login-screen-container' fluid>
+      <h1 className='login-screen-header'>digital education</h1>
+      <img src={Blob} alt='' className='login-blob' />
+      <Row className='login-screen'>
+        <Col lg={6} md={6} xs={12} className='login-screen-form'>
+          <Form
             style={{
-              padding: '3rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.25rem',
             }}
           >
-            <h4
-              style={{
-                textAlign: 'left',
-                color: '#0022ff',
-                letterSpacing: '1px',
-                fontFamily: 'Raleway',
-              }}
-              className='mb-3'
-            >
-              Login
-            </h4>
-            <Form onSubmit={(e) => onSubmit(e)}>
-              <>
-                <FloatingLabel
-                  controlId='floatingInput'
-                  label='Username'
-                  className='mb-4 email-label'
+            {/******* This part is for mobile screen only ********/}
+            <div className='login-mobile-logo'>
+              <img
+                src={Logo}
+                alt=''
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  borderRadius: '50%',
+                }}
+              />
+              <div>
+                <h4
                   style={{
-                    paddingLeft: '0',
+                    color: '#992b3e',
+                    letterSpacing: '1px',
+                    fontFamily: 'Zen Maru Gothic',
+                  }}
+                  className='mb-0 pt-2'
+                >
+                  Digital
+                </h4>
+                <h5
+                  style={{
+                    color: '#13578b',
+                    letterSpacing: '1px',
+                    fontFamily: 'Zen Maru Gothic',
                   }}
                 >
-                  <Form.Control
-                    type='email'
-                    placeholder='name@example.com'
-                    style={{
-                      background: 'transparent',
-                      borderBottom: '1px solid #D8D7D7',
-                      outline: 'none',
-                      boxShadow: 'none',
-                      paddingLeft: '0',
-                    }}
-                    name='email'
-                    value={email}
-                    onChange={(e) => onChange(e)}
-                    required
-                  />
-                  <i className='fas fa-user-shield login-icon'></i>
-                </FloatingLabel>
-                <FloatingLabel
-                  controlId='floatingPassword'
-                  label='Password'
-                  className='mb-4 password-label'
-                >
-                  <Form.Control
-                    type='password'
-                    placeholder='Password'
-                    style={{
-                      background: 'transparent',
-                      borderBottom: '1px solid #D8D7D7',
-                      outline: 'none',
-                      boxShadow: 'none',
-                      width: '100%',
-                      paddingLeft: '0',
-                    }}
-                    name='password'
-                    value={password}
-                    onChange={(e) => onChange(e)}
-                    required
-                  />
-                  <i
-                    className='fas fa-lock login-icon'
-                    style={{ paddingRight: '0.35rem' }}
-                  ></i>
-                </FloatingLabel>
-              </>
-              <Button
-                className='btn-login mb-3'
-                style={{ fontFamily: 'Zen Maru Gothic' }}
-                type='submit'
-              >
-                Log in
-              </Button>
-            </Form>
-            <p
-              className='mb-0'
-              style={{
-                fontSize: '0.9rem',
-              }}
-            >
-              New to our system?{' '}
+                  Education
+                </h5>
+              </div>
+            </div>
+
+            <h3 className='login-header'>DE SMS LOGIN</h3>
+            <Form.Floating className='mb-0'>
+              <Form.Control
+                id='floatingInputCustom'
+                type='email'
+                placeholder='name@example.com'
+                className='mb-0'
+              />
+              <label htmlFor='floatingInputCustom' className='login-label'>
+                Username
+              </label>
+            </Form.Floating>
+            <Form.Floating>
+              <Form.Control
+                id='floatingPasswordCustom'
+                type='password'
+                placeholder='Password'
+              />
+              <label className='login-label' htmlFor='floatingPasswordCustom'>
+                Password
+              </label>
+            </Form.Floating>
+            <Button variant='outline-primary' className='mt-2 login-log-btn'>
+              <i className='fi fi-rr-user'></i> Log In
+            </Button>
+            <p style={{ color: '#0001ff' }}>
+              Not registered yet?{' '}
               <Link
                 to='/register'
                 className='router-link'
-                style={{ textDecoration: 'underline', color: '#0022df' }}
+                style={{ color: '#0001ff' }}
               >
-                Click Here!
-              </Link>
+                Click Me!
+              </Link>{' '}
             </p>
-          </Col>
-          <Col className='gradient-carousel-bg'>
-            <Carousel
-              variant='light'
-              style={{ height: '100%', width: '100%' }}
-              className='carousel'
-            >
-              <Carousel.Item
-                style={{
-                  paddingRight: '4rem',
-                  height: '356px',
-                  width: '264px',
-                }}
-              >
-                <Carousel.Caption
-                  style={{
-                    position: 'relative',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    paddingTop: '6rem',
-                    height: '100%',
-                  }}
-                >
-                  <h4 style={{ color: '#fff' }}>Digital</h4>
-                  <h5 style={{ color: '#fff' }} className='mb-3'>
-                    Education
-                  </h5>
-                  <p style={{ color: '#fff' }}>
-                    We focus on digitalizing your education ecosystem.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item style={{ paddingRight: '4rem' }}>
-                <Carousel.Caption
-                  style={{
-                    position: 'relative',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    paddingTop: '2rem',
-                  }}
-                >
-                  <img
-                    src={Sync}
-                    alt=''
-                    style={{
-                      width: '200px',
-                      height: '200px',
-                    }}
-                    className='mb-3'
-                  />
-                  <p>Easy Access, Fully Digital, Secure & Flexible</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item style={{ paddingRight: '4rem' }}>
-                <Carousel.Caption
-                  style={{
-                    position: 'relative',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    paddingTop: '2rem',
-                  }}
-                >
-                  <img
-                    src={Management}
-                    alt=''
-                    className='mb-3'
-                    style={{
-                      width: '200px',
-                      height: '200px',
-                    }}
-                  />
-                  <p>
-                    We manage every school activities digitally at one place
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            </Carousel>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+          </Form>
+        </Col>
+        <Col lg={6} md={6} xs={12} style={{ paddingRight: '0' }}>
+          <Carousel
+            style={{ height: '100%' }}
+            className='container-carousel'
+            variant='light'
+            interval={5000}
+          >
+            <Carousel.Item>
+              <Carousel.Caption style={{ color: '#fff', position: 'static' }}>
+                <h4 style={{ color: '#fff' }}>Digital</h4>
+                <h5 style={{ color: '#fff' }} className='mb-3'>
+                  Education
+                </h5>
+                <p>Digitalize | Systemize | Synchronize</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <Carousel.Caption style={{ color: '#fff', position: 'static' }}>
+                <img
+                  src={Sync}
+                  alt=''
+                  style={{ width: '200px', height: '200px' }}
+                  className='mb-3'
+                />
+                <p>
+                  Easily update your data in <br />
+                  real time with us.
+                </p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <Carousel.Caption style={{ color: '#fff', position: 'static' }}>
+                <img
+                  src={Management}
+                  alt=''
+                  style={{ width: '200px', height: '200px' }}
+                  className='mb-3'
+                />
+                <p>Easily managea your data and information digitally.</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -108,6 +108,17 @@
   }
 }
 
+@media only screen and (max-width: 772px) {
+  /*Login Screen Section*/
+  .login-screen {
+    max-width: 450px;
+    width: 90vw;
+  }
+  .container-carousel {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 725px) {
   /*Honey Comb section*/
   .honeycomb-cell {
@@ -240,6 +251,11 @@
     padding-left: 2rem;
     padding-right: 2rem;
   }
+
+  /*login-screen-header*/
+  .login-blob {
+    width: 90vw;
+  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -294,5 +310,31 @@
   .btn-body-fifth_1st,
   .btn-body-fifth_2nd {
     font-size: 0.7rem !important;
+  }
+
+  /*login-screen-header*/
+  .login-blob {
+    display: none;
+  }
+  .login-screen-header {
+    display: none;
+  }
+  .login-screen-container {
+    background-color: #fff;
+  }
+  .login-screen {
+    box-shadow: none;
+  }
+  .login-header {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+  .login-mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .login-log-btn {
+    max-width: 100%;
   }
 }

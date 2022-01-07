@@ -87,16 +87,19 @@ const Header = () => {
             <Link to='/contact' className='router-link nav-link'>
               Contact
             </Link>
-            <Button
-              className='btn-gradient-bg login-btn'
-              style={{
-                borderRadius: '25px',
-                letterSpacing: '3px',
-                fontSize: '0.9rem',
-              }}
-            >
-              Login
-            </Button>
+            <Link to='/login'>
+              <Button
+                className='btn-gradient-bg login-btn'
+                style={{
+                  borderRadius: '25px',
+                  letterSpacing: '3px',
+                  fontSize: '0.9rem',
+                  color: '#fff',
+                }}
+              >
+                Login
+              </Button>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

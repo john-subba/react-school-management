@@ -67,13 +67,14 @@ const RegisterScreen = ({ setAlert }) => {
         style={{
           maxWidth: '900px',
         }}
+        fluid
       >
         <Row>
-          <Col>
+          <Col className='register-form' md={8} sm={10} lg={10}>
             <Form onSubmit={(e) => onSubmit(e)}>
               <Form.Group className='mb-3' controlId='formBasicName'>
                 <Form.Label
-                  style={{ color: '#868e96', fontFamily: 'Zen Maru Gothic' }}
+                  style={{ color: '#343a40', fontFamily: 'Zen Maru Gothic' }}
                 >
                   Your Full Name
                 </Form.Label>
@@ -86,6 +87,7 @@ const RegisterScreen = ({ setAlert }) => {
                     fontFamily: 'Zen Maru Gothic',
                   }}
                   name='name'
+                  className='border-focus'
                   value={name}
                   onChange={(e) => onChange(e)}
                   required
@@ -94,7 +96,7 @@ const RegisterScreen = ({ setAlert }) => {
 
               <Form.Group className='mb-3' controlId='formBasicSchoolName'>
                 <Form.Label
-                  style={{ color: '#868e96', fontFamily: 'Zen Maru Gothic' }}
+                  style={{ color: '#343a40', fontFamily: 'Zen Maru Gothic' }}
                 >
                   School Name
                 </Form.Label>
@@ -108,6 +110,7 @@ const RegisterScreen = ({ setAlert }) => {
                   }}
                   name='schoolName'
                   value={schoolName}
+                  className='border-focus'
                   onChange={(e) => onChange(e)}
                   required
                 />
@@ -115,7 +118,7 @@ const RegisterScreen = ({ setAlert }) => {
 
               <Form.Group className='mb-3' controlId='formBasicSchoolAddress'>
                 <Form.Label
-                  style={{ color: '#868e96', fontFamily: 'Zen Maru Gothic' }}
+                  style={{ color: '#343a40', fontFamily: 'Zen Maru Gothic' }}
                 >
                   School Address
                 </Form.Label>
@@ -129,6 +132,7 @@ const RegisterScreen = ({ setAlert }) => {
                   }}
                   name='schoolAddress'
                   value={schoolAddress}
+                  className='border-focus'
                   onChange={(e) => onChange(e)}
                   required
                 />
@@ -136,7 +140,7 @@ const RegisterScreen = ({ setAlert }) => {
 
               <Form.Group className='mb-3' controlId='formBasicSchoolEmail'>
                 <Form.Label
-                  style={{ color: '#868e96', fontFamily: 'Zen Maru Gothic' }}
+                  style={{ color: '#343a40', fontFamily: 'Zen Maru Gothic' }}
                 >
                   School Email
                 </Form.Label>
@@ -149,6 +153,7 @@ const RegisterScreen = ({ setAlert }) => {
                     fontFamily: 'Zen Maru Gothic',
                   }}
                   name='email'
+                  className='border-focus'
                   value={email}
                   onChange={(e) => onChange(e)}
                   required
@@ -169,12 +174,13 @@ const RegisterScreen = ({ setAlert }) => {
 
               <Form.Group className='mb-3' controlId='formBasicSchoolNumber'>
                 <Form.Label
-                  style={{ color: '#868e96', fontFamily: 'Zen Maru Gothic' }}
+                  style={{ color: '#343a40', fontFamily: 'Zen Maru Gothic' }}
                 >
                   School Phone Number
                 </Form.Label>
                 <Form.Control
                   type='number'
+                  className='border-focus'
                   placeholder='Enter your school contact number'
                   style={{
                     backgroundColor: '#fff',
@@ -190,11 +196,12 @@ const RegisterScreen = ({ setAlert }) => {
 
               <Form.Group className='mb-3' controlId='formBasicPassword1'>
                 <Form.Label
-                  style={{ color: '#868e96', fontFamily: 'Zen Maru Gothic' }}
+                  style={{ fontFamily: 'Zen Maru Gothic', color: '#343a40' }}
                 >
                   Password
                 </Form.Label>
                 <Form.Control
+                  className='border-focus'
                   type='password'
                   placeholder='Enter your password'
                   style={{
@@ -209,13 +216,18 @@ const RegisterScreen = ({ setAlert }) => {
                 />
               </Form.Group>
 
-              <Form.Group className='mb-3' controlId='formBasicPassword2'>
+              <Form.Group controlId='formBasicPassword2'>
                 <Form.Label
-                  style={{ color: '#868e96', fontFamily: 'Zen Maru Gothic' }}
+                  style={{
+                    color: '#868e96',
+                    fontFamily: 'Zen Maru Gothic',
+                    color: '#343a40',
+                  }}
                 >
                   Confirm Password
                 </Form.Label>
                 <Form.Control
+                  className='border-focus'
                   type='password'
                   placeholder='Confirm your password'
                   style={{
@@ -230,20 +242,7 @@ const RegisterScreen = ({ setAlert }) => {
                 />
               </Form.Group>
 
-              <Button
-                variant='outline-primary'
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '25px',
-                  padding: '12px 28px',
-                }}
-                className='btn-login-header mt-4'
-                type='submit'
-              >
+              <Button className='mt-4 register-submit-btn' type='submit'>
                 <i className='fi fi-rr-user'></i> Submit
               </Button>
             </Form>

@@ -1,9 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './reducers/index';
 
-// our all of the initialState objects wil be inside reducers
 const initialState = {};
 
 const middleware = [thunk];

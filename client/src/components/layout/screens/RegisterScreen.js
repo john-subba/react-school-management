@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Header from '../Header';
+import Alert from '../../alert/Alert';
 
-// redux
+//redux part
 import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
 
@@ -60,6 +61,7 @@ const RegisterScreen = ({ setAlert }) => {
           <span style={{ color: '#13578b' }}>School</span>
         </h1>
       </div>
+      <Alert />
       <Container
         className='mb-5'
         style={{

@@ -1,6 +1,6 @@
 import React from 'react';
 
-//redux
+// redux part
 import { connect } from 'react-redux';
 
 const Alert = ({ alerts }) =>

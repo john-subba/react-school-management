@@ -6,8 +6,9 @@ import Alert from '../../alert/Alert';
 //redux part
 import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
+import { registerUser } from '../../../actions/auth';
 
-const RegisterScreen = ({ setAlert }) => {
+const RegisterScreen = ({ setAlert, registerUser }) => {
   const [formData, setFormData] = useState({
     name: '',
     schoolName: '',
@@ -41,7 +42,14 @@ const RegisterScreen = ({ setAlert }) => {
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      console.log('success');
+      registerUser({
+        name,
+        schoolName,
+        schoolAddress,
+        schoolPhoneNo,
+        email,
+        password,
+      });
     }
   };
 
@@ -90,7 +98,6 @@ const RegisterScreen = ({ setAlert }) => {
                   className='border-focus'
                   value={name}
                   onChange={(e) => onChange(e)}
-                  required
                 />
               </Form.Group>
 
@@ -112,7 +119,6 @@ const RegisterScreen = ({ setAlert }) => {
                   value={schoolName}
                   className='border-focus'
                   onChange={(e) => onChange(e)}
-                  required
                 />
               </Form.Group>
 
@@ -134,7 +140,6 @@ const RegisterScreen = ({ setAlert }) => {
                   value={schoolAddress}
                   className='border-focus'
                   onChange={(e) => onChange(e)}
-                  required
                 />
               </Form.Group>
 
@@ -156,7 +161,6 @@ const RegisterScreen = ({ setAlert }) => {
                   className='border-focus'
                   value={email}
                   onChange={(e) => onChange(e)}
-                  required
                 />
                 <Form.Text
                   className='text-muted'
@@ -190,7 +194,6 @@ const RegisterScreen = ({ setAlert }) => {
                   name='schoolPhoneNo'
                   value={schoolPhoneNo}
                   onChange={(e) => onChange(e)}
-                  required
                 />
               </Form.Group>
 
@@ -212,7 +215,6 @@ const RegisterScreen = ({ setAlert }) => {
                   name='password'
                   value={password}
                   onChange={(e) => onChange(e)}
-                  required
                 />
               </Form.Group>
 
@@ -238,7 +240,6 @@ const RegisterScreen = ({ setAlert }) => {
                   name='password2'
                   value={password2}
                   onChange={(e) => onChange(e)}
-                  required
                 />
               </Form.Group>
 
@@ -254,4 +255,4 @@ const RegisterScreen = ({ setAlert }) => {
   );
 };
 
-export default connect(null, { setAlert })(RegisterScreen);
+export default connect(null, { setAlert, registerUser })(RegisterScreen);

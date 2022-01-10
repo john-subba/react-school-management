@@ -1,4 +1,4 @@
-import { REMOVE_ALERT, SET_ALERT } from '../actions/actionTypes';
+import { SET_ALERT, REMOVE_ALERT } from '../actions/actionTypes';
 
 const initialState = [];
 

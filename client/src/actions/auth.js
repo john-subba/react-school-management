@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { REGISTER_SUCCESS, REGISTER_FAILED } from './actionTypes';
+import axios from 'axios';
+import { setAlert } from './alert';
 
-// register the user
 export const registerUser =
   ({ name, schoolName, schoolAddress, schoolPhoneNo, email, password }) =>
   async (dispatch) => {
@@ -21,13 +21,19 @@ export const registerUser =
     });
 
     try {
-      const res = await axios.post('/api/users', body, config);
+      const res = axios.post('/api/users', body, config);
 
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
     } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      }
+
       dispatch({
         type: REGISTER_FAILED,
       });

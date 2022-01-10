@@ -12,6 +12,34 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+/*alert component*/
+.alert {
+  padding: 0.8rem;
+  opacity: 0.9;
+  background-color: #e8e8e8;
+  color: #333;
+}
+
+.alert-primary {
+  color: #fff;
+  background-color: #333;
+}
+
+.alert-light {
+  background-color: #fff;
+  color: #333;
+}
+
+.alert-danger {
+  background-color: red;
+  color: #fff;
+}
+
+.alert-success {
+  background-color: seagreen;
+  color: #fff;
+}
+
 .router-link {
   text-decoration: none;
 }

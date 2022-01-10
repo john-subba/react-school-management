@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import Footer from '../Footer';
 import Header from '../Header';
-import axios from 'axios';
 
 // redux
 import { connect } from 'react-redux';
@@ -219,7 +217,7 @@ const RegisterScreen = ({ setAlert }) => {
               <Form.Group controlId='formBasicPassword2'>
                 <Form.Label
                   style={{
-                    color: '#868e96',
+                    backgroundColor: '#fff',
                     fontFamily: 'Zen Maru Gothic',
                     color: '#343a40',
                   }}

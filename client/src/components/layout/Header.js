@@ -78,7 +78,7 @@ const Header = () => {
               fontWeight: '500',
             }}
           >
-            <Link to='/home' className='router-link nav-link'>
+            <Link to='/' className='router-link nav-link'>
               Home
             </Link>
             <Link to='/about' className='router-link nav-link'>

@@ -89,6 +89,9 @@
   .about-wave {
     height: 100%;
   }
+  .sms-wave {
+    height: 140%;
+  }
 
   /*Why us Section*/
   .whyus-container {
@@ -114,6 +117,9 @@
 }
 
 @media only screen and (max-width: 772px) {
+  .body-third-part {
+    padding-top: 0 !important;
+  }
   /*Login Screen Section*/
   .login-screen {
     max-width: 450px;
@@ -216,7 +222,7 @@
   .body-third-part {
     padding-left: 0;
     padding-right: 0;
-    padding-top: 2rem !important;
+    padding-top: 0 !important;
   }
 
   .body-third-part-details h2 {
@@ -249,6 +255,9 @@
   .honeycomb-cell img {
     height: 25px;
     width: 25px;
+  }
+  .sms-wave {
+    height: 160%;
   }
 
   /*why us section*/
@@ -301,6 +310,12 @@
   }
   .whyus-headings {
     padding-left: 0 !important;
+  }
+  .sms-wave {
+    height: 180%;
+  }
+  .body-third-part {
+    padding-bottom: 2rem;
   }
 
   /*Navbar Dropdown*/

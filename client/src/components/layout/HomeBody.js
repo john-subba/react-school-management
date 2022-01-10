@@ -56,7 +56,7 @@ const HomeBody = () => {
             >
               <Link to='/register'>
                 <Button
-                  className='btn-login-header'
+                  className='btn-gradient-bg'
                   style={{
                     borderRadius: '25px',
                     letterSpacing: '4px',

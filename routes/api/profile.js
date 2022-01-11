@@ -30,7 +30,7 @@ router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       'user',
-      ['name']
+      ['email']
     );
 
     if (!profile) {
@@ -57,6 +57,7 @@ router.post(
     check('position', 'Please state your position at your department')
       .not()
       .isEmpty(),
+    check('name', 'Please enter your name').not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -65,7 +66,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { department, position, address } = req.body;
+    const { department, position, address, name } = req.body;
 
     const profileFields = {};
 
@@ -73,6 +74,7 @@ router.post(
     if (department) profileFields.department = department;
     if (position) profileFields.position = position;
     if (address) profileFields.address = address;
+    if (name) profileFields.name = name;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });

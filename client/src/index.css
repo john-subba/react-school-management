@@ -724,3 +724,26 @@ body {
   box-shadow: inset 0 200px 0 0 #0022ff;
   color: #fff !important;
 }
+
+/*Dashboard Part*/
+.dashboard-avatar {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.dashboard-user {
+  margin-bottom: 0.5rem !important;
+}
+
+.dashboard-user-details {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 1rem;
+  padding-left: 1rem;
+}

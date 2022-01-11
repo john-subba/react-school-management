@@ -5,6 +5,10 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   },
+  name: {
+    type: String,
+    required: true,
+  },
   department: {
     type: String,
     required: true,
@@ -25,7 +29,7 @@ const ProfileSchema = new mongoose.Schema({
       },
       createdDate: {
         type: Date,
-        default: Date.now,
+        required: true,
       },
       subjectTeacher: {
         type: String,

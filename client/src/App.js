@@ -3,6 +3,7 @@ import HomeScreen from './components/layout/screens/HomeScreen';
 import LoginScreen from './components/layout/screens/LoginScreen';
 import RegisterScreen from './components/layout/screens/RegisterScreen';
 import Dashboard from './components/layout/screens/Dashboard';
+import CreateProfile from './components/forms/CreateProfile';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // private route * Protects the route
@@ -33,6 +34,11 @@ const App = () => {
           <Route exact path='/login' component={LoginScreen} />
           <Route exact path='/register' component={RegisterScreen} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <PrivateRoute
+            exact
+            path='/create-profile'
+            component={CreateProfile}
+          />
         </Switch>
       </Router>
     </Provider>

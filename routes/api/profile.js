@@ -23,8 +23,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-//@route    POST /api/profile/me
-//@desc     get all the profiles of the users
+//@route    GET /api/profile/me
+//@desc     get the profile of current user
 //@access   public
 router.get('/me', auth, async (req, res) => {
   try {

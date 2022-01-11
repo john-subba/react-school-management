@@ -20,7 +20,7 @@ const Header = ({ auth: { isAuthenticated, isLoading }, logoutUser }) => {
       }}
     >
       <Link to='/dashboard' className='router-link nav-link'>
-        Dashboard
+        <i className='far fa-user'></i> Dashboard
       </Link>
       <Link to='/login'>
         <Button

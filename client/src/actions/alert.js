@@ -1,4 +1,4 @@
-import { SET_ALERT, REMOVE_ALERT } from './actionTypes';
+import { REMOVE_ALERT, SET_ALERT } from './actionTypes';
 import { v4 as uuid } from 'uuid';
 
 export const setAlert = (msg, alertType) => (dispatch) => {
@@ -19,4 +19,11 @@ export const setAlert = (msg, alertType) => (dispatch) => {
       payload: id,
     });
   }, 3000);
+};
+
+export const removeAlert = (id) => (dispatch) => {
+  dispatch({
+    type: REMOVE_ALERT,
+    payload: id,
+  });
 };

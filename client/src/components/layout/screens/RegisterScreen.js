@@ -68,8 +68,10 @@ const RegisterScreen = ({ setAlert, registerUser }) => {
           <br /> <span style={{ color: '#992b3e' }}>Your</span>{' '}
           <span style={{ color: '#13578b' }}>School</span>
         </h1>
+        <div className='alert-container'>
+          <Alert />
+        </div>
       </div>
-      <Alert />
       <Container
         className='mb-5'
         style={{
@@ -98,6 +100,7 @@ const RegisterScreen = ({ setAlert, registerUser }) => {
                   className='border-focus'
                   value={name}
                   onChange={(e) => onChange(e)}
+                  required
                 />
               </Form.Group>
 
@@ -119,6 +122,7 @@ const RegisterScreen = ({ setAlert, registerUser }) => {
                   value={schoolName}
                   className='border-focus'
                   onChange={(e) => onChange(e)}
+                  required
                 />
               </Form.Group>
 
@@ -161,6 +165,7 @@ const RegisterScreen = ({ setAlert, registerUser }) => {
                   className='border-focus'
                   value={email}
                   onChange={(e) => onChange(e)}
+                  required
                 />
                 <Form.Text
                   className='text-muted'
@@ -215,6 +220,7 @@ const RegisterScreen = ({ setAlert, registerUser }) => {
                   name='password'
                   value={password}
                   onChange={(e) => onChange(e)}
+                  required
                 />
               </Form.Group>
 
@@ -240,6 +246,7 @@ const RegisterScreen = ({ setAlert, registerUser }) => {
                   name='password2'
                   value={password2}
                   onChange={(e) => onChange(e)}
+                  required
                 />
               </Form.Group>
 

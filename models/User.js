@@ -11,11 +11,9 @@ const UserSchema = new mongoose.Schema({
   },
   schoolAddress: {
     type: String,
-    required: true,
   },
   schoolPhoneNo: {
     type: Number,
-    required: true,
   },
   email: {
     type: String,

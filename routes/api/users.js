@@ -22,8 +22,6 @@ router.post(
       'Please enter a password with 6 or more characters'
     ).isLength({ min: 6 }),
     check('schoolName', 'School Name is required').not().isEmpty(),
-    check('schoolAddress', 'School Address is required').not().isEmpty(),
-    check('schoolPhoneNo', 'School Contact number is required').not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);

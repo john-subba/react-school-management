@@ -1,32 +1,54 @@
 import React, { useState } from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  FloatingLabel,
-  Form,
-  Button,
-  Carousel,
-} from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Carousel } from 'react-bootstrap';
 import Sync from '../../../assets/login/Sync.svg';
 import Management from '../../../assets/login/Management.svg';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Blob from '../../../assets/login/blob.png';
 import Logo from '../../../assets/logo.jpg';
+import Alert from '../../alert/Alert';
 
-const LoginScreen = () => {
+// redux part
+import { connect } from 'react-redux';
+import { loginUser } from '../../../actions/auth';
+
+const LoginScreen = ({ loginUser, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { email, password } = formData;
+
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    loginUser(email, password);
+  };
+
+  // redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
+
   return (
     <Container className='login-screen-container' fluid>
       <h1 className='login-screen-header'>digital education</h1>
       <img src={Blob} alt='' className='login-blob' />
       <Row className='login-screen'>
         <Col lg={6} md={6} xs={12} className='login-screen-form'>
+          <div className='alert-container'>
+            <Alert />
+          </div>
           <Form
             style={{
               display: 'flex',
               flexDirection: 'column',
               gap: '1.25rem',
             }}
+            onSubmit={(e) => onSubmit(e)}
           >
             {/******* This part is for mobile screen only ********/}
             <div className='login-mobile-logo'>
@@ -69,6 +91,9 @@ const LoginScreen = () => {
                 type='email'
                 placeholder='name@example.com'
                 className='mb-0'
+                name='email'
+                value={email}
+                onChange={(e) => onChange(e)}
               />
               <label htmlFor='floatingInputCustom' className='login-label'>
                 Username
@@ -79,12 +104,19 @@ const LoginScreen = () => {
                 id='floatingPasswordCustom'
                 type='password'
                 placeholder='Password'
+                name='password'
+                value={password}
+                onChange={(e) => onChange(e)}
               />
               <label className='login-label' htmlFor='floatingPasswordCustom'>
                 Password
               </label>
             </Form.Floating>
-            <Button variant='outline-primary' className='mt-2 login-log-btn'>
+            <Button
+              variant='outline-primary'
+              className='mt-2 login-log-btn'
+              type='submit'
+            >
               <i className='fi fi-rr-user'></i> Log In
             </Button>
             <p style={{ color: '#0001ff' }}>
@@ -147,4 +179,9 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+const mapStateToProps = (state) => ({
+  // this state is coming from auth.js in reducer file. THis is the main auth state.
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { loginUser })(LoginScreen);

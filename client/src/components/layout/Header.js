@@ -3,14 +3,77 @@ import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import logo from '../../assets/logo.jpg';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
-  // const [offset, setOffset] = useState(0);
+// redux
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/auth';
 
-  // useEffect(() => {
-  //   window.onscroll = () => {
-  //     setOffset(window.scrollY);
-  //   };
-  // }, []);
+const Header = ({ auth: { isAuthenticated, isLoading }, logoutUser }) => {
+  const authLinks = (
+    <Nav
+      style={{
+        fontSize: '1rem',
+        color: '#000',
+        fontFamily: 'Raleway',
+        textTransform: 'capitalize',
+        letterSpacing: '0.74px',
+        fontWeight: '500',
+      }}
+    >
+      <Link to='/dashboard' className='router-link nav-link'>
+        Dashboard
+      </Link>
+      <Link to='/login'>
+        <Button
+          className='btn-gradient-bg login-btn'
+          style={{
+            borderRadius: '25px',
+            letterSpacing: '3px',
+            fontSize: '0.9rem',
+            color: '#fff',
+          }}
+          onClick={logoutUser}
+        >
+          Logout
+        </Button>
+      </Link>
+    </Nav>
+  );
+
+  const guestLinks = (
+    <Nav
+      style={{
+        fontSize: '1rem',
+        color: '#000',
+        fontFamily: 'Raleway',
+        textTransform: 'capitalize',
+        letterSpacing: '0.74px',
+        fontWeight: '500',
+      }}
+    >
+      <Link to='/' className='router-link nav-link'>
+        Home
+      </Link>
+      <Link to='/about' className='router-link nav-link'>
+        About
+      </Link>
+      <Link to='/contact' className='router-link nav-link'>
+        Contact
+      </Link>
+      <Link to='/login'>
+        <Button
+          className='btn-gradient-bg login-btn'
+          style={{
+            borderRadius: '25px',
+            letterSpacing: '3px',
+            fontSize: '0.9rem',
+            color: '#fff',
+          }}
+        >
+          Login
+        </Button>
+      </Link>
+    </Nav>
+  );
 
   return (
     <Navbar
@@ -68,43 +131,15 @@ const Header = () => {
           id='basic-navbar-nav'
           style={{ flexDirection: 'row-reverse' }}
         >
-          <Nav
-            style={{
-              fontSize: '1rem',
-              color: '#000',
-              fontFamily: 'Raleway',
-              textTransform: 'capitalize',
-              letterSpacing: '0.74px',
-              fontWeight: '500',
-            }}
-          >
-            <Link to='/' className='router-link nav-link'>
-              Home
-            </Link>
-            <Link to='/about' className='router-link nav-link'>
-              About
-            </Link>
-            <Link to='/contact' className='router-link nav-link'>
-              Contact
-            </Link>
-            <Link to='/login'>
-              <Button
-                className='btn-gradient-bg login-btn'
-                style={{
-                  borderRadius: '25px',
-                  letterSpacing: '3px',
-                  fontSize: '0.9rem',
-                  color: '#fff',
-                }}
-              >
-                Login
-              </Button>
-            </Link>
-          </Nav>
+          {!isLoading && <>{isAuthenticated ? authLinks : guestLinks}</>}
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logoutUser })(Header);

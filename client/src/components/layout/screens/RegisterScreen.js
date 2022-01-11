@@ -7,8 +7,9 @@ import Alert from '../../alert/Alert';
 import { connect } from 'react-redux';
 import { setAlert } from '../../../actions/alert';
 import { registerUser } from '../../../actions/auth';
+import { Redirect } from 'react-router-dom';
 
-const RegisterScreen = ({ setAlert, registerUser }) => {
+const RegisterScreen = ({ setAlert, registerUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     schoolName: '',
@@ -52,6 +53,10 @@ const RegisterScreen = ({ setAlert, registerUser }) => {
       });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <>
@@ -100,7 +105,6 @@ const RegisterScreen = ({ setAlert, registerUser }) => {
                   className='border-focus'
                   value={name}
                   onChange={(e) => onChange(e)}
-                  required
                 />
               </Form.Group>
 
@@ -262,4 +266,10 @@ const RegisterScreen = ({ setAlert, registerUser }) => {
   );
 };
 
-export default connect(null, { setAlert, registerUser })(RegisterScreen);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, registerUser })(
+  RegisterScreen
+);

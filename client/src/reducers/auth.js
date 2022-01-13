@@ -6,6 +6,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGOUT,
+  ADD_TEACHER_DETAILS_SUCCESS,
+  ADD_TEACHER_DETAILS_FAILED,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -34,6 +36,20 @@ const registerUser = (state = initialState, action) => {
         ...payload,
         isAuthenticated: true,
         isLoading: false,
+      };
+    case ADD_TEACHER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        user: payload,
+        isAuthenticated: true,
+        isLoading: false,
+      };
+    case ADD_TEACHER_DETAILS_FAILED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        isLoading: false,
+        payload: null,
       };
     case REGISTER_FAILED:
     case AUTH_ERROR:

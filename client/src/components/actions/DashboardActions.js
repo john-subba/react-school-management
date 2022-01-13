@@ -17,7 +17,7 @@ const DashboardActions = () => {
         Dashboard Actions
       </h6>
       <div className='dashboard-actions'>
-        <Link to='/create-profile'>
+        <Link to='/add-teacher-details'>
           <Button
             className='btn-gradient-bg'
             style={{ borderRadius: '5px', color: '#fff' }}
@@ -25,14 +25,14 @@ const DashboardActions = () => {
             Add Teacher
           </Button>
         </Link>
-        <Link to='/add-subject'>
+        {/* <Link to='/add-subject'>
           <Button
             className='btn-gradient-bg'
             style={{ borderRadius: '5px', color: '#fff' }}
           >
             Add Subject
           </Button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

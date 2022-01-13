@@ -21,22 +21,6 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  subjects: [
-    {
-      title: {
-        type: String,
-        required: true,
-      },
-      createdDate: {
-        type: Date,
-        required: true,
-      },
-      subjectTeacher: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

@@ -1,27 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const config = require('config');
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 // call profile model
 const Profile = require('../../models/Profile');
 const Class = require('../../models/Class');
-
-//@route    GET /api/profile
-//@desc     get all the profiles of the users
-//@access   public
-router.get('/', async (req, res) => {
-  try {
-    const profiles = await Profile.find();
-
-    res.json({ profiles });
-  } catch (err) {
-    console.error(err.message);
-    res.status(400).send('Server error');
-  }
-});
 
 //@route    GET /api/profile/me
 //@desc     get the profile of current user
@@ -97,105 +81,5 @@ router.post(
     }
   }
 );
-
-//@route    GET /api/profile/subject
-//@desc     get the subjects of the profile
-//@access   public
-router.get('/subject', auth, async (req, res) => {
-  try {
-    const profile = await Profile.findOne({
-      user: req.user.id,
-    });
-
-    const subjectsList = profile.subjects;
-    res.json({ subjectsList });
-  } catch (err) {
-    console.error(err.message);
-    res.status(400).send('Server error');
-  }
-});
-
-//@route    GET /api/profile/subject
-//@desc     get the one specific subject of the profile
-//@access   public
-router.get('/subject/:subject_id', auth, async (req, res) => {
-  try {
-    const profile = await Profile.findOne({ user: req.user.id });
-
-    const subjectIndex = profile.subjects
-      .map((sub) => sub.id)
-      .indexOf(req.params.subject_id);
-
-    const subject = profile.subjects[subjectIndex];
-
-    const classes = subject.class;
-    res.json(classes);
-  } catch (err) {
-    console.error(err.message);
-    res.status(400).send('Server error');
-  }
-});
-
-//@route    POST /api/profile/subject
-//@desc     add subject to the profile
-//@access   public
-router.post(
-  '/subject',
-  auth,
-  [
-    check('title', 'Subject title is required').not().isEmpty(),
-    check('subjectTeacher', 'Subject Teacher is required').not().isEmpty(),
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { title, subjectTeacher } = req.body;
-
-    const newSubject = {
-      title,
-      subjectTeacher,
-    };
-
-    try {
-      let profile = await Profile.findOne({ user: req.user.id });
-
-      profile.subjects.push(newSubject);
-
-      await profile.save();
-
-      res.json(profile);
-    } catch (err) {
-      console.error(err.message);
-      res.status(400).send('Server error');
-    }
-  }
-);
-
-//@route    Delete /api/profile/subject/:sub_id
-//@desc     delete subject by its id
-//@access   private
-router.delete('/subject/:sub_id', auth, async (req, res) => {
-  try {
-    const profile = await Profile.findOne({ user: req.user.id });
-
-    await Class.findOneAndDelete({ user: req.user.id });
-
-    const removeIndex = profile.subjects
-      .map((sub) => sub.id)
-      .indexOf(req.params.sub_id);
-
-    profile.subjects.splice(removeIndex, 1);
-
-    await profile.save();
-    res.json(profile);
-  } catch (err) {
-    console.error(err.message);
-    res.status(400).send('Server error');
-  }
-});
 
 module.exports = router;

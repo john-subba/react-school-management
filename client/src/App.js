@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HomeScreen from './components/layout/screens/HomeScreen';
 import LoginScreen from './components/layout/screens/LoginScreen';
 import RegisterScreen from './components/layout/screens/RegisterScreen';
 import Dashboard from './components/layout/screens/Dashboard';
 import AddTeachers from './components/forms/AddTeachers';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import FrontScreen from './components/layout/screens/FrontScreen';
+import SchoolProfile from './components/layout/SchoolProfile';
 
 // private route * Protects the route
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -14,7 +16,6 @@ import { Provider } from 'react-redux';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
-import { useEffect } from 'react';
 
 // adding x-auth-token header to token
 if (localStorage.token) {
@@ -33,6 +34,12 @@ const App = () => {
         <Switch>
           <Route exact path='/login' component={LoginScreen} />
           <Route exact path='/register' component={RegisterScreen} />
+          <PrivateRoute exact path='/front-screen' component={FrontScreen} />
+          <PrivateRoute
+            exact
+            path='/school-profile'
+            component={SchoolProfile}
+          />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <PrivateRoute
             exact

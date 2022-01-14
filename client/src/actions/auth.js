@@ -7,6 +7,8 @@ import {
   LOGIN_FAILED,
   LOGOUT,
   CLEAR_PROFILE,
+  GET_USER_FAILED,
+  GET_CURRENT_USER,
 } from './actionTypes';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -29,6 +31,23 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: AUTH_ERROR,
     });
+  }
+};
+
+// get current user after logging in
+export const getCurrentUser = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/users/me');
+
+    dispatch({
+      type: GET_CURRENT_USER,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_USER_FAILED,
+    });
+    dispatch(setAlert('User not found', 'danger'));
   }
 };
 
@@ -58,6 +77,8 @@ export const registerUser =
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
+
+      dispatch(setAlert('User logged in', 'success'));
     } catch (err) {
       const errors = err.response.data.errors;
 
@@ -72,7 +93,7 @@ export const registerUser =
   };
 
 // login user
-export const loginUser = (email, password) => async (dispatch) => {
+export const loginUser = (email, password, history) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -91,6 +112,7 @@ export const loginUser = (email, password) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
+    dispatch(loadUser());
   } catch (err) {
     const error = err.response.data.msg;
 

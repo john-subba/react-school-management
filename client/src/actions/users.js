@@ -11,6 +11,7 @@ import axios from 'axios';
 // redux
 import { setAlert } from './alert';
 
+// add teacher details
 export const addTeacherDetails = (formData, history) => async (dispatch) => {
   try {
     const res = await axios.post('/api/users/teachers', formData);

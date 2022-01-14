@@ -715,12 +715,6 @@ body {
   height: 120px;
 }
 
-.dashboard-user {
-  margin-bottom: 0.25rem !important;
-  font-size: 0.9rem !important;
-  font-family: 'Zen Maru Gothic', sans-serif;
-}
-
 .dashboard-header-wlc {
   font-family: 'Fredoka One', cursive;
   text-shadow: 4px 4px #0000001c;
@@ -732,17 +726,11 @@ body {
   border-bottom: 1.25px solid rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-user-details {
+.dashboard-col {
   display: flex;
-  gap: 2rem;
-  justify-content: center;
   align-items: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-.dashboard-user-label {
-  font-weight: bold;
+  padding-bottom: 1rem;
+  gap: 0.5rem;
 }
 
 .dashboard-actions {
@@ -774,6 +762,28 @@ body {
 
 .dashboard-tr {
   border: 1.25px solid #e8e8e8;
+}
+
+.dashboard-user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8.25rem 2rem;
+}
+
+.school-profile-details {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.school-profile-details h3 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+.school-profile-details p {
+  margin-bottom: 0.25rem;
+  font-family: 'Zen Maru Gothic', sans-serif;
 }
 
 /*Dashboard Actions*/

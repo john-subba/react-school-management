@@ -92,7 +92,7 @@ router.post(
 );
 
 //@route    GET /api/users
-//@desc     gett all of the users
+//@desc     get all of the users
 //@access   public
 router.get('/', async (req, res) => {
   try {
@@ -101,7 +101,21 @@ router.get('/', async (req, res) => {
     res.json(users);
   } catch (err) {
     console.error(err.message);
-    res.status(400).send('Server error');
+    res.status(500).send('Server error');
+  }
+});
+
+//@route    GET /api/users/me
+//@desc     get current user
+//@access   public
+router.get('/me', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    res.json(user);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -170,12 +184,10 @@ router.post(
     try {
       const user = await User.findById(req.user.id);
 
-      const exists = user.teachers.map((teacher) => teacher.name);
-
       user.teachers.push(newTeacher);
 
       await user.save();
-      res.json(exists);
+      res.json(user);
     } catch (err) {
       console.log(err.message);
       res.status(400).json('Server Error');

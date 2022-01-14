@@ -12,6 +12,8 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGOUT = 'LOGOUT';
+export const GET_CURRENT_USER = 'GET_CURRENT_USER';
+export const GET_USER_FAILED = 'GET_USER_FAILED';
 
 // getting profile actions
 export const GET_PROFILE = 'GET_PROFILE';

@@ -28,9 +28,9 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
     loginUser(email, password);
   };
 
-  // redirect if logged in
+  //redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/front-screen' />;
   }
 
   return (

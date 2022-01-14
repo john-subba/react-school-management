@@ -11,7 +11,8 @@ const DashboardActions = ({ setShowDelete, showDelete }) => {
       <div className='dashboard-actions'>
         <Link to='/add-teacher-details' className='router-link'>
           <Button className='dashboard-btn'>
-            <img src={userIcon} alt='' />+ Add Staff
+            <img src={userIcon} alt='' className='dashboard-actions-icons' />+
+            Add Staff
           </Button>
         </Link>
 
@@ -19,12 +20,13 @@ const DashboardActions = ({ setShowDelete, showDelete }) => {
           className='dashboard-btn'
           onClick={() => setShowDelete(!showDelete)}
         >
-          <img src={trashIcon} alt='' />- Remove Staff
+          <img src={trashIcon} alt='' className='dashboard-actions-icons' />-
+          Remove Staff
         </Button>
 
         <Link to='/edit-teacher-details' className='router-link'>
           <Button className='dashboard-btn'>
-            <img src={editIcon} alt='' />
+            <img src={editIcon} alt='' className='dashboard-actions-icons' />
             .. Edit Staff
           </Button>
         </Link>

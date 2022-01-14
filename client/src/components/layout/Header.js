@@ -19,6 +19,9 @@ const Header = ({ auth: { isAuthenticated, isLoading }, logoutUser }) => {
         fontWeight: '500',
       }}
     >
+      <Link to='/school-profile' className='router-link nav-link'>
+        <i className='far fa-user'></i> School Profile
+      </Link>
       <Link to='/dashboard' className='router-link nav-link'>
         <i className='far fa-user'></i> Dashboard
       </Link>

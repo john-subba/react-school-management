@@ -20,6 +20,25 @@
   .sms-wave {
     top: 0;
   }
+
+  /*Front Screen*/
+  .front-screen-h2 {
+    padding-top: 2rem !important;
+  }
+  .front-screen-row {
+    flex-direction: column;
+  }
+  .front-screen-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /*School Profile Part*/
+  .dashboard-user-container {
+    padding: 8.5rem 2rem;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -62,6 +81,20 @@
 
   .body-container {
     padding-top: 8rem;
+  }
+
+  /*Front Screen*/
+  .front-screen-h2 {
+    padding-top: 7rem !important;
+  }
+
+  /*School Profile Part*/
+  .dashboard-user-container {
+    padding: 11.4rem 2rem;
+  }
+
+  .school-profile-details p {
+    padding: 0 2rem;
   }
 
   /*About us Part*/
@@ -114,6 +147,11 @@
   .register-headers {
     padding-top: 6rem;
   }
+
+  /*Dashboard Part*/
+  .dashboard-header-wlc {
+    padding-top: 7rem;
+  }
 }
 
 @media only screen and (max-width: 772px) {
@@ -127,6 +165,17 @@
   }
   .container-carousel {
     display: none;
+  }
+  /*School Profile*/
+  .dashboard-user-container {
+    padding: 12.2rem 2rem;
+  }
+  /*Dashboard Part*/
+  .dashboard-col h4 {
+    font-size: 1.25rem;
+  }
+  .dashboard-col {
+    flex-direction: column;
   }
 }
 
@@ -273,6 +322,11 @@
 }
 
 @media only screen and (max-width: 450px) {
+  /*School Profile Part*/
+  .dashboard-user-container {
+    padding: 20rem 2rem;
+  }
+
   .body-first-details-row {
     text-align: left;
     padding-left: 1.5rem;
@@ -368,5 +422,10 @@
 
   .register-submit-btn {
     margin-left: 6rem;
+  }
+
+  /*Dashboard-part*/
+  .dashboard-actions-icons {
+    display: none;
   }
 }

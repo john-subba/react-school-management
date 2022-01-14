@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../Header';
 import Spinner from '../Spinner';
 import DashboardActions from '../../actions/DashboardActions';
@@ -8,14 +8,14 @@ import alert from '../../../assets/dashboard/alert.png';
 
 //redux part
 import { connect } from 'react-redux';
-import { loadUser } from '../../../actions/auth';
+import { getCurrentUser } from '../../../actions/auth';
 import { deleteTeacher } from '../../../actions/users';
 
 const Dashboard = ({
   auth: { user, isLoading },
   teachersList,
   deleteTeacher,
-  loadUser,
+  getCurrentUser,
 }) => {
   const [showDelete, setShowDelete] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -25,66 +25,29 @@ const Dashboard = ({
     setShowConfirm(false);
   };
 
+  useEffect(() => {
+    getCurrentUser();
+  }, [getCurrentUser]);
+
   return isLoading === true && user === null ? (
     <Spinner />
   ) : (
     <>
       <Header />
+      <Alerts />
       <h4 className='dashboard-header-wlc'>
         Welcome <span style={{ color: '#992b3e' }}>to</span>{' '}
         <span style={{ color: '#13578b' }}>{user.schoolName}</span>
       </h4>
-      <Alerts />
-      <Container>
-        <Row style={{ alignItems: 'center', gap: '1rem' }} className='pb-2'>
-          <Col className='dashboard-user-details'>
-            <img src={user.avatar} alt='avatar' className='dashboard-avatar' />
-            <div>
-              <h6
-                style={{
-                  color: '#343a40',
-                  fontSize: '1rem',
-                  paddingTop: '1rem',
-                }}
-              >
-                Your
-                <span style={{ color: '#992b3e' }}> School</span>{' '}
-                <span style={{ color: '#13578b' }}>Profile</span>
-              </h6>
-              <p className='dashboard-user'>
-                <span className='dashboard-user-label'>Name:</span> {user.name}
-              </p>
-              <p className='dashboard-user'>
-                <span className='dashboard-user-label'>School Name:</span>{' '}
-                {user.schoolName}
-              </p>
-              <p className='dashboard-user'>
-                <span className='dashboard-user-label'>School Address:</span>{' '}
-                {user.schoolAddress}
-              </p>
-              <p className='dashboard-user'>
-                <span className='dashboard-user-label'>School Phone No: </span>{' '}
-                {user.schoolPhoneNo}
-              </p>
-            </div>
-          </Col>
-        </Row>
-      </Container>
       <Container style={{ paddingTop: '1rem' }}>
         <Row>
-          <Col
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              paddingBottom: '0.5rem',
-              gap: '1rem',
-            }}
-          >
+          <Col className='dashboard-col'>
             <h4
               style={{
                 color: '#343a40',
                 paddingBottom: '0',
                 marginBottom: '0',
+                fontFamily: 'Zen Maru Gothic',
               }}
             >
               Staff's name List
@@ -277,4 +240,6 @@ const mapStateToProps = (state) => ({
   teachersList: state.auth.user,
 });
 
-export default connect(mapStateToProps, { loadUser, deleteTeacher })(Dashboard);
+export default connect(mapStateToProps, { getCurrentUser, deleteTeacher })(
+  Dashboard
+);

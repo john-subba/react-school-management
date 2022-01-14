@@ -1,38 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import userIcon from '../../assets/dashboard/user.png';
+import trashIcon from '../../assets/dashboard/trash.png';
+import editIcon from '../../assets/dashboard/edit.png';
 
-const DashboardActions = () => {
+const DashboardActions = ({ setShowDelete, showDelete }) => {
   return (
     <div className='dashboard-actions-container'>
-      <h6
-        style={{
-          color: '#343a40',
-          textShadow: '4px 4px #00000021',
-          fontSize: '1rem',
-          paddingLeft: '0.5rem',
-          paddingBottom: '0.75rem',
-        }}
-      >
-        Dashboard Actions
-      </h6>
       <div className='dashboard-actions'>
-        <Link to='/add-teacher-details'>
-          <Button
-            className='btn-gradient-bg'
-            style={{ borderRadius: '5px', color: '#fff' }}
-          >
-            Add Teacher
+        <Link to='/add-teacher-details' className='router-link'>
+          <Button className='dashboard-btn'>
+            <img src={userIcon} alt='' />+ Add Staff
           </Button>
         </Link>
-        {/* <Link to='/add-subject'>
-          <Button
-            className='btn-gradient-bg'
-            style={{ borderRadius: '5px', color: '#fff' }}
-          >
-            Add Subject
+
+        <Button
+          className='dashboard-btn'
+          onClick={() => setShowDelete(!showDelete)}
+        >
+          <img src={trashIcon} alt='' />- Remove Staff
+        </Button>
+
+        <Link to='/edit-teacher-details' className='router-link'>
+          <Button className='dashboard-btn'>
+            <img src={editIcon} alt='' />
+            .. Edit Staff
           </Button>
-        </Link> */}
+        </Link>
       </div>
     </div>
   );

@@ -1,24 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Header';
 import Spinner from '../Spinner';
 import DashboardActions from '../../actions/DashboardActions';
-import { Col, Container, Row, Table, Button } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
+import Alert from '../../alert/Alert';
 
 //redux part
 import { connect } from 'react-redux';
 import { loadUser } from '../../../actions/auth';
+import { deleteTeacher } from '../../../actions/users';
 
-const Dashboard = ({ auth: { user, isLoading }, teachersList }) => {
+const Dashboard = ({
+  auth: { user, isLoading },
+  teachersList,
+  deleteTeacher,
+  loadUser,
+}) => {
+  const [showDelete, setShowDelete] = useState(false);
+
+  const deleteStaff = (_id) => {
+    deleteTeacher(_id);
+  };
+
   useEffect(() => {
     loadUser();
-  }, []);
+  }, [loadUser]);
 
   return isLoading === true ? (
     <Spinner />
   ) : (
     <>
+      <div className='alert-container'>
+        <Alert />
+      </div>
       <Header />
-      <Container style={{ paddingTop: '8rem' }}>
+      <h4 className='dashboard-header-wlc'>
+        Welcome <span style={{ color: '#992b3e' }}>to</span>{' '}
+        <span style={{ color: '#13578b' }}>{user.schoolName}</span>
+      </h4>
+      <Container>
         <Row style={{ alignItems: 'center', gap: '1rem' }} className='pb-2'>
           <Col className='dashboard-user-details'>
             <img src={user.avatar} alt='avatar' className='dashboard-avatar' />
@@ -26,7 +46,6 @@ const Dashboard = ({ auth: { user, isLoading }, teachersList }) => {
               <h6
                 style={{
                   color: '#343a40',
-                  textShadow: '4px 4px #00000021',
                   fontSize: '1rem',
                   paddingTop: '1rem',
                 }}
@@ -35,66 +54,108 @@ const Dashboard = ({ auth: { user, isLoading }, teachersList }) => {
                 <span style={{ color: '#992b3e' }}> School</span>{' '}
                 <span style={{ color: '#13578b' }}>Profile</span>
               </h6>
-              <p className='dashboard-user'>Name: {user.name}</p>
-              <p className='dashboard-user'>School Name: {user.schoolName}</p>
               <p className='dashboard-user'>
-                School Address: {user.schoolAddress}
+                <span className='dashboard-user-label'>Name:</span> {user.name}
               </p>
               <p className='dashboard-user'>
-                School Phone No: {user.schoolPhoneNo}
+                <span className='dashboard-user-label'>School Name:</span>{' '}
+                {user.schoolName}
+              </p>
+              <p className='dashboard-user'>
+                <span className='dashboard-user-label'>School Address:</span>{' '}
+                {user.schoolAddress}
+              </p>
+              <p className='dashboard-user'>
+                <span className='dashboard-user-label'>School Phone No: </span>{' '}
+                {user.schoolPhoneNo}
               </p>
             </div>
           </Col>
         </Row>
-        <Row
-          style={{
-            justifyContent: 'center',
-            flexDirection: 'column',
-            paddingTop: '1rem',
-          }}
-        >
-          <Col>
-            <DashboardActions />
-          </Col>
-        </Row>
       </Container>
-      <Container>
+      <Container style={{ paddingTop: '1rem' }}>
         <Row>
-          <Col>
-            <h6
+          <Col
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              paddingBottom: '0.5rem',
+              gap: '1rem',
+            }}
+          >
+            <h4
               style={{
                 color: '#343a40',
-                textShadow: '4px 4px #00000021',
-                fontSize: '1rem',
-                paddingTop: '2rem',
-                paddingBottom: '1rem',
+                paddingBottom: '0',
+                marginBottom: '0',
               }}
             >
-              <span style={{ color: '#992b3e' }}>Teachers</span> name
-              <span style={{ color: '#13578b' }}> List</span>
-            </h6>
+              Staff's name List
+            </h4>
+            <DashboardActions
+              setShowDelete={setShowDelete}
+              showDelete={showDelete}
+            />
           </Col>
         </Row>
         <Row>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-              </tr>
-            </thead>
-            {teachersList.teachers.map((teacher, index) => {
-              const { _id, name, department } = teacher;
-              return (
-                <tr key={_id}>
-                  <td>{index}</td>
-                  <td>{name}</td>
-                  <td>{department}</td>
+          {teachersList.teachers.length === 0 ? (
+            <>
+              <p style={{ paddingLeft: '1rem', fontFamily: 'Zen Maru Gothic' }}>
+                There are no any staff details added. Please add some.
+              </p>
+            </>
+          ) : (
+            <Table
+              striped
+              bordered
+              hover
+              responsive
+              size='sm'
+              style={{ fontSize: '0.9rem' }}
+            >
+              <thead className='dashboard-thead'>
+                <tr>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Position</th>
+                  <th>Address</th>
                 </tr>
-              );
-            })}
-          </Table>
+              </thead>
+              <tbody>
+                {teachersList.teachers.map((teacher) => {
+                  const { _id, name, department, position, address } = teacher;
+                  return (
+                    <tr key={_id} className='dashboard-tr'>
+                      <td>{name}</td>
+                      <td>{department}</td>
+                      <td>{position}</td>
+                      <td
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        {address}{' '}
+                        {showDelete && (
+                          <button
+                            style={{
+                              border: 'none',
+                              color: 'red',
+                              cursor: 'pointer',
+                            }}
+                            onClick={() => deleteStaff(_id)}
+                          >
+                            <i className='far fa-times-circle'></i>
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          )}
         </Row>
       </Container>
     </>
@@ -106,4 +167,4 @@ const mapStateToProps = (state) => ({
   teachersList: state.auth.user,
 });
 
-export default connect(mapStateToProps, { loadUser })(Dashboard);
+export default connect(mapStateToProps, { loadUser, deleteTeacher })(Dashboard);

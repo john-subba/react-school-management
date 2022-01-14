@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Header from '../layout/Header';
+import { withRouter } from 'react-router-dom';
 
 // redux part
 import { connect } from 'react-redux';
+import { addSubjectDetails } from '../../actions/users';
 
-const AddSubject = () => {
+const AddSubject = ({ history, addSubjectDetails }) => {
   const [formData, setFormData] = useState({
     title: '',
     subjectTeacher: '',
@@ -19,6 +21,7 @@ const AddSubject = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    addSubjectDetails(formData, history);
   };
 
   return (
@@ -101,4 +104,4 @@ const AddSubject = () => {
   );
 };
 
-export default connect(null)(AddSubject);
+export default connect(null, { addSubjectDetails })(withRouter(AddSubject));

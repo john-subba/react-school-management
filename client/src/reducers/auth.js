@@ -8,6 +8,8 @@ import {
   LOGOUT,
   ADD_TEACHER_DETAILS_SUCCESS,
   ADD_TEACHER_DETAILS_FAILED,
+  DELETE_TEACHER_DETAILS_FAILED,
+  DELETE_TEACHER_DETAILS_SUCCESS,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -38,6 +40,7 @@ const registerUser = (state = initialState, action) => {
         isLoading: false,
       };
     case ADD_TEACHER_DETAILS_SUCCESS:
+    case DELETE_TEACHER_DETAILS_SUCCESS:
       return {
         ...state,
         user: payload,
@@ -45,6 +48,7 @@ const registerUser = (state = initialState, action) => {
         isLoading: false,
       };
     case ADD_TEACHER_DETAILS_FAILED:
+    case DELETE_TEACHER_DETAILS_FAILED:
       return {
         ...state,
         isAuthenticated: true,

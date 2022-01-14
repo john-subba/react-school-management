@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Header from '../layout/Header';
+import { withRouter } from 'react-router-dom';
 
 // redux
 import { connect } from 'react-redux';
 import { addTeacherDetails } from '../../actions/users';
 
-const AddTeachers = ({ addTeacherDetails }) => {
+const AddTeachers = ({ addTeacherDetails, history }) => {
   const [formData, setFormData] = useState({
     name: '',
     department: '',
@@ -22,7 +23,7 @@ const AddTeachers = ({ addTeacherDetails }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addTeacherDetails(formData);
+    addTeacherDetails(formData, history);
   };
 
   return (
@@ -146,4 +147,4 @@ const AddTeachers = ({ addTeacherDetails }) => {
   );
 };
 
-export default connect(null, { addTeacherDetails })(AddTeachers);
+export default connect(null, { addTeacherDetails })(withRouter(AddTeachers));

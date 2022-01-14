@@ -1,20 +1,17 @@
 import {
   ADD_TEACHER_DETAILS_SUCCESS,
   ADD_TEACHER_DETAILS_FAILED,
+  ADD_SUBJECT_FAILED,
+  ADD_SUBJECT_SUCCESS,
   DELETE_TEACHER_DETAILS_SUCCESS,
   DELETE_TEACHER_DETAILS_FAILED,
-  EDIT_TEACHER_DETAILS_SUCCESS,
-  EDIT_TEACHER_DETAILS_FAILED,
-  USER_LOADED,
-  ADD_SUBJECT_FAILED,
 } from './actionTypes';
 import axios from 'axios';
-import setAuthToken from '../utils/setAuthToken';
 
 // redux
 import { setAlert } from './alert';
 
-export const addTeacherDetails = (formData) => async (dispatch) => {
+export const addTeacherDetails = (formData, history) => async (dispatch) => {
   try {
     const res = await axios.post('/api/users/teachers', formData);
 
@@ -22,6 +19,10 @@ export const addTeacherDetails = (formData) => async (dispatch) => {
       type: ADD_TEACHER_DETAILS_SUCCESS,
       payload: res.data,
     });
+
+    dispatch(setAlert('Staff is added.', 'success'));
+
+    history.push('/dashboard');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -36,6 +37,24 @@ export const addTeacherDetails = (formData) => async (dispatch) => {
 };
 
 // @todo delete teacher and their respective subjects also
+export const deleteTeacher = (_id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/users/teachers/${_id}`);
+
+    dispatch({
+      type: DELETE_TEACHER_DETAILS_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('Staff has been succesfully removed.', 'success'));
+  } catch (err) {
+    dispatch({
+      type: DELETE_TEACHER_DETAILS_FAILED,
+    });
+    dispatch(setAlert('Failed to remove staff', 'danger'));
+  }
+};
+
 // @todo edit teacher details
 
 // add subjects to the teacher
@@ -45,6 +64,11 @@ export const addSubjectDetails = (formData) => async (dispatch) => {
       '/api/users/teachers/:teacher_id/subjects',
       formData
     );
+
+    dispatch({
+      type: ADD_SUBJECT_SUCCESS,
+      payload: res.data,
+    });
   } catch (err) {
     const errors = err.response.data.errors;
 

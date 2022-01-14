@@ -728,22 +728,88 @@ body {
 /*Dashboard Part*/
 .dashboard-avatar {
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
 }
 
 .dashboard-user {
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 0.25rem !important;
+  font-size: 0.9rem !important;
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+.dashboard-header-wlc {
+  font-family: 'Fredoka One', cursive;
+  text-shadow: 4px 4px #0000001c;
+  color: #343a40;
+  text-align: center;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  width: 100%;
+  border-bottom: 1.25px solid rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-user-details {
   display: flex;
+  gap: 2rem;
+  justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.dashboard-user-label {
+  font-weight: bold;
 }
 
 .dashboard-actions {
   display: flex;
-  gap: 1rem;
-  padding-left: 1rem;
+}
+
+.dashboard-thead {
+  background-image: linear-gradient(
+    to right top,
+    #4a5ac2,
+    #455cc4,
+    #415ec6,
+    #3b60c8,
+    #3562ca,
+    #3161ce,
+    #2d61d2,
+    #2860d6,
+    #295cdc,
+    #2d58e2,
+    #3453e7,
+    #3d4deb
+  );
+  color: #fff;
+}
+
+.table > :not(:first-child) {
+  border-top: none !important;
+}
+
+.dashboard-tr {
+  border: 1.25px solid #e8e8e8;
+}
+
+/*Dashboard Actions*/
+.dashboard-btn {
+  color: #343a40 !important;
+  background-color: #fff !important;
+  text-transform: capitalize !important;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 1rem !important;
+  padding: 8px 16px !important;
+  display: flex !important;
+  gap: 0.25rem;
+  transition: 0.3s ease-in-out;
+}
+
+.dashboard-btn::after {
+  border-bottom: 1px solid #0022ff;
+}
+
+.dashboard-btn:focus {
+  box-shadow: none !important;
 }

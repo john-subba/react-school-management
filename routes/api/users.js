@@ -41,11 +41,6 @@ router.post(
       if (user) {
         res.status(400).json({ erros: [{ msg: 'User already exsits' }] });
       }
-
-      if (!user) {
-        res.status(404).json({ msg: 'User not found' });
-      }
-
       // get user gravatar(avatar)
       const avatar = gravatar.url(email, {
         s: '200',
@@ -175,10 +170,12 @@ router.post(
     try {
       const user = await User.findById(req.user.id);
 
+      const exists = user.teachers.map((teacher) => teacher.name);
+
       user.teachers.push(newTeacher);
 
       await user.save();
-      res.json(user);
+      res.json(exists);
     } catch (err) {
       console.log(err.message);
       res.status(400).json('Server Error');
@@ -230,7 +227,7 @@ router.put(
   }
 );
 
-//@route  DELETE /api/teachers/:teacher_id
+//@route  DELETE /api/users/teachers/:teacher_id
 //@desc   delete teacher using teacher id also delete subject under the teacher
 //@access Private
 router.delete('/teachers/:teacher_id', auth, async (req, res) => {

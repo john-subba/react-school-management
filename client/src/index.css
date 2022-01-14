@@ -20,41 +20,24 @@ body {
 }
 
 .alert {
-  padding: 0.5rem 0.8rem;
-  opacity: 0.9;
-  background-color: #e8e8e8;
-  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0.75rem !important;
+  padding-left: 1rem !important;
+  font-family: 'Zen Maru Gothic', sans-serif;
 }
 
 .alert-btn {
   border: none !important;
   background: transparent !important;
-  font-size: 1.25rem !important;
-  padding: 0.5rem 1rem !important;
+  font-size: 1rem !important;
+  padding: 0 !important;
+  color: #fff !important;
 }
 
 .alert-btn:focus {
   box-shadow: none !important;
-}
-
-.alert-primary {
-  color: #fff;
-  background-color: #333;
-}
-
-.alert-light {
-  background-color: #fff;
-  color: #333;
-}
-
-.alert-danger {
-  background-color: red;
-  color: #fff;
-}
-
-.alert-success {
-  background-color: seagreen;
-  color: #fff;
 }
 
 .router-link {
@@ -812,4 +795,21 @@ body {
 
 .dashboard-btn:focus {
   box-shadow: none !important;
+}
+
+/*Delete Modal*/
+.modal-content {
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dlt-modal-warning {
+  display: grid;
+  gap: 1.25rem;
+  align-items: center;
+  grid-template-columns: 1fr auto;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 0, 0, 0.274);
+  border-left: 4px solid red;
 }

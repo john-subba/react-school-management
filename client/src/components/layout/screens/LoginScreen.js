@@ -5,7 +5,7 @@ import Management from '../../../assets/login/Management.svg';
 import { Link, Redirect } from 'react-router-dom';
 import Blob from '../../../assets/login/blob.png';
 import Logo from '../../../assets/logo.jpg';
-import Alert from '../../alert/Alert';
+import Alerts from '../../alert/Alerts';
 
 // redux part
 import { connect } from 'react-redux';
@@ -40,7 +40,7 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
       <Row className='login-screen'>
         <Col lg={6} md={6} xs={12} className='login-screen-form'>
           <div className='alert-container'>
-            <Alert />
+            <Alerts />
           </div>
           <Form
             style={{

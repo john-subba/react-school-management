@@ -306,8 +306,8 @@ router.post(
       const subjectList = teacher.subjects;
 
       subjectList.push(newSubject);
-      await user.save();
-      res.json(user);
+      await user.save(teacher);
+      res.json(teacher);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -359,7 +359,7 @@ router.put(
       if (subjectTeacher) subject.subjectTeacher = `${subjectTeacher}`;
 
       await user.save();
-      res.json(user);
+      res.json(teacher);
     } catch (err) {
       console.log(err.message);
       res.status(500).send('Server Error');
@@ -393,7 +393,7 @@ router.delete(
 
       subjectList.splice(subjectIndex, 1);
       await user.save();
-      res.json(user);
+      res.json(teacher);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');

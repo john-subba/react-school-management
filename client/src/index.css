@@ -764,6 +764,13 @@ body {
   border: 1.25px solid #e8e8e8;
 }
 
+.dashboard-table-teacher {
+  border: none;
+  background-color: transparent;
+  color: #55595c;
+  font-size: 0.9rem;
+}
+
 .dashboard-table-teacher:hover {
   text-decoration: underline !important;
   color: #0022ff !important;
@@ -801,6 +808,7 @@ body {
   padding: 8px 16px !important;
   display: flex !important;
   gap: 0.25rem;
+  align-items: center;
   transition: 0.3s ease-in-out;
 }
 
@@ -827,4 +835,48 @@ body {
   padding: 1rem 2rem;
   background-color: rgba(255, 0, 0, 0.274);
   border-left: 4px solid red;
+}
+
+/*Teacher Profile*/
+.teacher-profile-row {
+  padding-top: 1.5rem;
+}
+
+.teacher-actions-col {
+  display: flex;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  align-items: center;
+}
+
+/* Add Subject Form*/
+.add-subject-row {
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #e8e8e8;
+  font-size: 0.9rem;
+  flex-direction: column;
+}
+
+.add-subject-btn {
+  border-radius: 25px !important;
+  background-color: #fff !important;
+  color: #0022ff !important;
+  display: flex !important;
+  align-items: center !important;
+  font-size: 0.9rem !important;
+  gap: 0.5rem !important;
+  transition: 0.3s ease-in-out;
+}
+
+.add-subject-btn:hover {
+  background-color: #5626f5 !important;
+  color: #fff !important ;
+  transition: 0.3s ease-in-out;
+}
+
+.add-subject-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }

@@ -75,8 +75,8 @@ const Dashboard = ({
           ) : (
             <>
               <Table
-                striped
                 bordered
+                striped
                 hover
                 responsive
                 size='sm'
@@ -97,16 +97,12 @@ const Dashboard = ({
                     return (
                       <tr key={_id} className='dashboard-tr'>
                         <td>
-                          <Link
-                            className='dashboard-table-teacher router-link'
-                            to={{
-                              pathname: '/teacher-profile',
-                              _id,
-                            }}
-                            onClick={() => getCurrentTeacher(_id)}
+                          <button
+                            className='dashboard-table-teacher'
+                            onClick={() => getCurrentTeacher(_id, history)}
                           >
                             {name}
-                          </Link>
+                          </button>
                         </td>
                         <td>{department}</td>
                         <td>{position}</td>

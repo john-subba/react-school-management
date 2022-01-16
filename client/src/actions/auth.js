@@ -9,7 +9,7 @@ import {
   CLEAR_PROFILE,
   GET_USER_FAILED,
   GET_CURRENT_USER,
-} from './actionTypes';
+} from './constants/constant';
 import axios from 'axios';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';

@@ -14,7 +14,7 @@ import {
   GET_USER_FAILED,
   EDIT_TEACHER_DETAILS_SUCCESS,
   EDIT_TEACHER_DETAILS_FAILED,
-} from '../actions/actionTypes';
+} from '../constants/constant';
 
 const initialState = {
   token: localStorage.getItem('token'),

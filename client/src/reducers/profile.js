@@ -2,7 +2,7 @@ import {
   CLEAR_PROFILE,
   GET_PROFILE,
   PROFILE_ERROR,
-} from '../actions/actionTypes';
+} from '../constants/constant';
 
 const initialState = {
   profile: null,

@@ -1,4 +1,4 @@
-import { REMOVE_ALERT, SET_ALERT } from '../actions/actionTypes';
+import { REMOVE_ALERT, SET_ALERT } from '../constants/constant';
 
 const alert = (state = [], action) => {
   const { type, payload } = action;

@@ -1,9 +1,8 @@
 import React from 'react';
-import { Alert, Button } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 // redux part
 import { connect } from 'react-redux';
-import { removeAlert } from '../../actions/alert';
 
 const Alerts = ({ alerts }) => {
   return (

@@ -23,7 +23,7 @@ const initialState = {
   user: null,
 };
 
-const registerUser = (state = initialState, action) => {
+const user = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -53,7 +53,6 @@ const registerUser = (state = initialState, action) => {
         isAuthenticated: true,
         isLoading: false,
       };
-
     case ADD_TEACHER_DETAILS_FAILED:
     case DELETE_TEACHER_DETAILS_FAILED:
     case EDIT_TEACHER_DETAILS_FAILED:
@@ -81,4 +80,4 @@ const registerUser = (state = initialState, action) => {
   }
 };
 
-export default registerUser;
+export default user;

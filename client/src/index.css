@@ -764,6 +764,11 @@ body {
   border: 1.25px solid #e8e8e8;
 }
 
+.dashboard-table-teacher:hover {
+  text-decoration: underline !important;
+  color: #0022ff !important;
+}
+
 .dashboard-user-container {
   display: flex;
   flex-direction: column;

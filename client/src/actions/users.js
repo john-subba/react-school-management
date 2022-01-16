@@ -7,6 +7,8 @@ import {
   DELETE_TEACHER_DETAILS_FAILED,
   EDIT_TEACHER_DETAILS_FAILED,
   EDIT_TEACHER_DETAILS_SUCCESS,
+  GET_CURRENT_TEACHER_SUCCESS,
+  GET_CURRENT_TEACHER_FAILED,
 } from './actionTypes';
 import axios from 'axios';
 
@@ -80,6 +82,21 @@ export const editTeacher = (formData, _id, history) => async (dispatch) => {
 
     dispatch({
       type: EDIT_TEACHER_DETAILS_FAILED,
+    });
+  }
+};
+
+// get current teacher by teacher id
+export const getCurrentTeacher = (_id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/users/teachers/${_id}`);
+    dispatch({
+      type: GET_CURRENT_TEACHER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_CURRENT_TEACHER_FAILED,
     });
   }
 };

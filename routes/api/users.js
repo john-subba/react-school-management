@@ -134,7 +134,7 @@ router.get('/teachers', auth, async (req, res) => {
   }
 });
 
-//@route  GET /api/teachers/:teacher_id
+//@route  GET /api/users/teachers/:teacher_id
 //@desc   get specific teacher by its id
 //@access Private
 router.get('/teachers/:teacher_id', auth, async (req, res) => {
@@ -147,7 +147,7 @@ router.get('/teachers/:teacher_id', auth, async (req, res) => {
 
     const teacher = user.teachers[getIndex];
 
-    res.json({ teacher });
+    res.json(teacher);
   } catch (err) {
     console.error(err.message);
     res.status(500).json('Server Error');

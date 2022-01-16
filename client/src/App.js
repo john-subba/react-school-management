@@ -17,6 +17,7 @@ import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
 import EditTeacher from './components/forms/EditTeacher';
+import TeacherProfile from './components/layout/screens/TeacherProfile';
 
 // adding x-auth-token header to token
 if (localStorage.token) {
@@ -51,6 +52,11 @@ const App = () => {
             exact
             path='/edit-teacher-details'
             component={EditTeacher}
+          />
+          <PrivateRoute
+            exact
+            path='/teacher-profile'
+            component={TeacherProfile}
           />
         </Switch>
       </Router>

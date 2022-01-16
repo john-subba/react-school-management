@@ -2,33 +2,24 @@ import React, { useState, useEffect } from 'react';
 import Header from '../Header';
 import Spinner from '../Spinner';
 import DashboardActions from '../../actions/DashboardActions';
-import { Col, Container, Row, Table, Modal, Button } from 'react-bootstrap';
+import { Col, Container, Row, Table, Button } from 'react-bootstrap';
 import Alerts from '../../alert/Alerts';
-import alert from '../../../assets/dashboard/alert.png';
 import { withRouter, Link } from 'react-router-dom';
 
 //redux part
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../../../actions/auth';
-import { deleteTeacher } from '../../../actions/users';
 import { getCurrentTeacher } from '../../../actions/users';
 
 const Dashboard = ({
   auth: { user, isLoading },
   teachersList,
-  deleteTeacher,
   getCurrentUser,
   getCurrentTeacher,
   history,
 }) => {
   const [showDelete, setShowDelete] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-
-  const handleCloseAndDlt = (_id) => {
-    deleteTeacher(_id);
-    setShowConfirm(false);
-  };
 
   useEffect(() => {
     getCurrentUser();
@@ -113,131 +104,6 @@ const Dashboard = ({
                           }}
                         >
                           {address}{' '}
-                          {showDelete && (
-                            <>
-                              <Button
-                                variant='primary'
-                                style={{
-                                  color: 'red',
-                                  cursor: 'pointer',
-                                  border: 'none',
-                                  boxShadow: 'none',
-                                  backgroundColor: 'transparent',
-                                  padding: '0',
-                                }}
-                                onClick={() => setShowConfirm(true)}
-                              >
-                                <i className='far fa-times-circle'></i>
-                              </Button>
-
-                              <Modal
-                                show={showConfirm}
-                                onHide={() => setShowConfirm(!showConfirm)}
-                                centered
-                              >
-                                <Modal.Header
-                                  style={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    paddingBottom: '0',
-                                    paddingTop: '0.5rem',
-                                    border: 'none',
-                                  }}
-                                >
-                                  <Modal.Title id='contained-modal-title-vcenter'>
-                                    <h4
-                                      style={{
-                                        marginBottom: '0',
-                                        fontFamily: 'Zen Maru Gothic',
-                                        textTransform: 'capitalize',
-                                        letterSpacing: '1px',
-                                      }}
-                                    >
-                                      Are you sure?
-                                    </h4>
-                                  </Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                  <p
-                                    style={{
-                                      marginBottom: '0',
-                                      textAlign: 'center',
-                                      fontFamily: 'Zen Maru Gothic',
-                                      fontStyle: 'italic',
-                                    }}
-                                  >
-                                    Do you really want to delete{' '}
-                                    <span
-                                      style={{
-                                        fontWeight: 'bold',
-                                        fontStyle: 'normal',
-                                      }}
-                                    >
-                                      "{name}"
-                                    </span>{' '}
-                                  </p>
-                                  <p
-                                    style={{
-                                      textAlign: 'center',
-                                      fontFamily: 'Zen Maru Gothic',
-                                      fontStyle: 'italic',
-                                    }}
-                                  >
-                                    You can't undo this action.
-                                  </p>
-                                  <div className='dlt-modal-warning'>
-                                    <img src={alert} alt='' />
-                                    <div>
-                                      <h5
-                                        style={{
-                                          letterSpacing: '1px',
-                                          paddingBottom: '0.25rem',
-                                        }}
-                                      >
-                                        Warning
-                                      </h5>
-                                      <p
-                                        style={{
-                                          fontStyle: 'italic',
-                                          fontSize: '0.9rem',
-                                          marginBottom: '0',
-                                        }}
-                                      >
-                                        By deleting the staff you will also
-                                        delete all of the details inside his
-                                        profile
-                                      </p>
-                                    </div>
-                                  </div>
-                                </Modal.Body>
-                                <Modal.Footer style={{ border: 'none' }}>
-                                  <Button
-                                    variant='secondary'
-                                    onClick={() => setShowConfirm(!showConfirm)}
-                                    style={{
-                                      borderRadius: '20px',
-                                      padding: '8px 1rem',
-                                      boxShadow: 'none',
-                                      margin: '0',
-                                    }}
-                                  >
-                                    Cancel
-                                  </Button>
-                                  <Button
-                                    variant='danger'
-                                    onClick={handleCloseAndDlt}
-                                    style={{
-                                      borderRadius: '20px',
-                                      padding: '8px 1rem',
-                                      margin: '0',
-                                    }}
-                                  >
-                                    Delete <i className='fas fa-trash-alt'></i>
-                                  </Button>
-                                </Modal.Footer>
-                              </Modal>
-                            </>
-                          )}
                           {showEdit && (
                             <Link
                               to={{
@@ -285,6 +151,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getCurrentUser,
-  deleteTeacher,
   getCurrentTeacher,
 })(withRouter(Dashboard));

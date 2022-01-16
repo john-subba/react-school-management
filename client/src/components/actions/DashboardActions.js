@@ -2,15 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import userIcon from '../../assets/dashboard/user.png';
-import trashIcon from '../../assets/dashboard/trash.png';
 import editIcon from '../../assets/dashboard/edit.png';
 
-const DashboardActions = ({
-  setShowDelete,
-  showDelete,
-  showEdit,
-  setShowEdit,
-}) => {
+const DashboardActions = ({ showEdit, setShowEdit }) => {
   return (
     <div className='dashboard-actions-container'>
       <div className='dashboard-actions'>
@@ -20,14 +14,6 @@ const DashboardActions = ({
             Add Staff
           </Button>
         </Link>
-
-        <Button
-          className='dashboard-btn'
-          onClick={() => setShowDelete(!showDelete)}
-        >
-          <img src={trashIcon} alt='' className='dashboard-actions-icons' />-
-          Remove Staff
-        </Button>
 
         <Button
           className='dashboard-btn'

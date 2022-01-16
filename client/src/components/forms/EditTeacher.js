@@ -9,6 +9,7 @@ import { editTeacher } from '../../actions/users';
 
 const EditTeacher = ({ editTeacher, location, history }) => {
   const { _id } = location;
+  console.log(_id);
 
   const [formData, setFormData] = useState({
     name: '',

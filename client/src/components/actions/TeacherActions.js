@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Row, Col, Container } from 'react-bootstrap';
 import bookIcon from '../../assets/teach-prof/book.png';
-import trashIcon from '../../assets/teach-prof/trash.png';
+import editIcon from '../../assets/dashboard/edit.png';
 import AddSubject from '../forms/AddSubject';
 
-const TeacherActions = ({
-  _id,
-  showDelete,
-  showEdit,
-  setShowDelete,
-  setShowEdit,
-}) => {
+const TeacherActions = ({ _id, showEdit, setShowEdit }) => {
   const [showForm, setShowForm] = useState(false);
 
   return (
@@ -35,17 +29,12 @@ const TeacherActions = ({
             >
               <img src={bookIcon} alt='' /> + Add Subject
             </Button>
-            <Button
-              className='dashboard-btn'
-              onClick={() => setShowDelete(!showDelete)}
-            >
-              <img src={trashIcon} alt='' /> - Delete Subject
-            </Button>
+
             <Button
               className='dashboard-btn'
               onClick={() => setShowEdit(!showEdit)}
             >
-              <img src={trashIcon} alt='' /> - Edit Subject
+              <img src={editIcon} alt='' /> - Edit Subject
             </Button>
           </div>
         </Col>

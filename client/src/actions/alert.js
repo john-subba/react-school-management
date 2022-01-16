@@ -1,4 +1,4 @@
-import { REMOVE_ALERT, SET_ALERT } from './constants/constant';
+import { REMOVE_ALERT, SET_ALERT } from '../constants/constant';
 import { v4 as uuid } from 'uuid';
 
 export const setAlert = (msg, alertType) => (dispatch) => {

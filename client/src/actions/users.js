@@ -1,17 +1,17 @@
-// import {
-//   ADD_TEACHER_DETAILS_SUCCESS,
-//   ADD_TEACHER_DETAILS_FAILED,
-//   ADD_SUBJECT_FAILED,
-//   ADD_SUBJECT_SUCCESS,
-//   DELETE_TEACHER_DETAILS_SUCCESS,
-//   DELETE_TEACHER_DETAILS_FAILED,
-//   EDIT_TEACHER_DETAILS_FAILED,
-//   EDIT_TEACHER_DETAILS_SUCCESS,
-//   GET_CURRENT_TEACHER_SUCCESS,
-//   GET_CURRENT_TEACHER_FAILED,
-//   DELETE_SUBJECT_FAILED,
-//   DELETE_SUBJECT_SUCCESS,
-// } from './actionTypes';
+import {
+  ADD_TEACHER_DETAILS_SUCCESS,
+  ADD_TEACHER_DETAILS_FAILED,
+  ADD_SUBJECT_FAILED,
+  ADD_SUBJECT_SUCCESS,
+  DELETE_TEACHER_DETAILS_SUCCESS,
+  DELETE_TEACHER_DETAILS_FAILED,
+  EDIT_TEACHER_DETAILS_FAILED,
+  EDIT_TEACHER_DETAILS_SUCCESS,
+  GET_CURRENT_TEACHER_SUCCESS,
+  GET_CURRENT_TEACHER_FAILED,
+  DELETE_SUBJECT_FAILED,
+  DELETE_SUBJECT_SUCCESS,
+} from '../constants/constant';
 import axios from 'axios';
 
 // redux
@@ -23,7 +23,7 @@ export const addTeacherDetails = (formData, history) => async (dispatch) => {
     const res = await axios.post('/api/users/teachers', formData);
 
     dispatch({
-      type: 'ADD_TEACHER_DETAILS_SUCCESS',
+      type: ADD_TEACHER_DETAILS_SUCCESS,
       payload: res.data,
     });
 
@@ -38,25 +38,27 @@ export const addTeacherDetails = (formData, history) => async (dispatch) => {
     }
 
     dispatch({
-      type: 'ADD_TEACHER_DETAILS_FAILED',
+      type: ADD_TEACHER_DETAILS_FAILED,
     });
   }
 };
 
 // delete teacher and their respective subjects also
-export const deleteTeacher = (_id) => async (dispatch) => {
+export const deleteTeacher = (teacher_id, history) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/api/users/teachers/${_id}`);
+    const res = await axios.delete(`/api/users/teachers/${teacher_id}`);
 
     dispatch({
-      type: 'DELETE_TEACHER_DETAILS_SUCCESS',
+      type: DELETE_TEACHER_DETAILS_SUCCESS,
       payload: res.data,
     });
 
     dispatch(setAlert('Staff has been succesfully removed.', 'success'));
+
+    history.push('/dashboard');
   } catch (err) {
     dispatch({
-      type: 'DELETE_TEACHER_DETAILS_FAILED',
+      type: DELETE_TEACHER_DETAILS_FAILED,
     });
     dispatch(setAlert('Failed to remove staff', 'danger'));
   }
@@ -68,7 +70,7 @@ export const editTeacher = (formData, _id, history) => async (dispatch) => {
     const res = await axios.put(`/api/users/teachers/${_id}`, formData);
 
     dispatch({
-      type: 'EDIT_TEACHER_DETAILS_SUCCESS',
+      type: EDIT_TEACHER_DETAILS_SUCCESS,
       payload: res.data,
     });
 
@@ -83,7 +85,7 @@ export const editTeacher = (formData, _id, history) => async (dispatch) => {
     }
 
     dispatch({
-      type: 'EDIT_TEACHER_DETAILS_FAILED',
+      type: EDIT_TEACHER_DETAILS_FAILED,
     });
   }
 };
@@ -93,14 +95,14 @@ export const getCurrentTeacher = (_id, history) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/users/teachers/${_id}`);
     dispatch({
-      type: 'GET_CURRENT_TEACHER_SUCCESS',
+      type: GET_CURRENT_TEACHER_SUCCESS,
       payload: res.data,
     });
 
     history.push('/teacher-profile');
   } catch (err) {
     dispatch({
-      type: 'GET_CURRENT_TEACHER_FAILED',
+      type: GET_CURRENT_TEACHER_FAILED,
     });
   }
 };
@@ -114,7 +116,7 @@ export const addSubjectDetails = (formData, _id) => async (dispatch) => {
     );
 
     dispatch({
-      type: 'ADD_SUBJECT_SUCCESS',
+      type: ADD_SUBJECT_SUCCESS,
       payload: res.data,
     });
 
@@ -127,27 +129,27 @@ export const addSubjectDetails = (formData, _id) => async (dispatch) => {
     }
 
     dispatch({
-      type: 'ADD_SUBJECT_FAILED',
+      type: ADD_SUBJECT_FAILED,
     });
   }
 };
 
 // delete subject by its id
-// export const deleteSubject = (teacher_id, _id) => async (dispatch) => {
-//   try {
-//     const res = await axios.delete(
-//       `/api/users/teachers/${teacher_id}/subjects/${_id}`
-//     );
+export const deleteSubject = (teacher_id, _id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `/api/users/teachers/${teacher_id}/subjects/${_id}`
+    );
 
-//     // dispatch({
-//     //   type: DELETE_SUBJECT_SUCCESS,
-//     //   payload: res.data,
-//     // });
+    dispatch({
+      type: DELETE_SUBJECT_SUCCESS,
+      payload: res.data,
+    });
 
-//     dispatch(setAlert('Subject has been successfully deleted', 'success'));
-//   } catch (err) {
-//     dispatch({
-//       type: DELETE_SUBJECT_FAILED,
-//     });
-//   }
-// };
+    dispatch(setAlert('Subject has been successfully deleted', 'success'));
+  } catch (err) {
+    dispatch({
+      type: DELETE_SUBJECT_FAILED,
+    });
+  }
+};

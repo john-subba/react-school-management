@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-// redux part
-import { connect } from 'react-redux';
-import { addSubjectDetails } from '../../actions/users';
-
-const AddSubject = ({ addSubjectDetails, showForm, setShowForm, _id }) => {
+const EditSubject = ({ showForm, setShowForm }) => {
   const [formData, setFormData] = useState({
     title: '',
     subjectTeacher: '',
@@ -14,13 +9,14 @@ const AddSubject = ({ addSubjectDetails, showForm, setShowForm, _id }) => {
   const { title, subjectTeacher } = formData;
 
   const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const onSubmit = (e, _id) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    addSubjectDetails(formData, _id);
-    setShowForm(!showForm);
   };
 
   return (
@@ -94,4 +90,4 @@ const AddSubject = ({ addSubjectDetails, showForm, setShowForm, _id }) => {
   );
 };
 
-export default connect(null, { addSubjectDetails })(AddSubject);
+export default EditSubject;

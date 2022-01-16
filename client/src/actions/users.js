@@ -5,6 +5,8 @@ import {
   ADD_SUBJECT_SUCCESS,
   DELETE_TEACHER_DETAILS_SUCCESS,
   DELETE_TEACHER_DETAILS_FAILED,
+  EDIT_TEACHER_DETAILS_FAILED,
+  EDIT_TEACHER_DETAILS_SUCCESS,
 } from './actionTypes';
 import axios from 'axios';
 
@@ -37,7 +39,7 @@ export const addTeacherDetails = (formData, history) => async (dispatch) => {
   }
 };
 
-// @todo delete teacher and their respective subjects also
+// delete teacher and their respective subjects also
 export const deleteTeacher = (_id) => async (dispatch) => {
   try {
     const res = await axios.delete(`/api/users/teachers/${_id}`);
@@ -56,7 +58,31 @@ export const deleteTeacher = (_id) => async (dispatch) => {
   }
 };
 
-// @todo edit teacher details
+// edit teacher details
+export const editTeacher = (formData, _id, history) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/users/teachers/${_id}`, formData);
+
+    dispatch({
+      type: EDIT_TEACHER_DETAILS_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(setAlert('User successfully updated', 'success'));
+
+    history.push('/dashboard');
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: EDIT_TEACHER_DETAILS_FAILED,
+    });
+  }
+};
 
 // add subjects to the teacher
 export const addSubjectDetails = (formData) => async (dispatch) => {

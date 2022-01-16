@@ -5,7 +5,12 @@ import userIcon from '../../assets/dashboard/user.png';
 import trashIcon from '../../assets/dashboard/trash.png';
 import editIcon from '../../assets/dashboard/edit.png';
 
-const DashboardActions = ({ setShowDelete, showDelete }) => {
+const DashboardActions = ({
+  setShowDelete,
+  showDelete,
+  showEdit,
+  setShowEdit,
+}) => {
   return (
     <div className='dashboard-actions-container'>
       <div className='dashboard-actions'>
@@ -24,12 +29,13 @@ const DashboardActions = ({ setShowDelete, showDelete }) => {
           Remove Staff
         </Button>
 
-        <Link to='/edit-teacher-details' className='router-link'>
-          <Button className='dashboard-btn'>
-            <img src={editIcon} alt='' className='dashboard-actions-icons' />
-            .. Edit Staff
-          </Button>
-        </Link>
+        <Button
+          className='dashboard-btn'
+          onClick={() => setShowEdit(!showEdit)}
+        >
+          <img src={editIcon} alt='' className='dashboard-actions-icons' />
+          .. Edit Staff
+        </Button>
       </div>
     </div>
   );

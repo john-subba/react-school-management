@@ -12,6 +12,8 @@ import {
   DELETE_TEACHER_DETAILS_SUCCESS,
   GET_CURRENT_USER,
   GET_USER_FAILED,
+  EDIT_TEACHER_DETAILS_SUCCESS,
+  EDIT_TEACHER_DETAILS_FAILED,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -26,6 +28,9 @@ const registerUser = (state = initialState, action) => {
 
   switch (type) {
     case USER_LOADED:
+    case EDIT_TEACHER_DETAILS_SUCCESS:
+    case ADD_TEACHER_DETAILS_SUCCESS:
+    case DELETE_TEACHER_DETAILS_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
@@ -48,16 +53,10 @@ const registerUser = (state = initialState, action) => {
         isAuthenticated: true,
         isLoading: false,
       };
-    case ADD_TEACHER_DETAILS_SUCCESS:
-    case DELETE_TEACHER_DETAILS_SUCCESS:
-      return {
-        ...state,
-        user: payload,
-        isAuthenticated: true,
-        isLoading: false,
-      };
+
     case ADD_TEACHER_DETAILS_FAILED:
     case DELETE_TEACHER_DETAILS_FAILED:
+    case EDIT_TEACHER_DETAILS_FAILED:
     case GET_USER_FAILED:
       return {
         ...state,

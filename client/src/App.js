@@ -16,6 +16,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
+import EditTeacher from './components/forms/EditTeacher';
 
 // adding x-auth-token header to token
 if (localStorage.token) {
@@ -45,6 +46,11 @@ const App = () => {
             exact
             path='/add-teacher-details'
             component={AddTeachers}
+          />
+          <PrivateRoute
+            exact
+            path='/edit-teacher-details'
+            component={EditTeacher}
           />
         </Switch>
       </Router>

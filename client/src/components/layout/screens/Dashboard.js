@@ -5,6 +5,7 @@ import DashboardActions from '../../actions/DashboardActions';
 import { Col, Container, Row, Table, Modal, Button } from 'react-bootstrap';
 import Alerts from '../../alert/Alerts';
 import alert from '../../../assets/dashboard/alert.png';
+import { withRouter, Link } from 'react-router-dom';
 
 //redux part
 import { connect } from 'react-redux';
@@ -16,9 +17,11 @@ const Dashboard = ({
   teachersList,
   deleteTeacher,
   getCurrentUser,
+  history,
 }) => {
   const [showDelete, setShowDelete] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   const handleCloseAndDlt = (_id) => {
     deleteTeacher(_id);
@@ -34,12 +37,12 @@ const Dashboard = ({
   ) : (
     <>
       <Header />
-      <Alerts />
-      <h4 className='dashboard-header-wlc'>
+      <h4 className='dashboard-header-wlc mb-0'>
         Welcome <span style={{ color: '#992b3e' }}>to</span>{' '}
         <span style={{ color: '#13578b' }}>{user.schoolName}</span>
       </h4>
-      <Container style={{ paddingTop: '1rem' }}>
+      <Alerts />
+      <Container style={{ paddingTop: '1.5rem' }}>
         <Row>
           <Col className='dashboard-col'>
             <h4
@@ -55,6 +58,8 @@ const Dashboard = ({
             <DashboardActions
               setShowDelete={setShowDelete}
               showDelete={showDelete}
+              showEdit={showEdit}
+              setShowEdit={setShowEdit}
             />
           </Col>
         </Row>
@@ -221,6 +226,28 @@ const Dashboard = ({
                             </Modal>
                           </>
                         )}
+                        {showEdit && (
+                          <Link
+                            to={{
+                              pathname: '/edit-teacher-details',
+                              _id,
+                            }}
+                          >
+                            <Button
+                              variant='primary'
+                              style={{
+                                color: 'blue',
+                                cursor: 'pointer',
+                                border: 'none',
+                                boxShadow: 'none',
+                                backgroundColor: 'transparent',
+                                padding: '0',
+                              }}
+                            >
+                              <i className='far fa-edit'></i>
+                            </Button>
+                          </Link>
+                        )}
                       </td>
                     </tr>
                   );
@@ -241,5 +268,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getCurrentUser, deleteTeacher })(
-  Dashboard
+  withRouter(Dashboard)
 );

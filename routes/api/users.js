@@ -198,46 +198,31 @@ router.post(
 //@route  PUT /api/teachers/:teacher_id
 //@desc   change details of specific teacher
 //@access Private
-router.put(
-  '/teachers/:teacher_id',
-  [
-    check('name', 'Teacher Name field is required').not().isEmpty(),
-    check('department', 'Department field is required').not().isEmpty(),
-    check('position', 'Position field is required').not().isEmpty(),
-  ],
-  auth,
-  async (req, res) => {
-    const errors = validationResult(req);
+router.put('/teachers/:teacher_id', auth, async (req, res) => {
+  const { name, department, position, address } = req.body;
 
-    if (!errors.isEmpty()) {
-      return res.status(401).json({ errors: errors.array() });
-    }
+  try {
+    const user = await User.findById(req.user.id);
 
-    const { name, department, position, address } = req.body;
+    // find the index of the object in teachers array to match it with the teacher_id
+    const getIndex = user.teachers
+      .map((teacher) => teacher.id)
+      .indexOf(req.params.teacher_id);
 
-    try {
-      const user = await User.findById(req.user.id);
+    const teacher = user.teachers[getIndex];
 
-      // find the index of the object in teachers array to match it with the teacher_id
-      const getIndex = user.teachers
-        .map((teacher) => teacher.id)
-        .indexOf(req.params.teacher_id);
+    if (name) teacher.name = `${name}`;
+    if (department) teacher.department = `${department}`;
+    if (position) teacher.position = `${position}`;
+    if (address) teacher.address = `${address}`;
 
-      const teacher = user.teachers[getIndex];
-
-      if (name) teacher.name = `${name}`;
-      if (department) teacher.department = `${department}`;
-      if (position) teacher.position = `${position}`;
-      if (address) teacher.address = `${address}`;
-
-      await user.save();
-      res.json(teacher);
-    } catch (err) {
-      console.log(err.message);
-      res.status(500).json('Server Error');
-    }
+    await user.save();
+    res.json(user);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json('Server Error');
   }
-);
+});
 
 //@route  DELETE /api/users/teachers/:teacher_id
 //@desc   delete teacher using teacher id also delete subject under the teacher

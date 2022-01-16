@@ -12,7 +12,7 @@ const Alerts = ({ alerts }) => {
     alerts.map((alert) => {
       const { id, msg, alertType } = alert;
       return (
-        <Alert variant={`${alertType}`} key={id}>
+        <Alert variant={`${alertType}`} key={id} className='mb-0'>
           <p style={{ marginBottom: '0' }}>{msg}</p>
         </Alert>
       );

@@ -3,14 +3,8 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 // redux part
 import { connect } from 'react-redux';
-import { addSubjectDetails } from '../../actions/users';
 
-const AddSubject = ({
-  addSubjectDetails,
-  showForm,
-  setShowForm,
-  teacher_id,
-}) => {
+const AddSubject = ({ showForm, setShowForm, teacher_id }) => {
   const [formData, setFormData] = useState({
     title: '',
     subjectTeacher: '',
@@ -24,7 +18,6 @@ const AddSubject = ({
 
   const onSubmit = (e, teacher_id) => {
     e.preventDefault();
-    addSubjectDetails(formData, teacher_id);
     setShowForm(!showForm);
   };
 
@@ -108,4 +101,4 @@ const AddSubject = ({
   );
 };
 
-export default connect(null, { addSubjectDetails })(AddSubject);
+export default connect(null, {})(AddSubject);

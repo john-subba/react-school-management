@@ -5,9 +5,8 @@ import { withRouter, Link } from 'react-router-dom';
 
 // redux part
 import { connect } from 'react-redux';
-import { editTeacher } from '../../actions/users';
 
-const EditTeacher = ({ editTeacher, location, history }) => {
+const EditTeacher = ({ location, history }) => {
   const { _id } = location;
   console.log(_id);
 
@@ -25,7 +24,6 @@ const EditTeacher = ({ editTeacher, location, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    editTeacher(formData, _id, history);
   };
 
   return (
@@ -160,4 +158,4 @@ const EditTeacher = ({ editTeacher, location, history }) => {
   );
 };
 
-export default connect(null, { editTeacher })(withRouter(EditTeacher));
+export default connect(null, {})(withRouter(EditTeacher));

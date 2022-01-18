@@ -9,21 +9,16 @@ import { withRouter, Link } from 'react-router-dom';
 //redux part
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../../../actions/auth';
-import { getCurrentTeacher } from '../../../actions/users';
 
 const Dashboard = ({
   auth: { user, isLoading },
   teachersList,
-  getCurrentUser,
+
   getCurrentTeacher,
   history,
 }) => {
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-
-  useEffect(() => {
-    getCurrentUser();
-  }, [getCurrentUser]);
 
   return isLoading === true && user === null ? (
     <Spinner />
@@ -146,10 +141,8 @@ const Dashboard = ({
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  teachersList: state.auth.user,
 });
 
 export default connect(mapStateToProps, {
   getCurrentUser,
-  getCurrentTeacher,
 })(withRouter(Dashboard));

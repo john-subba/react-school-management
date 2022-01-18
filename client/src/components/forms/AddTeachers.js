@@ -5,9 +5,8 @@ import { withRouter } from 'react-router-dom';
 
 // redux
 import { connect } from 'react-redux';
-import { addTeacherDetails } from '../../actions/users';
 
-const AddTeachers = ({ addTeacherDetails, history }) => {
+const AddTeachers = ({ history }) => {
   const [formData, setFormData] = useState({
     name: '',
     department: '',
@@ -23,7 +22,6 @@ const AddTeachers = ({ addTeacherDetails, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addTeacherDetails(formData, history);
   };
 
   return (
@@ -147,4 +145,4 @@ const AddTeachers = ({ addTeacherDetails, history }) => {
   );
 };
 
-export default connect(null, { addTeacherDetails })(withRouter(AddTeachers));
+export default connect(null, {})(withRouter(AddTeachers));

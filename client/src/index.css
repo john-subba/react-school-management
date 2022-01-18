@@ -765,10 +765,11 @@ body {
 }
 
 .dashboard-table-teacher {
-  border: none;
-  background-color: transparent;
-  color: #55595c;
-  font-size: 0.9rem;
+  border: none !important;
+  background-color: transparent !important;
+  color: #55595c !important;
+  font-size: 0.9rem !important;
+  cursor: pointer;
 }
 
 .dashboard-table-teacher:hover {
@@ -879,4 +880,23 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+
+/*Student Details Part*/
+.teacher-profile-container {
+  position: relative;
+}
+
+.student-details-popup {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100vw;
+}
+
+.subject-details-col {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-family: 'Zen Maru Gothic', sans-serif;
 }

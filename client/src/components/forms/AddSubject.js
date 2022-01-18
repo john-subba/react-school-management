@@ -5,7 +5,12 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addSubjectDetails } from '../../actions/users';
 
-const AddSubject = ({ addSubjectDetails, showForm, setShowForm, _id }) => {
+const AddSubject = ({
+  addSubjectDetails,
+  showForm,
+  setShowForm,
+  teacher_id,
+}) => {
   const [formData, setFormData] = useState({
     title: '',
     subjectTeacher: '',
@@ -17,9 +22,9 @@ const AddSubject = ({ addSubjectDetails, showForm, setShowForm, _id }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e, _id) => {
+  const onSubmit = (e, teacher_id) => {
     e.preventDefault();
-    addSubjectDetails(formData, _id);
+    addSubjectDetails(formData, teacher_id);
     setShowForm(!showForm);
   };
 
@@ -28,6 +33,15 @@ const AddSubject = ({ addSubjectDetails, showForm, setShowForm, _id }) => {
       <Container fluid style={{ paddingBottom: '0.75rem' }}>
         <Form>
           <Row className='add-subject-row btn-gradient-bg'>
+            <h5
+              style={{
+                color: '#fff',
+                fontFamily: 'Zen Maru Gothic',
+                textAlign: 'center',
+              }}
+            >
+              Add Subject Details
+            </h5>
             <Col className='add-subject-col'>
               <Form.Group className='mb-3' controlId='formBasicDepartment'>
                 <Form.Label
@@ -82,7 +96,7 @@ const AddSubject = ({ addSubjectDetails, showForm, setShowForm, _id }) => {
             >
               <Button
                 className='add-subject-btn'
-                onClick={(e) => onSubmit(e, _id)}
+                onClick={(e) => onSubmit(e, teacher_id)}
               >
                 <i className='fa fa-save'></i> Save
               </Button>

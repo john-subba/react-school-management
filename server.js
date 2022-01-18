@@ -13,9 +13,8 @@ app.use(express.json({ extended: false }));
 
 // call routes
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/class', require('./routes/api/class'));
+app.use('/api/exams', require('./routes/api/exams'));
 
 const PORT = process.env.PORT || 5000;
 

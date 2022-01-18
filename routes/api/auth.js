@@ -8,8 +8,6 @@ const bcrypt = require('bcryptjs');
 
 // call user model
 const User = require('../../models/User');
-const Profile = require('../../models/Profile');
-
 // @route    GET api/auth
 // @desc     Get user by token
 // @access   Private
@@ -31,6 +29,7 @@ router.post(
   [
     check('email', 'Please include an valid email address').isEmail(),
     check('password', 'Password is required').exists(),
+    check('isAdmin', 'isAdmin value is required').not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -39,7 +38,7 @@ router.post(
     }
 
     try {
-      const { email, password } = req.body;
+      const { email, password, isAdmin } = req.body;
 
       const user = await User.findOne({ email });
 
@@ -53,10 +52,14 @@ router.post(
         return res.status(401).json({ msg: 'Invalid Credentials' });
       }
 
+      if (user.isAdmin !== isAdmin) {
+        return res.status(401).json({ msg: 'Invalid Admin Credentials' });
+      }
+
       const payload = {
         user: {
           id: user.id,
-          email: user.email,
+          isAdmin: user.isAdmin,
         },
       };
 

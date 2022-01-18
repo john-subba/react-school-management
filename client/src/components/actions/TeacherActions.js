@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Row, Col, Container } from 'react-bootstrap';
 import bookIcon from '../../assets/teach-prof/book.png';
-import editIcon from '../../assets/dashboard/edit.png';
 import AddSubject from '../forms/AddSubject';
 
-const TeacherActions = ({ _id, showEdit, setShowEdit }) => {
+const TeacherActions = ({ teacher_id, showEdit, setShowEdit }) => {
   const [showForm, setShowForm] = useState(false);
 
   return (
@@ -25,23 +24,22 @@ const TeacherActions = ({ _id, showEdit, setShowEdit }) => {
           <div style={{ display: 'flex', gap: '0.25rem' }}>
             <Button
               className='dashboard-btn'
-              onClick={() => setShowForm(!showForm)}
+              onClick={() => {
+                setShowForm(!showForm);
+              }}
             >
               <img src={bookIcon} alt='' /> + Add Subject
-            </Button>
-
-            <Button
-              className='dashboard-btn'
-              onClick={() => setShowEdit(!showEdit)}
-            >
-              <img src={editIcon} alt='' /> - Edit Subject
             </Button>
           </div>
         </Col>
       </Row>
       <Row>
         {showForm && (
-          <AddSubject showForm={showForm} setShowForm={setShowForm} _id={_id} />
+          <AddSubject
+            showForm={showForm}
+            setShowForm={setShowForm}
+            teacher_id={teacher_id}
+          />
         )}
       </Row>
     </Container>

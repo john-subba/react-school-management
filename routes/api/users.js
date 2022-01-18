@@ -23,6 +23,8 @@ router.post(
       'Please enter a password with 6 or more characters'
     ).isLength({ min: 6 }),
     check('schoolName', 'School Name is required').not().isEmpty(),
+    check('schoolDesc', 'School Description is required').not().isEmpty(),
+    check('isAdmin', 'isAdmin value is required').not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -31,8 +33,16 @@ router.post(
     }
 
     // destructure from req.body
-    const { name, email, password, schoolName, schoolAddress, schoolPhoneNo } =
-      req.body;
+    const {
+      name,
+      email,
+      password,
+      schoolName,
+      schoolAddress,
+      schoolPhoneNo,
+      schoolDesc,
+      isAdmin,
+    } = req.body;
 
     try {
       // see if user exists already we give error
@@ -56,6 +66,8 @@ router.post(
         schoolName,
         schoolAddress,
         schoolPhoneNo,
+        schoolDesc,
+        isAdmin,
       });
 
       // encrypt the password using bcrypt
@@ -69,7 +81,7 @@ router.post(
       const payload = {
         user: {
           id: user.id,
-          email: user.email,
+          isAdmin: user.isAdmin,
         },
       };
 

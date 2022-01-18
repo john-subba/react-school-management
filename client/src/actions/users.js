@@ -108,10 +108,10 @@ export const getCurrentTeacher = (_id, history) => async (dispatch) => {
 };
 
 // add subjects to the teacher
-export const addSubjectDetails = (formData, _id) => async (dispatch) => {
+export const addSubjectDetails = (formData, teacher_id) => async (dispatch) => {
   try {
     const res = await axios.post(
-      `/api/users/teachers/${_id}/subjects`,
+      `/api/users/teachers/${teacher_id}/subjects`,
       formData
     );
 

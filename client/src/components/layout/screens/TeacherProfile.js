@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../Header';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, withRouter, Link } from 'react-router-dom';
 import { Container, Row, Col, Table, Button, Modal } from 'react-bootstrap';
 import TeacherActions from '../../actions/TeacherActions';
 import alert from '../../../assets/dashboard/alert.png';
@@ -11,6 +11,7 @@ import Spinner from '../Spinner';
 import { connect } from 'react-redux';
 import { getCurrentTeacher } from '../../../actions/users';
 import { deleteTeacher } from '../../../actions/users';
+import SubjectDetails from '../classes/SubjectDetails';
 
 const TeacherProfile = ({
   teacherProfile,
@@ -18,7 +19,6 @@ const TeacherProfile = ({
   deleteTeacher,
   history,
 }) => {
-  const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -55,13 +55,10 @@ const TeacherProfile = ({
         </Row>
 
         <TeacherActions
-          _id={_id}
-          showDelete={showDelete}
+          teacher_id={teacher_id}
           showEdit={showEdit}
-          setShowDelete={setShowDelete}
           setShowEdit={setShowEdit}
         />
-
         <Row>
           {teacherProfile.subjects.length === 0 ? (
             <p>
@@ -89,7 +86,19 @@ const TeacherProfile = ({
                   return (
                     <tbody key={_id}>
                       <tr className='dashboard-tr'>
-                        <td>{title}</td>
+                        <td>
+                          <Link
+                            to={{
+                              pathname: '/subject-details',
+                              title,
+                              _id,
+                              subjectTeacher,
+                            }}
+                            className='router-link dashboard-table-teacher'
+                          >
+                            {title}
+                          </Link>
+                        </td>
                         <td>{subjectTeacher}</td>
                         <td
                           style={{
@@ -97,24 +106,7 @@ const TeacherProfile = ({
                             justifyContent: 'space-between',
                           }}
                         >
-                          {createdDate}{' '}
-                          {showDelete && (
-                            <>
-                              <Button
-                                style={{
-                                  color: 'red',
-                                  cursor: 'pointer',
-                                  border: 'none',
-                                  boxShadow: 'none',
-                                  backgroundColor: 'transparent',
-                                  padding: '0',
-                                }}
-                                onClick={() => setShowConfirm(true)}
-                              >
-                                <i className='far fa-times-circle' />
-                              </Button>
-                            </>
-                          )}
+                          {createdDate}
                         </td>
                       </tr>
                     </tbody>
@@ -124,6 +116,7 @@ const TeacherProfile = ({
             </>
           )}
         </Row>
+
         <Row>
           <Col>
             <Button

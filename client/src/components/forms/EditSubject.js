@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 
-const EditSubject = ({ showForm, setShowForm }) => {
+const EditSubject = ({ showForm, setShowForm, teacher_id }) => {
   const [formData, setFormData] = useState({
     title: '',
     subjectTeacher: '',
@@ -24,6 +25,15 @@ const EditSubject = ({ showForm, setShowForm }) => {
       <Container fluid style={{ paddingBottom: '0.75rem' }}>
         <Form>
           <Row className='add-subject-row btn-gradient-bg'>
+            <h5
+              style={{
+                color: '#fff',
+                fontFamily: 'Zen Maru Gothic',
+                textAlign: 'center',
+              }}
+            >
+              Edit Subject Details
+            </h5>
             <Col className='add-subject-col'>
               <Form.Group className='mb-3' controlId='formBasicDepartment'>
                 <Form.Label
@@ -78,7 +88,7 @@ const EditSubject = ({ showForm, setShowForm }) => {
             >
               <Button
                 className='add-subject-btn'
-                onClick={(e) => onSubmit(e, _id)}
+                onClick={(e) => onSubmit(e, teacher_id)}
               >
                 <i className='fa fa-save'></i> Save
               </Button>

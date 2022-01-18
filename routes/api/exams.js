@@ -41,7 +41,7 @@ router.post(
     if (toDate) examFields.toDate = toDate;
 
     try {
-      let exam = await Exam.findById(req.user.id).populate('user');
+      let exam = await Exam.findById(req.user.id);
 
       exam = new Exam(examFields);
 
@@ -79,90 +79,6 @@ router.delete('/:exam_id', auth, async (req, res) => {
   try {
     await Exam.findOneAndRemove(req.params.exam_id);
     res.json('Exam has been deleted.');
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send('Server Error');
-  }
-});
-
-//@route POST /api/exams/:exam_id/subjects
-//@desc  add subject to the exam
-router.post(
-  '/:exam_id/subjects',
-  [
-    check('title', 'Subject Title is required').not().isEmpty(),
-    check('subjectTeacher', 'Subject Teacher is required').not().isEmpty(),
-  ],
-  auth,
-  async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { title, subjectTeacher } = req.body;
-
-    const newSubject = {
-      title,
-      subjectTeacher,
-    };
-
-    try {
-      const exam = await Exam.findById(req.params.exam_id);
-
-      exam.subjects.push(newSubject);
-      await exam.save();
-      res.json(exam);
-    } catch (err) {
-      console.log(err.message);
-      res.status(500).send('Server Error');
-    }
-  }
-);
-
-//@route PUT /api/exams/:exam_id/subjects/:subject_id
-//@desc  edit subject details by subjectid
-router.put('/:exam_id/subjects/:subject_id', auth, async (req, res) => {
-  const { title, subjectTeacher } = req.body;
-
-  try {
-    const exam = await Exam.findById(req.params.exam_id);
-
-    // get index for update
-    const index = exam.subjects
-      .map((subject) => subject.id)
-      .indexOf(req.params.subject_id);
-
-    const subject = exam.subjects[index];
-
-    if (title) subject.title = `${title}`;
-    if (subjectTeacher) subject.subjectTeacher = `${subjectTeacher}`;
-
-    await exam.save();
-
-    res.json(exam);
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send('Server Error');
-  }
-});
-
-//@route DELETE /api/exams/:exam_id/subjects/:subject_id
-//@desc  delete subject by subjectid
-router.delete('/:exam_id/subjects/:subject_id', auth, async (req, res) => {
-  try {
-    const exam = await Exam.findById(req.params.exam_id);
-
-    // get index for update
-    const index = exam.subjects
-      .map((subject) => subject.id)
-      .indexOf(req.params.subject_id);
-
-    exam.subjects.splice(index, 1);
-
-    await exam.save();
-    res.json(exam);
   } catch (err) {
     console.log(err.message);
     res.status(500).send('Server Error');

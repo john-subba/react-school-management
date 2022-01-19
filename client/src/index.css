@@ -606,6 +606,16 @@ body {
   border-bottom: 2px solid #0001ff !important;
 }
 
+.role-select {
+  background-color: #6d3bf7 !important;
+  color: #fff !important;
+  font-family: 'Zen Maru Gothic', sans-serif !important;
+}
+
+.role-select:focus {
+  box-shadow: 0 2.5px 5px #6c43f4b9 !important;
+}
+
 .login-log-btn {
   background-image: linear-gradient(
     to right top,

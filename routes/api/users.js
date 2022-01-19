@@ -131,286 +131,82 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
-//@route  GET /api/teachers
-//@desc   Get all the teachers of that user only
-//@access Private
-router.get('/teachers', auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id);
-
-    const teachers = user.teachers;
-    res.json({ teachers });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json('Server Error');
-  }
-});
-
-//@route  GET /api/users/teachers/:teacher_id
-//@desc   get specific teacher by its id
-//@access Private
-router.get('/teachers/:teacher_id', auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id);
-
-    const getIndex = user.teachers
-      .map((teacher) => teacher.id)
-      .indexOf(req.params.teacher_id);
-
-    const teacher = user.teachers[getIndex];
-
-    res.json(teacher);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json('Server Error');
-  }
-});
-
-//@route  POST /api/teachers
-//@desc   add teacher to the user
-//@access Private
+//@route  POST /api/users/teachers
+//@desc   add teacher users to the main school user schema so that teacher also can have acces to data of the school
 router.post(
   '/teachers',
-  [
-    check('name', 'Teacher Name field is required').not().isEmpty(),
-    check('department', 'Department field is required').not().isEmpty(),
-    check('position', 'Position field is required').not().isEmpty(),
-  ],
   auth,
+  [
+    check('name', 'Teacher Name is required').not().isEmpty(),
+    check('userName', 'Please include an Username').not().isEmpty(),
+    check(
+      'password',
+      'Please enter a password with 6 or more characters'
+    ).isLength({ min: 6 }),
+    check('schoolName', 'School Name is required').not().isEmpty(),
+    check('isAdmin', 'isAdmin value is required').not().isEmpty(),
+  ],
   async (req, res) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
-      return res.status(401).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, department, position, address } = req.body;
-
-    const newTeacher = {
-      name,
-      department,
-      position,
-      address,
-    };
+    const { name, schoolName, userName, password, isAdmin } = req.body;
 
     try {
-      const user = await User.findById(req.user.id);
+      const mainUser = await User.findById(req.user.id);
 
-      user.teachers.push(newTeacher);
+      const user = req.user.id;
 
-      await user.save();
-      res.json(user);
+      const avatar = gravatar.url({
+        s: '200',
+        r: 'pg',
+        d: 'mm',
+      });
+
+      const newTeacher = {
+        user,
+        name,
+        schoolName,
+        userName,
+        password,
+        isAdmin,
+        avatar,
+      };
+
+      const salt = await bcrypt.genSalt(10);
+
+      newTeacher.password = await bcrypt.hash(password, salt);
+
+      mainUser.teachers.push(newTeacher);
+      await mainUser.save();
+      res.json(mainUser);
     } catch (err) {
       console.log(err.message);
-      res.status(400).json('Server Error');
+      res.status(500).send('Server Error');
     }
   }
 );
 
-//@route  PUT /api/teachers/:teacher_id
-//@desc   change details of specific teacher
-//@access Private
-router.put('/teachers/:teacher_id', auth, async (req, res) => {
-  const { name, department, position, address } = req.body;
-
+//@route  DELETE /api/users/teachers
+//@desc   Delete the teacher **this route will be available for main user only
+router.delete('/teachers/:teacher_id', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
 
-    // find the index of the object in teachers array to match it with the teacher_id
-    const getIndex = user.teachers
+    const index = user.teachers
       .map((teacher) => teacher.id)
       .indexOf(req.params.teacher_id);
 
-    const teacher = user.teachers[getIndex];
-
-    if (name) teacher.name = `${name}`;
-    if (department) teacher.department = `${department}`;
-    if (position) teacher.position = `${position}`;
-    if (address) teacher.address = `${address}`;
+    user.teachers.splice(index, 1);
 
     await user.save();
     res.json(user);
   } catch (err) {
     console.log(err.message);
-    res.status(500).json('Server Error');
+    res.status(500).send('Server Error');
   }
 });
-
-//@route  DELETE /api/users/teachers/:teacher_id
-//@desc   delete teacher using teacher id also delete subject under the teacher
-//@access Private
-router.delete('/teachers/:teacher_id', auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id);
-
-    // find the index of the object in teachers array to match it with the teacher_id
-    const getIndex = user.teachers
-      .map((teacher) => teacher.id)
-      .indexOf(req.params.teacher_id);
-
-    user.teachers.splice(getIndex, 1);
-
-    await user.save();
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json('Server Failed');
-  }
-});
-
-//@route  GET /api/teachers/:teacher_id/subjects
-//@desc   get all of the subjects of that teacher
-//@access Private
-router.get('/teachers/:teacher_id/subjects', auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id);
-
-    const getIndex = user.teachers
-      .map((teacher) => teacher.id)
-      .indexOf(req.params.teacher_id);
-
-    const teacher = user.teachers[getIndex];
-
-    const subjectsList = teacher.subjects;
-
-    res.json({ subjectsList });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json('Server Error');
-  }
-});
-
-//@route  POST /api/users/teachers/:teacher_id/subjects
-//@desc   add subjects to the teacher
-//@access Private
-router.post(
-  '/teachers/:teacher_id/subjects',
-  [
-    check('title', 'Title of subject is required').not().isEmpty(),
-    check('subjectTeacher', 'Subject Teacher field is required')
-      .not()
-      .isEmpty(),
-  ],
-  auth,
-  async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(401).json({ errors: errors.array() });
-    }
-
-    const { title, subjectTeacher } = req.body;
-
-    const newSubject = {
-      title,
-      subjectTeacher,
-    };
-
-    try {
-      const user = await User.findById(req.user.id);
-
-      const getIndex = user.teachers
-        .map((teacher) => teacher.id)
-        .indexOf(req.params.teacher_id);
-
-      const teacher = user.teachers[getIndex];
-
-      const subjectList = teacher.subjects;
-
-      subjectList.push(newSubject);
-      await user.save(teacher);
-      res.json(teacher);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  }
-);
-
-//@route  PUT /api/teachers/:teacher_id/subjects/:subject_id
-//@desc   Edit details of the specific subject of the specific teacher
-//@access Private
-router.put(
-  '/teachers/:teacher_id/subjects/:subject_id',
-  [
-    check('title', 'Title of subject is required').not().isEmpty(),
-    check('subjectTeacher', 'Subject Teacher field is required')
-      .not()
-      .isEmpty(),
-  ],
-  auth,
-  async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(401).json({ errors: errors.array() });
-    }
-
-    const { title, subjectTeacher } = req.body;
-
-    try {
-      const user = await User.findById(req.user.id);
-
-      // find the index of the object in teachers array to match it with the teacher_id
-      const getIndex = user.teachers
-        .map((teacher) => teacher.id)
-        .indexOf(req.params.teacher_id);
-
-      const teacher = user.teachers[getIndex];
-
-      const subjectList = teacher.subjects;
-
-      // get the index of subject array using the subject id
-      const subjectIndex = subjectList
-        .map((subject) => subject.id)
-        .indexOf(req.params.subject_id);
-
-      const subject = subjectList[subjectIndex];
-
-      if (title) subject.title = `${title}`;
-      if (subjectTeacher) subject.subjectTeacher = `${subjectTeacher}`;
-
-      await user.save();
-      res.json(teacher);
-    } catch (err) {
-      console.log(err.message);
-      res.status(500).send('Server Error');
-    }
-  }
-);
-
-//@route  DELETE /api/teachers/:teacher_id/subjects/:subject_id
-//@desc   Delete the subject of the specific teacher of specific user
-//@access Private
-router.delete(
-  '/teachers/:teacher_id/subjects/:subject_id',
-  auth,
-  async (req, res) => {
-    try {
-      const user = await User.findById(req.user.id);
-
-      // find the index of the object in teachers array to match it with the teacher_id
-      const getIndex = user.teachers
-        .map((teacher) => teacher.id)
-        .indexOf(req.params.teacher_id);
-
-      const teacher = user.teachers[getIndex];
-
-      const subjectList = teacher.subjects;
-
-      // get the index of subject array using the subject id
-      const subjectIndex = subjectList
-        .map((subject) => subject.id)
-        .indexOf(req.params.subject_id);
-
-      subjectList.splice(subjectIndex, 1);
-      await user.save();
-      res.json(teacher);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
-  }
-);
 
 module.exports = router;

@@ -15,23 +15,227 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    userName: '',
   });
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  const { email, password } = formData;
+  const { email, password, userName } = formData;
 
   const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, isAdmin, [e.target.name]: e.target.value });
+  };
+
+  const onSelect = (e) => {
+    if (e.target.value === 'admin') {
+      setIsAdmin(true);
+    }
+    if (e.target.value === 'teacher') {
+      setIsAdmin(false);
+    }
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    loginUser(email, password);
+    loginUser(email, password, isAdmin);
   };
 
   //redirect if logged in
   if (isAuthenticated) {
     return <Redirect to='/front-screen' />;
   }
+
+  // change layout according to the role of user
+  const AdminLogin = (
+    <Form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.25rem',
+      }}
+      onSubmit={(e) => onSubmit(e)}
+    >
+      {/******* This part is for mobile screen only ********/}
+      <div className='login-mobile-logo'>
+        <img
+          src={Logo}
+          alt=''
+          style={{
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%',
+          }}
+        />
+        <div>
+          <h4
+            style={{
+              color: '#992b3e',
+              letterSpacing: '1px',
+              fontFamily: 'Zen Maru Gothic',
+            }}
+            className='mb-0 pt-2'
+          >
+            Digital
+          </h4>
+          <h5
+            style={{
+              color: '#13578b',
+              letterSpacing: '1px',
+              fontFamily: 'Zen Maru Gothic',
+            }}
+          >
+            Education
+          </h5>
+        </div>
+      </div>
+
+      <h3 className='login-header'>DE SMS LOGIN</h3>
+      <Form.Floating className='mb-0'>
+        <Form.Control
+          id='floatingInputCustom'
+          type='email'
+          placeholder='name@example.com'
+          className='mb-0'
+          name='email'
+          value={email}
+          onChange={(e) => onChange(e)}
+        />
+        <label htmlFor='floatingInputCustom' className='login-label'>
+          School Username
+        </label>
+      </Form.Floating>
+      <Form.Floating>
+        <Form.Control
+          id='floatingPasswordCustom'
+          type='password'
+          placeholder='Password'
+          name='password'
+          value={password}
+          onChange={(e) => onChange(e)}
+        />
+        <label className='login-label' htmlFor='floatingPasswordCustom'>
+          Password
+        </label>
+      </Form.Floating>
+      <Form.Select
+        aria-label='Default select example'
+        className='role-select mt-3'
+        onChange={(e) => onSelect(e)}
+      >
+        <option>Your Role</option>
+        <option value='admin'>Admin</option>
+        <option value='teacher'>Teacher</option>
+      </Form.Select>
+      <Button variant='outline-primary' className='login-log-btn' type='submit'>
+        <i className='fi fi-rr-user'></i> Log In
+      </Button>
+      <p style={{ color: '#0001ff' }}>
+        Not registered yet?{' '}
+        <Link
+          to='/register'
+          className='router-link'
+          style={{ color: '#0001ff' }}
+        >
+          Click Me!
+        </Link>{' '}
+      </p>
+    </Form>
+  );
+
+  const TeacherLogin = (
+    <Form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.25rem',
+      }}
+      onSubmit={(e) => onSubmit(e)}
+    >
+      {/******* This part is for mobile screen only ********/}
+      <div className='login-mobile-logo'>
+        <img
+          src={Logo}
+          alt=''
+          style={{
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%',
+          }}
+        />
+        <div>
+          <h4
+            style={{
+              color: '#992b3e',
+              letterSpacing: '1px',
+              fontFamily: 'Zen Maru Gothic',
+            }}
+            className='mb-0 pt-2'
+          >
+            Digital
+          </h4>
+          <h5
+            style={{
+              color: '#13578b',
+              letterSpacing: '1px',
+              fontFamily: 'Zen Maru Gothic',
+            }}
+          >
+            Education
+          </h5>
+        </div>
+      </div>
+
+      <h3 className='login-header'>DE SMS LOGIN</h3>
+      <Form.Floating className='mb-0'>
+        <Form.Control
+          id='floatingInputCustom'
+          type='email'
+          placeholder='name@example.com'
+          className='mb-0'
+          name='userName'
+          value={userName}
+          onChange={(e) => onChange(e)}
+        />
+        <label htmlFor='floatingInputCustom' className='login-label'>
+          Teacher Username
+        </label>
+      </Form.Floating>
+      <Form.Floating>
+        <Form.Control
+          id='floatingPasswordCustom'
+          type='password'
+          placeholder='Password'
+          name='password'
+          value={password}
+          onChange={(e) => onChange(e)}
+        />
+        <label className='login-label' htmlFor='floatingPasswordCustom'>
+          Password
+        </label>
+      </Form.Floating>
+      <Form.Select
+        aria-label='Default select example'
+        className='role-select mt-3'
+        onChange={(e) => onSelect(e)}
+      >
+        <option>Your Role</option>
+        <option value='admin'>Admin</option>
+        <option value='teacher'>Teacher</option>
+      </Form.Select>
+      <Button variant='outline-primary' className='login-log-btn' type='submit'>
+        <i className='fi fi-rr-user'></i> Log In
+      </Button>
+      <p style={{ color: '#0001ff' }}>
+        Not registered yet?{' '}
+        <Link
+          to='/register'
+          className='router-link'
+          style={{ color: '#0001ff' }}
+        >
+          Click Me!
+        </Link>{' '}
+      </p>
+    </Form>
+  );
 
   return (
     <Container className='login-screen-container' fluid>
@@ -42,94 +246,7 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
           <div className='alert-container'>
             <Alerts />
           </div>
-          <Form
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1.25rem',
-            }}
-            onSubmit={(e) => onSubmit(e)}
-          >
-            {/******* This part is for mobile screen only ********/}
-            <div className='login-mobile-logo'>
-              <img
-                src={Logo}
-                alt=''
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  borderRadius: '50%',
-                }}
-              />
-              <div>
-                <h4
-                  style={{
-                    color: '#992b3e',
-                    letterSpacing: '1px',
-                    fontFamily: 'Zen Maru Gothic',
-                  }}
-                  className='mb-0 pt-2'
-                >
-                  Digital
-                </h4>
-                <h5
-                  style={{
-                    color: '#13578b',
-                    letterSpacing: '1px',
-                    fontFamily: 'Zen Maru Gothic',
-                  }}
-                >
-                  Education
-                </h5>
-              </div>
-            </div>
-
-            <h3 className='login-header'>DE SMS LOGIN</h3>
-            <Form.Floating className='mb-0'>
-              <Form.Control
-                id='floatingInputCustom'
-                type='email'
-                placeholder='name@example.com'
-                className='mb-0'
-                name='email'
-                value={email}
-                onChange={(e) => onChange(e)}
-              />
-              <label htmlFor='floatingInputCustom' className='login-label'>
-                Username
-              </label>
-            </Form.Floating>
-            <Form.Floating>
-              <Form.Control
-                id='floatingPasswordCustom'
-                type='password'
-                placeholder='Password'
-                name='password'
-                value={password}
-                onChange={(e) => onChange(e)}
-              />
-              <label className='login-label' htmlFor='floatingPasswordCustom'>
-                Password
-              </label>
-            </Form.Floating>
-            <Button
-              variant='outline-primary'
-              className='mt-2 login-log-btn'
-              type='submit'
-            >
-              <i className='fi fi-rr-user'></i> Log In
-            </Button>
-            <p style={{ color: '#0001ff' }}>
-              Not registered yet?{' '}
-              <Link
-                to='/register'
-                className='router-link'
-                style={{ color: '#0001ff' }}
-              >
-                Click Me!
-              </Link>{' '}
-            </p>
-          </Form>
+          {isAdmin === true ? AdminLogin : TeacherLogin}
         </Col>
         <Col lg={6} md={6} xs={12} style={{ paddingRight: '0' }}>
           <Carousel

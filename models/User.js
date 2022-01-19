@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const teachers = require('./Teachers');
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -38,6 +39,7 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  teachers: [teachers],
 });
 
 // 'user' is the model name and UserSchema is the usermodel which we have created abv

@@ -93,38 +93,40 @@ export const registerUser =
   };
 
 // login user
-export const loginUser = (email, password, history) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+export const loginUser =
+  (email, password, isAdmin, history) => async (dispatch) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
 
-  const body = JSON.stringify({
-    email,
-    password,
-  });
-
-  try {
-    const res = await axios.post('/api/auth', body, config);
-
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data,
+    const body = JSON.stringify({
+      email,
+      password,
+      isAdmin,
     });
-    dispatch(loadUser());
-  } catch (err) {
-    const error = err.response.data.msg;
 
-    if (error) {
-      dispatch(setAlert(error, 'danger'));
+    try {
+      const res = await axios.post('/api/auth', body, config);
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(loadUser());
+    } catch (err) {
+      const error = err.response.data.msg;
+
+      if (error) {
+        dispatch(setAlert(error, 'danger'));
+      }
+
+      dispatch({
+        type: LOGIN_FAILED,
+      });
     }
-
-    dispatch({
-      type: LOGIN_FAILED,
-    });
-  }
-};
+  };
 
 // logout user
 export const logoutUser = () => (dispatch) => {

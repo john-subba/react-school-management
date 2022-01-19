@@ -12,20 +12,23 @@ import { connect } from 'react-redux';
 import { loginUser } from '../../../actions/auth';
 
 const LoginScreen = ({ loginUser, isAuthenticated }) => {
+  const [isAdmin, setIsAdmin] = useState();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     userName: '',
   });
-  const [isAdmin, setIsAdmin] = useState(false);
 
   const { email, password, userName } = formData;
 
   const onChange = (e) => {
-    setFormData({ ...formData, isAdmin, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const onSelect = (e) => {
+    if (e.target.value === 'main-select') {
+      setIsAdmin(null);
+    }
     if (e.target.value === 'admin') {
       setIsAdmin(true);
     }
@@ -36,7 +39,7 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    loginUser(email, password, isAdmin);
+    loginUser(email, password, userName, isAdmin);
   };
 
   //redirect if logged in
@@ -91,7 +94,6 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
       <h3 className='login-header'>DE SMS LOGIN</h3>
       <Form.Floating className='mb-0'>
         <Form.Control
-          id='floatingInputCustom'
           type='email'
           placeholder='name@example.com'
           className='mb-0'
@@ -105,7 +107,6 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
       </Form.Floating>
       <Form.Floating>
         <Form.Control
-          id='floatingPasswordCustom'
           type='password'
           placeholder='Password'
           name='password'
@@ -121,26 +122,28 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
         className='role-select mt-3'
         onChange={(e) => onSelect(e)}
       >
-        <option>Your Role</option>
+        <option value='main-select'>Your Role</option>
         <option value='admin'>Admin</option>
         <option value='teacher'>Teacher</option>
       </Form.Select>
       <Button variant='outline-primary' className='login-log-btn' type='submit'>
         <i className='fi fi-rr-user'></i> Log In
       </Button>
-      <p style={{ color: '#0001ff' }}>
-        Not registered yet?{' '}
-        <Link
-          to='/register'
-          className='router-link'
-          style={{ color: '#0001ff' }}
-        >
-          Click Me!
-        </Link>{' '}
+      <p style={{ color: '#0001ff' }} className='mb-0'>
+        <small>
+          Not registered yet?{' '}
+          <Link
+            to='/register'
+            className='router-link'
+            style={{ color: '#0001ff', fontFamily: 'Zen Maru Gothic' }}
+          >
+            Click Here To Experience Our System!
+          </Link>{' '}
+        </small>
       </p>
     </Form>
   );
-
+  // for teacher login
   const TeacherLogin = (
     <Form
       style={{
@@ -187,8 +190,20 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
       <h3 className='login-header'>DE SMS LOGIN</h3>
       <Form.Floating className='mb-0'>
         <Form.Control
-          id='floatingInputCustom'
           type='email'
+          placeholder='name@example.com'
+          className='mb-0'
+          name='email'
+          value={email}
+          onChange={(e) => onChange(e)}
+        />
+        <label htmlFor='floatingInputCustom' className='login-label'>
+          School Email
+        </label>
+      </Form.Floating>
+      <Form.Floating className='mb-0'>
+        <Form.Control
+          type='text'
           placeholder='name@example.com'
           className='mb-0'
           name='userName'
@@ -201,7 +216,6 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
       </Form.Floating>
       <Form.Floating>
         <Form.Control
-          id='floatingPasswordCustom'
           type='password'
           placeholder='Password'
           name='password'
@@ -217,23 +231,13 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
         className='role-select mt-3'
         onChange={(e) => onSelect(e)}
       >
-        <option>Your Role</option>
+        <option value='main-select'>Your Role</option>
         <option value='admin'>Admin</option>
         <option value='teacher'>Teacher</option>
       </Form.Select>
       <Button variant='outline-primary' className='login-log-btn' type='submit'>
         <i className='fi fi-rr-user'></i> Log In
       </Button>
-      <p style={{ color: '#0001ff' }}>
-        Not registered yet?{' '}
-        <Link
-          to='/register'
-          className='router-link'
-          style={{ color: '#0001ff' }}
-        >
-          Click Me!
-        </Link>{' '}
-      </p>
     </Form>
   );
 

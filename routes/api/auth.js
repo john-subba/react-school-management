@@ -21,6 +21,25 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// @route    GET api/auth
+// @desc     Get user by token
+// @access   Private
+router.get('/teacher', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    const index = user.teachers
+      .map((teacher) => teacher.id)
+      .indexOf(req.teacher.id);
+
+    const teacher = user.teachers[index];
+    res.json(teacher);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 //@route    POST /api/auth
 //@desc     login user
 //@access   public

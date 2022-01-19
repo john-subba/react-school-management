@@ -9,6 +9,7 @@ import {
   CLEAR_PROFILE,
   GET_USER_FAILED,
   GET_CURRENT_USER,
+  TEACHER_LOADED,
 } from '../constants/constant';
 import axios from 'axios';
 import { setAlert } from './alert';
@@ -25,6 +26,25 @@ export const loadUser = () => async (dispatch) => {
 
     dispatch({
       type: USER_LOADED,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
+// load teacher
+export const loadTeacher = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.get('/api/auth/teacher');
+    dispatch({
+      type: TEACHER_LOADED,
       payload: res.data,
     });
   } catch (err) {
@@ -94,37 +114,70 @@ export const registerUser =
 
 // login user
 export const loginUser =
-  (email, password, isAdmin, history) => async (dispatch) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+  (email, password, userName, isAdmin) => async (dispatch) => {
+    if (isAdmin === undefined) {
+      dispatch(setAlert('Please select your role', 'danger'));
+    }
+    if (isAdmin === true) {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
 
-    const body = JSON.stringify({
-      email,
-      password,
-      isAdmin,
-    });
-
-    try {
-      const res = await axios.post('/api/auth', body, config);
-
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data,
+      const body = JSON.stringify({
+        email,
+        password,
+        isAdmin,
       });
-      dispatch(loadUser());
-    } catch (err) {
-      const error = err.response.data.msg;
 
-      if (error) {
-        dispatch(setAlert(error, 'danger'));
+      try {
+        const res = await axios.post('/api/auth', body, config);
+
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.data,
+        });
+        dispatch(loadUser());
+      } catch (err) {
+        const error = err.response.data.msg;
+
+        if (error) {
+          dispatch(setAlert(error, 'danger'));
+        }
+
+        dispatch({
+          type: LOGIN_FAILED,
+        });
       }
+    }
+    if (isAdmin === false) {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const body = JSON.stringify({ email, userName, password, isAdmin });
 
-      dispatch({
-        type: LOGIN_FAILED,
-      });
+      try {
+        const res = await axios.post('/api/auth', body, config);
+
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.data,
+        });
+        dispatch(loadTeacher());
+      } catch (err) {
+        const error = err.response.data.msg;
+
+        if (error) {
+          dispatch(setAlert(error, 'danger'));
+        }
+
+        dispatch({
+          type: LOGIN_FAILED,
+        });
+      }
     }
   };
 

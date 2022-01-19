@@ -13,7 +13,6 @@ import { getCurrentUser } from '../../../actions/auth';
 const Dashboard = ({
   auth: { user, isLoading },
   teachersList,
-
   getCurrentTeacher,
   history,
 }) => {

@@ -14,6 +14,7 @@ import {
   GET_USER_FAILED,
   EDIT_TEACHER_DETAILS_SUCCESS,
   EDIT_TEACHER_DETAILS_FAILED,
+  TEACHER_LOADED,
 } from '../constants/constant';
 
 const initialState = {
@@ -21,6 +22,8 @@ const initialState = {
   isAuthenticated: null,
   isLoading: true,
   user: null,
+  isAdmin: null,
+  teacher: null,
 };
 
 const user = (state = initialState, action) => {
@@ -36,6 +39,14 @@ const user = (state = initialState, action) => {
         isAuthenticated: true,
         isLoading: false,
         user: payload,
+      };
+    case TEACHER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        isLoading: false,
+        teacher: payload,
+        isAdmin: false,
       };
     case GET_CURRENT_USER:
       return {

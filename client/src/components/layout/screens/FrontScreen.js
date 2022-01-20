@@ -5,7 +5,10 @@ import DashboardGif from '../../../assets/dashboard/Dashboard.gif';
 import { Link } from 'react-router-dom';
 import Header from '../Header';
 
-const FrontScreen = () => {
+//redux
+import { connect } from 'react-redux';
+
+const FrontScreen = ({ isAdmin }) => {
   return (
     <>
       <Header />
@@ -45,11 +48,19 @@ const FrontScreen = () => {
                 width: '70%',
               }}
             />
-            <Link to='/dashboard'>
-              <Button variant='primary' className='btn-body-fifth_1st'>
-                Go to school dashboard
-              </Button>
-            </Link>
+            {isAdmin ? (
+              <Link to='/dashboard'>
+                <Button variant='primary' className='btn-body-fifth_1st'>
+                  Go to school dashboard
+                </Button>
+              </Link>
+            ) : (
+              <Link to='/teacher-profile'>
+                <Button variant='primary' className='btn-body-fifth_1st'>
+                  Go to your profile
+                </Button>
+              </Link>
+            )}
           </Col>
         </Row>
       </Container>
@@ -57,4 +68,8 @@ const FrontScreen = () => {
   );
 };
 
-export default FrontScreen;
+const mapStateToProps = (state) => ({
+  isAdmin: state.auth.isAdmin,
+});
+
+export default connect(mapStateToProps)(FrontScreen);

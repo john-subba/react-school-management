@@ -63,6 +63,7 @@ const user = (state = initialState, action) => {
         ...payload,
         isAuthenticated: true,
         isLoading: false,
+        isAdmin: true,
       };
     case ADD_TEACHER_DETAILS_FAILED:
     case DELETE_TEACHER_DETAILS_FAILED:

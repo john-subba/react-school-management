@@ -3,7 +3,7 @@ import {
   REGISTER_FAILED,
   USER_LOADED,
   AUTH_ERROR,
-  LOGIN_SUCCESS,
+  ADMIN_LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGOUT,
   ADD_TEACHER_DETAILS_SUCCESS,
@@ -23,7 +23,6 @@ const initialState = {
   isLoading: true,
   user: null,
   isAdmin: null,
-  teacher: null,
 };
 
 const user = (state = initialState, action) => {
@@ -56,7 +55,14 @@ const user = (state = initialState, action) => {
         user: payload,
       };
     case REGISTER_SUCCESS:
-    case LOGIN_SUCCESS:
+      localStorage.setItem('token', payload.token);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        isLoading: false,
+      };
+    case ADMIN_LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token);
       return {
         ...state,

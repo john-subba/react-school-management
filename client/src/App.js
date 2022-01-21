@@ -16,6 +16,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
+import { loadCurrentExams } from './actions/exams';
 
 // adding x-auth-token header to token
 if (localStorage.token) {
@@ -25,6 +26,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(loadCurrentExams());
   }, []);
 
   return (

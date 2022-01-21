@@ -10,7 +10,7 @@ const Exam = require('../../models/Exam');
 //@desc  get all of the exams
 router.get('/', auth, async (req, res) => {
   try {
-    const exam = await Exam.find();
+    const exam = await Exam.find({ user: req.user.id });
 
     res.json(exam);
   } catch (err) {
@@ -41,12 +41,14 @@ router.post(
     if (toDate) examFields.toDate = toDate;
 
     try {
-      let exam = await Exam.findById(req.user.id);
+      let exam = await Exam.find({ user: req.user.id });
 
       exam = new Exam(examFields);
 
       await exam.save();
-      res.json(exam);
+
+      let userExams = await Exam.find({ user: req.user.id });
+      res.json(userExams);
     } catch (err) {
       console.log(err.message);
       res.status(500).send('Server Error');

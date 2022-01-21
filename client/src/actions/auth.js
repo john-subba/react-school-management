@@ -3,7 +3,7 @@ import {
   REGISTER_FAILED,
   USER_LOADED,
   AUTH_ERROR,
-  LOGIN_SUCCESS,
+  ADMIN_LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGOUT,
   CLEAR_PROFILE,
@@ -14,6 +14,7 @@ import {
 import axios from 'axios';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
+import { loadCurrentExams } from './exams';
 
 // load user
 export const loadUser = () => async (dispatch) => {
@@ -135,10 +136,11 @@ export const loginUser =
         const res = await axios.post('/api/auth', body, config);
 
         dispatch({
-          type: LOGIN_SUCCESS,
+          type: ADMIN_LOGIN_SUCCESS,
           payload: res.data,
         });
         dispatch(loadUser());
+        dispatch(loadCurrentExams());
       } catch (err) {
         const error = err.response.data.msg;
 
@@ -163,7 +165,7 @@ export const loginUser =
         const res = await axios.post('/api/auth', body, config);
 
         dispatch({
-          type: LOGIN_SUCCESS,
+          type: ADMIN_LOGIN_SUCCESS,
           payload: res.data,
         });
         dispatch(loadTeacher());

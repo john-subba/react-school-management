@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '../../../actions/auth';
 
 const LoginScreen = ({ loginUser, isAuthenticated }) => {
-  const [isAdmin, setIsAdmin] = useState();
+  const [isAdmin, setIsAdmin] = useState(true);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,9 +26,6 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
   };
 
   const onSelect = (e) => {
-    if (e.target.value === 'main-select') {
-      setIsAdmin(null);
-    }
     if (e.target.value === 'admin') {
       setIsAdmin(true);
     }
@@ -122,7 +119,6 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
         className='role-select mt-3'
         onChange={(e) => onSelect(e)}
       >
-        <option value='main-select'>Your Role</option>
         <option value='admin'>Admin</option>
         <option value='teacher'>Teacher</option>
       </Form.Select>
@@ -231,9 +227,8 @@ const LoginScreen = ({ loginUser, isAuthenticated }) => {
         className='role-select mt-3'
         onChange={(e) => onSelect(e)}
       >
-        <option value='main-select'>Your Role</option>
-        <option value='admin'>Admin</option>
         <option value='teacher'>Teacher</option>
+        <option value='admin'>Admin</option>
       </Form.Select>
       <Button variant='outline-primary' className='login-log-btn' type='submit'>
         <i className='fi fi-rr-user'></i> Log In

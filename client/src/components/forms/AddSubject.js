@@ -84,11 +84,11 @@ const AddSubject = ({ showForm, setShowForm, teacher_id }) => {
               style={{
                 display: 'flex',
                 justifyContent: 'center',
-                paddingTop: '0.5rem',
+                paddingTop: '1rem',
               }}
             >
               <Button
-                className='add-subject-btn'
+                className='add-subject-btn '
                 onClick={(e) => onSubmit(e, teacher_id)}
               >
                 <i className='fa fa-save'></i> Save

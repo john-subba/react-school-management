@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import ProfileGif from '../../../assets/dashboard/Profile.gif';
 import DashboardGif from '../../../assets/dashboard/Dashboard.gif';
@@ -9,6 +9,7 @@ import Header from '../Header';
 import { connect } from 'react-redux';
 
 const FrontScreen = ({ isAdmin }) => {
+  console.log(isAdmin);
   return (
     <>
       <Header />

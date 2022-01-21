@@ -68,6 +68,10 @@ router.post(
             .json({ msg: 'There is no school for this user' });
         }
 
+        if (!userName) {
+          return res.status(401).json({ msg: 'Please add username for login' });
+        }
+
         const index = user.teachers
           .map((teacher) => teacher.userName)
           .indexOf(userName);

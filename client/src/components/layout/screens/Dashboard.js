@@ -9,10 +9,11 @@ import { withRouter, Link } from 'react-router-dom';
 //redux part
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../../../actions/auth';
+import { loadCurrentExams } from '../../../actions/exams';
 
 const Dashboard = ({
   auth: { user, isLoading },
-  teachersList,
+  examList: { exams, examsIsLoading },
   getCurrentTeacher,
   history,
 }) => {
@@ -40,21 +41,25 @@ const Dashboard = ({
                 fontFamily: 'Zen Maru Gothic',
               }}
             >
-              Staff's name List
+              Exam List
             </h4>
-            <DashboardActions
-              setShowDelete={setShowDelete}
-              showDelete={showDelete}
-              showEdit={showEdit}
-              setShowEdit={setShowEdit}
-            />
           </Col>
         </Row>
         <Row>
-          {teachersList.teachers.length === 0 ? (
+          <DashboardActions
+            setShowDelete={setShowDelete}
+            showDelete={showDelete}
+            showEdit={showEdit}
+            setShowEdit={setShowEdit}
+          />
+        </Row>
+        <Row>
+          {examsIsLoading ? (
+            <Spinner />
+          ) : exams === null ? (
             <>
               <p style={{ paddingLeft: '1rem', fontFamily: 'Zen Maru Gothic' }}>
-                There are no any staff details added. Please add some.
+                There are no any exams details added. Please add some.
               </p>
             </>
           ) : (
@@ -70,64 +75,25 @@ const Dashboard = ({
                 <thead className='dashboard-thead'>
                   <tr>
                     <th>Name</th>
-                    <th>Department</th>
-                    <th>Position</th>
-                    <th>Address</th>
+                    <th>From - Date</th>
+                    <th>To - Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {teachersList.teachers.map((teacher) => {
-                    const { _id, name, department, position, address } =
-                      teacher;
+                  {exams.map((exam) => {
+                    const { _id, title, fromDate, toDate } = exam;
                     return (
                       <tr key={_id} className='dashboard-tr'>
-                        <td>
-                          <button
-                            className='dashboard-table-teacher'
-                            onClick={() => getCurrentTeacher(_id, history)}
-                          >
-                            {name}
-                          </button>
-                        </td>
-                        <td>{department}</td>
-                        <td>{position}</td>
-                        <td
-                          style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                          }}
-                        >
-                          {address}{' '}
-                          {showEdit && (
-                            <Link
-                              to={{
-                                pathname: '/edit-teacher-details',
-                                _id,
-                              }}
-                            >
-                              <Button
-                                variant='primary'
-                                style={{
-                                  color: 'blue',
-                                  cursor: 'pointer',
-                                  border: 'none',
-                                  boxShadow: 'none',
-                                  backgroundColor: 'transparent',
-                                  padding: '0',
-                                }}
-                              >
-                                <i className='far fa-edit'></i>
-                              </Button>
-                            </Link>
-                          )}
-                        </td>
+                        <td>{title}</td>
+                        <td>{fromDate}</td>
+                        <td>{toDate}</td>
                       </tr>
                     );
                   })}
                 </tbody>
               </Table>
               <small style={{ color: '#AFB2B4' }}>
-                *** Click on staff's name to view more details
+                *** Click on Exam's title to view subjects and classes.
               </small>
             </>
           )}
@@ -140,8 +106,10 @@ const Dashboard = ({
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  examList: state.exam,
 });
 
 export default connect(mapStateToProps, {
   getCurrentUser,
+  loadCurrentExams,
 })(withRouter(Dashboard));

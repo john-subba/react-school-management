@@ -19,6 +19,19 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+//@route GET /api/exams/:exam_id
+//@desc   get single exam by its id
+router.get('/:exam_id', auth, async (req, res) => {
+  try {
+    const exam = await Exam.findById(req.params.exam_id);
+
+    res.json(exam);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json('Server Error');
+  }
+});
+
 //@route POST /api/exams
 //@desc  add exams to the user
 router.post(
@@ -68,6 +81,7 @@ router.put('/:exam_id', auth, async (req, res) => {
     if (fromDate) exam.fromDate = `${fromDate}`;
     if (toDate) exam.toDate = `${toDate}`;
     await exam.save();
+
     res.json(exam);
   } catch (err) {
     console.log(err.message);

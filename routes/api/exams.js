@@ -94,7 +94,8 @@ router.put('/:exam_id', auth, async (req, res) => {
 router.delete('/:exam_id', auth, async (req, res) => {
   try {
     await Exam.findOneAndRemove(req.params.exam_id);
-    res.json('Exam has been deleted.');
+    let exam = await Exam.find({ user: req.user.id });
+    res.json(exam);
   } catch (err) {
     console.log(err.message);
     res.status(500).send('Server Error');

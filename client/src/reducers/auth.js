@@ -6,15 +6,8 @@ import {
   ADMIN_LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGOUT,
-  ADD_TEACHER_DETAILS_SUCCESS,
-  ADD_TEACHER_DETAILS_FAILED,
-  DELETE_TEACHER_DETAILS_FAILED,
-  DELETE_TEACHER_DETAILS_SUCCESS,
   GET_CURRENT_USER,
   GET_USER_FAILED,
-  EDIT_TEACHER_DETAILS_SUCCESS,
-  EDIT_TEACHER_DETAILS_FAILED,
-  TEACHER_LOADED,
 } from '../constants/constant';
 
 const initialState = {
@@ -30,23 +23,13 @@ const user = (state = initialState, action) => {
 
   switch (type) {
     case USER_LOADED:
-    case EDIT_TEACHER_DETAILS_SUCCESS:
-    case ADD_TEACHER_DETAILS_SUCCESS:
-    case DELETE_TEACHER_DETAILS_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
         isLoading: false,
         user: payload,
       };
-    case TEACHER_LOADED:
-      return {
-        ...state,
-        isAuthenticated: true,
-        isLoading: false,
-        teacher: payload,
-        isAdmin: false,
-      };
+
     case GET_CURRENT_USER:
       return {
         ...state,
@@ -71,9 +54,7 @@ const user = (state = initialState, action) => {
         isLoading: false,
         isAdmin: true,
       };
-    case ADD_TEACHER_DETAILS_FAILED:
-    case DELETE_TEACHER_DETAILS_FAILED:
-    case EDIT_TEACHER_DETAILS_FAILED:
+
     case GET_USER_FAILED:
       return {
         ...state,

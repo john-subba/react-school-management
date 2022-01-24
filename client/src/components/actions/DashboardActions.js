@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Modal, Form, Container, Row, Col } from 'react-bootstrap';
 import testIcon from '../../assets/dashboard/test.png';
-import editIcon from '../../assets/dashboard/edit.png';
-
 // redux part
 import { connect } from 'react-redux';
 import { addExamDetails } from '../../actions/exams';
 
-const DashboardActions = ({ showEdit, setShowEdit, addExamDetails }) => {
+const DashboardActions = ({ addExamDetails }) => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -34,16 +31,12 @@ const DashboardActions = ({ showEdit, setShowEdit, addExamDetails }) => {
   return (
     <div className='dashboard-actions-container'>
       <div className='dashboard-actions'>
-        <Button className='dashboard-btn' onClick={() => setShowForm(true)}>
+        <Button
+          className='dashboard-btn pb-3'
+          onClick={() => setShowForm(true)}
+        >
           <img src={testIcon} alt='' className='dashboard-actions-icons' />+ Add
           Exam Details
-        </Button>
-        <Button
-          className='dashboard-btn'
-          onClick={() => setShowEdit(!showEdit)}
-        >
-          <img src={editIcon} alt='' className='dashboard-actions-icons' />
-          .. Edit Exam Details
         </Button>
       </div>
       {showForm && (

@@ -3,10 +3,10 @@ import HomeScreen from './components/layout/screens/HomeScreen';
 import LoginScreen from './components/layout/screens/LoginScreen';
 import RegisterScreen from './components/layout/screens/RegisterScreen';
 import Dashboard from './components/layout/screens/Dashboard';
-import AddTeachers from './components/forms/AddTeachers';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FrontScreen from './components/layout/screens/FrontScreen';
 import SchoolProfile from './components/layout/SchoolProfile';
+import Subjects from './components/layout/classes/Subjects';
 
 // private route * Protects the route
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -43,6 +43,7 @@ const App = () => {
             component={SchoolProfile}
           />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <PrivateRoute exact path='/subjects' component={Subjects} />
         </Switch>
       </Router>
     </Provider>

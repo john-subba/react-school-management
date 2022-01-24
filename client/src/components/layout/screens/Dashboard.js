@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from '../Header';
 import Spinner from '../Spinner';
 import DashboardActions from '../../actions/DashboardActions';
-import { Col, Container, Row, Table, Button } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
 import Alerts from '../../alert/Alerts';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -10,16 +10,14 @@ import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../../../actions/auth';
 import { loadCurrentExams } from '../../../actions/exams';
+import { clearPrevSubject } from '../../../actions/subjects';
 
 const Dashboard = ({
   auth: { user, isLoading },
   examList: { exams, examsIsLoading },
-  getCurrentTeacher,
-  history,
-}) => {
-  const [showDelete, setShowDelete] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
 
+  clearPrevSubject,
+}) => {
   return isLoading === true && user === null ? (
     <Spinner />
   ) : (
@@ -38,7 +36,6 @@ const Dashboard = ({
                 color: '#343a40',
                 paddingBottom: '0',
                 marginBottom: '0',
-                fontFamily: 'Zen Maru Gothic',
               }}
             >
               Exam List
@@ -46,17 +43,12 @@ const Dashboard = ({
           </Col>
         </Row>
         <Row>
-          <DashboardActions
-            setShowDelete={setShowDelete}
-            showDelete={showDelete}
-            showEdit={showEdit}
-            setShowEdit={setShowEdit}
-          />
+          <DashboardActions />
         </Row>
         <Row>
           {examsIsLoading ? (
             <Spinner />
-          ) : exams === null ? (
+          ) : exams.length === 0 ? (
             <>
               <p style={{ paddingLeft: '1rem', fontFamily: 'Zen Maru Gothic' }}>
                 There are no any exams details added. Please add some.
@@ -84,7 +76,21 @@ const Dashboard = ({
                     const { _id, title, fromDate, toDate } = exam;
                     return (
                       <tr key={_id} className='dashboard-tr'>
-                        <td>{title}</td>
+                        <td>
+                          <Link
+                            to={{
+                              pathname: '/subjects',
+                              _id,
+                              title,
+                              fromDate,
+                              toDate,
+                            }}
+                            className='dashboard-table-exam'
+                            onClick={() => clearPrevSubject()}
+                          >
+                            {title}
+                          </Link>
+                        </td>
                         <td>{fromDate}</td>
                         <td>{toDate}</td>
                       </tr>
@@ -112,4 +118,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getCurrentUser,
   loadCurrentExams,
+  clearPrevSubject,
 })(withRouter(Dashboard));

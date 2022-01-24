@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { loadCurrExamSubject } from '../../../actions/subjects';
 import { editExamDetails } from '../../../actions/exams';
 import { deleteExamDetails } from '../../../actions/exams';
+import { addSubject } from '../../../actions/subjects';
 
 const Subjects = ({
   location,
@@ -20,18 +21,26 @@ const Subjects = ({
   editExamDetails,
   deleteExamDetails,
   history,
+  addSubject,
 }) => {
   const [formData, setFormData] = useState({
     title: '',
-    fromDate: '',
-    toDate: '',
+    createdDate: '',
+    subjectTeacher: '',
   });
+  const { title, fromDate, toDate } = formData;
+  const [subjectData, setSubjectData] = useState({
+    subjectTitle: '',
+    subjectTeacher: '',
+  });
+  const { subjectTitle, subjectTeacher } = subjectData;
   const [showForm, setShowForm] = useState(false);
   const [showDlt, setShowDlt] = useState(false);
-  const { title, fromDate, toDate } = formData;
+  const [showAdd, setShowAdd] = useState(false);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setSubjectData({ ...subjectData, [e.target.name]: e.target.value });
   };
 
   const loadUser = (_id) => {
@@ -42,6 +51,12 @@ const Subjects = ({
     e.preventDefault();
     editExamDetails(formData, _id, history);
     setShowForm(false);
+  };
+
+  const onSubmitSub = (e, _id) => {
+    e.preventDefault();
+    addSubject(subjectData, _id);
+    setShowAdd(false);
   };
 
   const dltExam = (_id, history) => {
@@ -211,7 +226,10 @@ const Subjects = ({
             >
               Load Subjects
             </Button>
-            <Button className='btn-gradient-bg load-sub-btn'>
+            <Button
+              className='btn-gradient-bg load-sub-btn'
+              onClick={() => setShowAdd(true)}
+            >
               Add Subjects
             </Button>
           </Col>
@@ -228,12 +246,12 @@ const Subjects = ({
                 {subjects.length > 0 ? (
                   <>
                     {subjects.map((subject) => {
-                      const { _id, title, subjectTeacher, createdDate } =
+                      const { _id, subjectTitle, subjectTeacher, createdDate } =
                         subject;
                       return (
                         <div className='subject-btn-container' key={_id}>
                           <div className='subject-btn'>
-                            <h5 className='subject-btn-h5'>{title}</h5>
+                            <h5 className='subject-btn-h5'>{subjectTitle}</h5>
                             <div
                               style={{
                                 display: 'flex',
@@ -372,6 +390,94 @@ const Subjects = ({
             </Modal.Footer>
           </Modal>
         )}
+        {showAdd && (
+          <Modal show={showAdd} onHide={() => setShowAdd(false)} centered>
+            <Container fluid>
+              <Form>
+                <Row className='add-subject-row btn-gradient-bg'>
+                  <h5
+                    style={{
+                      color: '#fff',
+                      fontFamily: 'Zen Maru Gothic',
+                      textAlign: 'center',
+                    }}
+                  >
+                    Add Subject Details
+                  </h5>
+                  <Col className='add-subject-col'>
+                    <Form.Group
+                      className='mb-3'
+                      controlId='formBasicDepartment'
+                    >
+                      <Form.Label
+                        style={{ color: '#fff', fontFamily: 'Zen Maru Gothic' }}
+                      >
+                        Subject Title
+                      </Form.Label>
+                      <Form.Control
+                        type='text'
+                        placeholder='Enter your full'
+                        style={{
+                          backgroundColor: '#fff',
+                          border: '1px solid #e2e2e2',
+                          fontFamily: 'Zen Maru Gothic',
+                          fontSize: '0.9rem',
+                        }}
+                        name='subjectTitle'
+                        value={subjectTitle}
+                        className='border-focus'
+                        onChange={(e) => onChange(e)}
+                      />
+                    </Form.Group>
+
+                    <Form.Group className='mb-3'>
+                      <Form.Label
+                        style={{ color: '#fff', fontFamily: 'Zen Maru Gothic' }}
+                      >
+                        Subject Teacher
+                      </Form.Label>
+                      <Form.Control
+                        type='text'
+                        placeholder='Enter your full'
+                        style={{
+                          backgroundColor: '#fff',
+                          border: '1px solid #e2e2e2',
+                          fontFamily: 'Zen Maru Gothic',
+                          fontSize: '0.9rem',
+                        }}
+                        name='subjectTeacher'
+                        value={subjectTeacher}
+                        className='border-focus'
+                        onChange={(e) => onChange(e)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col
+                    style={{
+                      display: 'flex',
+                      paddingTop: '1rem',
+                      gap: '0.5rem',
+                    }}
+                  >
+                    <Button
+                      className='add-subject-btn'
+                      onClick={(e) => onSubmitSub(e, location._id)}
+                    >
+                      <i className='fa fa-save'></i> Save
+                    </Button>
+                    <Button
+                      variant='danger'
+                      style={{ borderRadius: '25px' }}
+                      onClick={() => setShowAdd(false)}
+                    >
+                      <i className='fa fa-times'></i> Cancel
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+            </Container>
+          </Modal>
+        )}
       </Container>
     </>
   );
@@ -385,4 +491,5 @@ export default connect(mapStateToProps, {
   loadCurrExamSubject,
   editExamDetails,
   deleteExamDetails,
+  addSubject,
 })(withRouter(Subjects));

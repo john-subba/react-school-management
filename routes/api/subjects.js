@@ -23,12 +23,12 @@ router.get('/:exam_id', auth, async (req, res) => {
   }
 });
 
-//@route /api/subjects
+//@route /api/subjects/:exam_id
 //@desc  add subject to the exam
 router.post(
   '/:exam_id',
   [
-    check('title', 'Subject Title is required').not().isEmpty(),
+    check('subjectTitle', 'Subject Title is required').not().isEmpty(),
     check('subjectTeacher', 'Subject Teacher is required').not().isEmpty(),
   ],
   auth,
@@ -39,11 +39,11 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, subjectTeacher } = req.body;
+    const { subjectTitle, subjectTeacher } = req.body;
 
     const subjectsFields = {};
     subjectsFields.exam = req.params.exam_id;
-    if (title) subjectsFields.title = title;
+    if (subjectTitle) subjectsFields.subjectTitle = subjectTitle;
     if (subjectTeacher) subjectsFields.subjectTeacher = subjectTeacher;
 
     try {
@@ -71,7 +71,7 @@ router.put('/:subject_id', auth, async (req, res) => {
 
     const subject = await Subject.findById(req.params.subject_id);
 
-    if (title) subject.title = `${title}`;
+    if (title) subject.subjectTitle = `${subjectTitle}`;
     if (subjectTeacher) subject.subjectTeacher = `${subjectTeacher}`;
     await subject.save();
 

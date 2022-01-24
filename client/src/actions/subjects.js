@@ -1,5 +1,4 @@
 import {
-  ADD_SUBJECT_FAILED,
   ADD_SUBJECT_SUCCESS,
   CLEAR_CUR_SUBJECT,
   GET_CUR_SUBJECT_FAILED,
@@ -34,4 +33,22 @@ export const clearPrevSubject = () => (dispatch) => {
   });
 };
 
-export const addSubject = (formData) => async (dispatch) => {};
+export const addSubject = (subjectData, _id) => async (dispatch) => {
+  try {
+    const res = await axios.post(`/api/subjects/${_id}`, subjectData);
+    console.log(subjectData, _id);
+    dispatch({
+      type: ADD_SUBJECT_SUCCESS,
+      payload: res.data,
+    });
+    dispatch(setAlert('Subjects has been added successfully', 'success'));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch(setAlert('Subject adding failed', 'danger'));
+  }
+};

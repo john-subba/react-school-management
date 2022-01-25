@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
 const StudentSchema = {
-  class: mongoose.Schema.Types.ObjectId,
-  studentsName: {
+  sectionId: mongoose.Schema.Types.ObjectId,
+  studentName: {
     type: String,
     required: true,
   },
-  studentsRoll: {
+  studentRoll: {
     type: Number,
     required: true,
   },
-  studentsGrading: {
+  studentGrading: {
     type: String,
   },
-  studentsRemarks: {
+  studentRemarks: {
     type: String,
   },
 };

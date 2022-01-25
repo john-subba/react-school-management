@@ -938,8 +938,8 @@ body {
   transition: 0.3s all ease-in-out;
 }
 
-.subject-btn-container:hover > .subject-btn {
-  color: #fff;
+.subject-btn-container:hover > .subject-btn-p {
+  color: #fff !important;
 }
 
 .subject-btn-container:hover .subject-btn-h5 {

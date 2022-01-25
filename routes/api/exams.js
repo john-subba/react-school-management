@@ -5,6 +5,8 @@ const auth = require('../../middleware/auth');
 
 // call models
 const Exam = require('../../models/Exam');
+const Subject = require('../../models/Subject');
+const Class = require('../../models/Class');
 
 //@route GET /api/exams
 //@desc  get all of the exams
@@ -93,8 +95,10 @@ router.put('/:exam_id', auth, async (req, res) => {
 //@desc  edit exam and all of its details by exam id
 router.delete('/:exam_id', auth, async (req, res) => {
   try {
-    await Exam.findOneAndRemove(req.params.exam_id);
+    await Exam.findByIdAndDelete(req.params.exam_id);
     let exam = await Exam.find({ user: req.user.id });
+    await Subject.findOneAndDelete({ exam: req.params.exam_id });
+    await Class.findOneAndDelete({ exam: req.params.exam_id });
     res.json(exam);
   } catch (err) {
     console.log(err.message);

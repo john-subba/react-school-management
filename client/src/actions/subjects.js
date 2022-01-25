@@ -36,7 +36,6 @@ export const clearPrevSubject = () => (dispatch) => {
 export const addSubject = (subjectData, _id) => async (dispatch) => {
   try {
     const res = await axios.post(`/api/subjects/${_id}`, subjectData);
-    console.log(subjectData, _id);
     dispatch({
       type: ADD_SUBJECT_SUCCESS,
       payload: res.data,

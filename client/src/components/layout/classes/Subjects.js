@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap';
 import Alerts from '../../alert/Alerts';
 import Header from '../Header';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import teacherIcon from '../../../assets/dashboard/teacher.png';
 import EditIcon from '../../../assets/dashboard/edit.png';
 import alert from '../../../assets/dashboard/alert.png';
@@ -250,21 +250,34 @@ const Subjects = ({
                         subject;
                       return (
                         <div className='subject-btn-container' key={_id}>
-                          <div className='subject-btn'>
-                            <h5 className='subject-btn-h5'>{subjectTitle}</h5>
-                            <div
-                              style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '0.5rem',
-                              }}
-                            >
-                              <img src={teacherIcon} alt='' />
-                              <small>
-                                <p className='mb-0'>{subjectTeacher}</p>
-                              </small>
+                          <Link
+                            to={{
+                              pathname: '/classes',
+                              _id,
+                              subjectTitle,
+                              subjectTeacher,
+                              createdDate,
+                            }}
+                            className='router-link'
+                          >
+                            <div className='subject-btn'>
+                              <h5 className='subject-btn-h5'>{subjectTitle}</h5>
+                              <div
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '0.5rem',
+                                }}
+                              >
+                                <img src={teacherIcon} alt='' />
+                                <small>
+                                  <p className='mb-0 subject-btn-p'>
+                                    {subjectTeacher}
+                                  </p>
+                                </small>
+                              </div>
                             </div>
-                          </div>
+                          </Link>
                         </div>
                       );
                     })}
